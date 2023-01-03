@@ -1,0 +1,28 @@
+#!/bin/sh
+
+{{ if eq .chezmoi.os "linux" -}}
+echo "⚡ Installing zsh"
+sudo apt update
+sudo apt install -y zsh
+{{ else if eq .chezmoi.os "darwin" -}}
+echo "⚡ Installing zsh"
+brew install zsh
+{{ end -}}
+
+#==============================================================================
+# shell switch
+#==============================================================================
+
+if [ "$(basename "$SHELL")" = "zsh" ]; then
+  echo "default shell is already zsh"
+else
+  echo "changing shell to zsh"
+  chsh -s $(which zsh)
+fi
+
+echo "⚡ Installing Starship"
+{{ if eq .chezmoi.os "linux" -}}
+curl -sS https://starship.rs/install.sh | sh
+{{ else if eq .chezmoi.os "darwin" -}}
+brew install starship
+{{ end -}}

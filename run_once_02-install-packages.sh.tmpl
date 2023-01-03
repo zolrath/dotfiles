@@ -1,0 +1,9 @@
+#!/bin/sh
+
+{{ if eq .chezmoi.os "linux" -}}
+sudo update
+sudo apt install ripgrep thefuck autojump
+{{ else if eq .chezmoi.os "darwin" -}}
+NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install ripgrep thefuck autojump
+{{ end -}}

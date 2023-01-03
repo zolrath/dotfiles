@@ -1,0 +1,14 @@
+#!/bin/sh
+
+{{ if eq .chezmoi.os "linux" -}}
+echo "⚡ Updating apt registry and installing asdf"
+sudo apt update
+sudo apt install -y curl git
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
+echo "⚡ asdf installed"
+{{ else if eq .chezmoi.os "darwin" -}}
+echo "⚡ Installing Homebrew and installing asdf"
+NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
+brew install coreutils git
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
+echo "⚡ Homebrew and asdf installed"

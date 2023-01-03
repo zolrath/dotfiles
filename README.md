@@ -17,3 +17,6 @@ asdf plugin add chezmoi && asdf install chezmoi latest && asdf global chezmoi la
 ```
 chezmoi init --apply --verbose https://github.com/zolrath/dotfiles.git
 ```
+
+## Font
+Install [JetBrainsMono modified with NerdFont](https://github.com/jtbx/jetbrainsmono-nerdfont)
