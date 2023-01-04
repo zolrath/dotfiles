@@ -19,7 +19,7 @@ setopt HIST_IGNORE_ALL_DUPS
 #
 
 # Set editor default keymap to emacs (`-e`) or vi (`-v`)
-bindkey -v
+bindkey -e
 
 # Prompt for spelling correction of commands.
 setopt CORRECT
@@ -34,12 +34,10 @@ WORDCHARS=${WORDCHARS//[\/]}
 # Zim configuration
 # -----------------
 
-# Use degit instead of git as the default tool to install and update modules.
-#zstyle ':zim:zmodule' use 'degit'
-
 # --------------------
 # Module configuration
 # --------------------
+
 
 #
 # git
@@ -92,7 +90,6 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 # ------------------
 # Initialize modules
 # ------------------
-
 ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
 # Download zimfw plugin manager if missing.
 if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
