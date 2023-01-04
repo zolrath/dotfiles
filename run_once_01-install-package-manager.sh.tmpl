@@ -7,9 +7,27 @@ sudo apt install -y curl git
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
 echo "⚡ asdf installed"
 {{ else if eq .chezmoi.os "darwin" -}}
+
+# homebrew install
 echo "⚡ Installing Homebrew and installing asdf"
-NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"
+which -s brew
+if [[ $? != 0 ]] ; then
+    echo "⚡ Installing Homebrew"
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+    echo "⚡ Homebrew already installed, updating..."
+    brew update
+fi
+
+# asdf install
 brew install coreutils git
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
+
+which -s asdf
+if [[ $? != 0 ]] ; then
+    echo "⚡ Installing asdf"
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
+else
+    echo "⚡ asdf already installed"
+fi
 echo "⚡ Homebrew and asdf installed"
 {{ end -}}

@@ -3,6 +3,10 @@
 These dotfiles rely on [Chezmoi](https://www.chezmoi.io) to manage their installation.
 
 ## Chezmoi installation
+```sh
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply zolrath -b $HOME/.local/bin
+```
+
 Here we use [asdf](https://asdf-vm.com), which I also use for [Elixir](https://github.com/asdf-vm/asdf-elixir), [Erlang](https://github.com/asdf-vm/asdf-erlang) and [nodejs](https://github.com/asdf-vm/asdf-nodejs)
 
 1. Install `asdf`
