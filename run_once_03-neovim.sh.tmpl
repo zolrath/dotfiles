@@ -4,6 +4,7 @@
 # Installing Neovim
 #==============================================================================
 
+{{ if eq .chezmoi.os "linux" -}}
 readonly NEOVIM_URL="https://github.com/neovim/neovim/releases/download"
 readonly NEOVIM_VERSION="v0.8.2"
 readonly OUTPUT="nvim-linux64.deb"
@@ -29,3 +30,11 @@ install_neovim "$NEOVIM_URL/$NEOVIM_VERSION/$OUTPUT" "$TEMP/$OUTPUT"
 
 sudo apt-get update
 sudo apt-get install neovim
+{{ else if eq .chezmoi.os "darwin" -}}
+if command -v nvim >/dev/null 2>&1; then
+  echo "🟡 neovim is already installed"
+  exit
+fi
+echo "🟢 neovim not found, installing..."
+brew install neovim
+{{ end -}}
