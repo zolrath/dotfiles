@@ -132,11 +132,7 @@ unset key
 # ------------------------------
 # Add asdf shims
 # ------------------------------
-{{ if eq .chezmoi.os "darwin" }}
-. /usr/local/opt/asdf/libexec/asdf.sh
-{{ else if eq .chezmoi.os "linux" }}
 . $HOME/.asdf/asdf.sh
-{{ end }}
 
 source ${HOME}/.zsh_aliases
 
