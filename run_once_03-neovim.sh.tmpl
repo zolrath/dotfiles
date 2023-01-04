@@ -4,6 +4,9 @@
 # Installing Neovim
 #==============================================================================
 
+echo "installing nvchad"
+git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
+
 {{ if eq .chezmoi.os "linux" -}}
 readonly NEOVIM_URL="https://github.com/neovim/neovim/releases/download"
 readonly NEOVIM_VERSION="v0.8.2"
@@ -38,3 +41,4 @@ fi
 echo "🟢 neovim not found, installing..."
 brew install neovim
 {{ end -}}
+
