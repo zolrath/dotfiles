@@ -4,16 +4,12 @@ cd /tmp
 git clone --filter=blob:none --sparse https://github.com/ryanoasis/nerd-fonts.git
 cd nerd-fonts
 git sparse-checkout add patched-fonts/JetBrainsMono
-git sparse-checkout add patched-fonts/FiraCode
-git sparse-checkout add patched-fonts/Hack
 cd nerd-fonts
 
 {{ if eq .chezmoi.os "darwin" -}}
 ./install.sh JetBrainsMono
-./install.sh FiraCode
-./install.sh Hack
 {{ else if eq .chezmoi.os "linux" -}}
-powershell.exe -File ./install.ps1 JetBrainsMono, FiraCode, Hack
+powershell.exe -File ./install.ps1 JetBrainsMono
 {{ end -}}
 cd ..
 rm -rf nerd-fonts
