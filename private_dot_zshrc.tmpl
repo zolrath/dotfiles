@@ -133,7 +133,20 @@ unset key
 
 source ${HOME}/.zsh_aliases
 
+export EDITOR=nvim
+
 # Set less to display raw control characters/fix chezmoi diff color output
-LESS=-R
+export LESS=-R
+
+# ------------------------------
+# Path modifications
+# ------------------------------
+# append
+# path+=('/home/furd/pear/bin')
+# or prepend
+# path=('/home/furd/pear/bin' $path)
+# export to sub-processes (make it inherited by child processes)
+path=(${HOME}/bin $path)
+export PATH
 
 eval "$(starship init zsh)"
