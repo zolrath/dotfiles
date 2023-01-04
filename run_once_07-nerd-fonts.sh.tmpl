@@ -1,0 +1,14 @@
+#!/bin/sh
+
+cd /tmp
+git clone --filter=blob:none --sparse https://github.com/ryanoasis/nerd-fonts.git
+cd nerd-fonts
+git sparse-checkout add patched-fonts/JetBrainsMono
+git sparse-checkout add patched-fonts/FiraCode
+git sparse-checkout add patched-fonts/Hack
+cd nerd-fonts
+./install.sh JetBrainsMono
+./install.sh FiraCode
+./install.sh Hack
+cd ..
+rm -rf nerd-fonts
