@@ -12,6 +12,7 @@ for _, lsp in ipairs(servers) do
 end
 
 -- Set up Elixir CMD
+local elixirls_path = vim.fn.expand('$HOME/tools/elixir-ls/language_server.sh')
 lspconfig["elixirls"].setup {
-    cmd = { "/home/zolrath/tools/elixir-ls/language_server.sh" };
+    cmd = { elixirls_path };
 }
