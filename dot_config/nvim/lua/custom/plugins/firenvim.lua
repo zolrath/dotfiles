@@ -1,5 +1,7 @@
-local elixirSites = {".*exercism\\.org.*", "localhost"}
+local elixirSites = {".*exercism\\.org.*"}
+local ignoreSites = {"localhost", ".*furd-livebook\\.fly\\.dev.*"}
 
+-- au BufEnter exercism.org_*.txt set filetype=elixir
 local localSettings = {
     [".*"] = {
         cmdline = "neovim",
@@ -17,37 +19,38 @@ for _, site in pairs(elixirSites) do
         priority = 1,
         selector = "textarea",
         takeover = "always",
+        filename = '{hostname%32}_{pathname%32}_{selector%32}_{timestamp%32}.ex'
+    }
+end
+
+for _, site in pairs(ignoreSites) do
+    localSettings[site] = {
+        priority = 2,
+        takeover = "never",
     }
 end
 
 vim.g.firenvim_config = {
     localSettings = localSettings
 }
---
--- WriterTimerStarted = false
---
--- function WriteBufferToPage()
---     WriterTimerStarted = false
---     vim.cmd([[write]])
--- end
---
--- function DelayWriteBufferToPage()
---     if WriterTimerStarted then
---         return
---     end
---     WriterTimerStarted = true
---     local timer = vim.loop.new_timer()
---     timer:start(10000, 0, function()
---         vim.cmd([[write]])
---         timer:close()
---     end)
--- end
---
---         vim.api.nvim_create_autocmd({"TextChanged", "TextChangedI"}, {
---           callback = function(ev)
---             print(string.format('event fired: s', vim.inspect(ev)))
---           end
---         })
---
--- au TextChanged * ++nested call Delay_My_Write()
--- au TextChangedI * ++nested call Delay_My_Write()
+
+vim.api.nvim_exec([[
+function! OnUIEnter(event) abort
+
+if 'Firenvim' ==# get(get(nvim_get_chan_info(a:event.chan), 'client', {}), 'name', '')
+    set guifont=JetBrainsMono\ NF:h12
+    let s:fontsize = 12
+    function! AdjustFontSizeF(amount)
+      let s:fontsize = s:fontsize+a:amount
+      execute "set guifont=JetBrainsMono\\ NF:h" . s:fontsize
+      call rpcnotify(0, 'Gui', 'WindowMaximized', 1)
+    endfunction
+
+    noremap  <C-=> :call AdjustFontSizeF(1)<CR>
+    noremap  <C--> :call AdjustFontSizeF(-1)<CR>
+    inoremap <C-=> :call AdjustFontSizeF(1)<CR>
+    inoremap <C--> :call AdjustFontSizeF(-1)<CR>
+endif
+endfunction
+autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
+]], false)

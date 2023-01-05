@@ -13,5 +13,6 @@ return {
         config = function()
             require "custom.plugins.firenvim"
         end,
-    }
+    },
+    ["mg979/vim-visual-multi"] = {},
 }

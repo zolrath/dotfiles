@@ -23,4 +23,4 @@ opt.shiftround = false
 opt.expandtab = true
 opt.autoindent = true
 opt.smartindent = true
-opt.guifont = { "JetBrainsMono NF", ":h14" }
+-- opt.guifont = { "JetBrainsMono NF", ":h14" }
