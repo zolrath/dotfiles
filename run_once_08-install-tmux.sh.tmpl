@@ -1,0 +1,21 @@
+#!/bin/sh
+
+{{ if eq .chezmoi.os "linux" -}}
+sudo apt install -y tmux urlview fakeroot
+
+# Install Facebook Path Picker https://github.com/facebook/PathPicker
+cd /tmp
+git clone https://github.com/facebook/PathPicker.git
+cd PathPicker/debian
+./package.sh
+sudo apt install ../pathpicker_*_all.deb
+cd /tmp
+rm -rf PathPicker
+
+{{ else if eq .chezmoi.os "darwin" -}}
+brew install tmux fpp urlview
+{{ end -}}
+
+# Install oh-my-tmux and symlink
+git clone https://github.com/gpakosz/.tmux.git ~/tools/oh-my-tmux
+ln -s -f ~/tools/oh-my-tmux/.tmux.conf ~/.tmux.conf
