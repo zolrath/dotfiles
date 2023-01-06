@@ -1,7 +1,6 @@
 local elixirSites = {".*exercism\\.org.*"}
 local ignoreSites = {"localhost", ".*furd-livebook\\.fly\\.dev.*"}
 
--- au BufEnter exercism.org_*.txt set filetype=elixir
 local localSettings = {
     [".*"] = {
         cmdline = "neovim",
