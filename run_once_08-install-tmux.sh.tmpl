@@ -33,7 +33,7 @@ fi
 
 {{ else if eq .chezmoi.os "darwin" -}}
   brew install tmux fpp urlview wemux
-  sudo sed -i "13s/brew/furd/" /usr/local/etc/wemux.conf
+  sudo sed -i "" "13s/brew/furd/" /usr/local/etc/wemux.conf
 {{ end -}}
 
 # Install oh-my-tmux and symlink
