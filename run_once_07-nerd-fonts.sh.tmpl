@@ -1,5 +1,11 @@
 #!/bin/sh
 
+. $HOME/.local/share/chezmoi/helpers
+
+echo ''
+
+info '📄 Installing JetBrainsMono Nerd Font'
+
 cd /tmp
 git clone --filter=blob:none --sparse https://github.com/ryanoasis/nerd-fonts.git
 cd nerd-fonts
@@ -13,3 +19,6 @@ powershell.exe -File ./install.ps1 JetBrainsMono
 {{ end -}}
 cd ..
 rm -rf nerd-fonts
+success 'JetBrainsMono Nerd Font'
+
+echo ''

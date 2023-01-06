@@ -1,25 +1,41 @@
 #!/bin/sh
 
+. $HOME/.local/share/chezmoi/helpers
+
+echo ''
+
+info '💧 Installing elixir'
+
 {{ if eq .chezmoi.os "linux" -}}
-echo "⚡ Installing necessary packages"
+info '💧 Installing necessary packages for Erlang compilation'
+
 apt-get -y install unzip build-essential autoconf m4 libncurses5-dev libwxgtk3.0-gtk3-dev libwxgtk-webview3.0-gtk3-dev libgl1-mesa-dev libglu1-mesa-dev libpng-dev libssh-dev unixodbc-dev xsltproc fop libxml2-utils libncurses-dev openjdk-11-jdk
+
 {{ else if eq .chezmoi.os "darwin" -}}
-echo "⚡ Installing necessary packages"
+info '💧 Installing necessary packages for Erlang compilation'
+
 brew install autoconf openssl@1.1 wxwidgets libxslt fop
-echo "Setting kerl configuration options to correct OpenSSL issues on macos"
+
+info '💧 Setting kerl configuration options to correct OpenSSL issues on macos'
 export KERL_CONFIGURE_OPTIONS="--without-javac --with-ssl=$(brew --prefix openssl@1.1)"
 {{ end -}}
 
-echo "⚡ Installing erlang asdf"
+info '💧 Installing erlang asdf'
 asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
+success 'erlang asdf'
 
-echo "Installing erlang"
+info '💧 Installing erlang'
 asdf install erlang 25.1.2
 asdf global erlang 25.1.2
+success 'erlang'
 
-echo "⚡ Installing elixir asdf"
+info '💧 Installing elixir asdf'
 asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+success 'elixir asdf'
 
-echo "Installing elixir"
+info '💧 Installing elixir'
 asdf install elixir 1.14.2-otp-25
 asdf global elixir 1.14.2-otp-25
+success 'elixir'
+
+ echo ''

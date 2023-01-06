@@ -1,33 +1,46 @@
 #!/bin/sh
 
+. $HOME/.local/share/chezmoi/helpers
+
+echo ''
+
 {{ if eq .chezmoi.os "linux" -}}
-echo "⚡ Updating apt registry and installing asdf"
+
+info '📂 Updating apt registry'
 sudo apt update
 sudo apt install -y curl git
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
-echo "⚡ asdf installed"
+
+if ! [ -x "$(command -v asdf)" ]; then
+    info '💻 Installing asdf'
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
+    success 'asdf'
+else
+    skip 'asdf'
+fi
+
 {{ else if eq .chezmoi.os "darwin" -}}
 
 # homebrew install
-echo "⚡ Installing Homebrew and installing asdf"
-which -s brew
-if [[ $? != 0 ]] ; then
-    echo "⚡ Installing Homebrew"
+if ! [ -x "$(command -v brew)" ]; then
+    info '☕ Installing homebrew'
     NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    success 'homebrew'
 else
-    echo "⚡ Homebrew already installed, updating..."
+    skip 'homebrew, updating it instead.'
     brew update
 fi
 
 # asdf install
 brew install coreutils git
 
-which -s asdf
-if [[ $? != 0 ]] ; then
-    echo "⚡ Installing asdf"
+if ! [ -x "$(command -v asdf)" ]; then
+    info '💻 Installing asdf'
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
+    success 'asdf'
 else
-    echo "⚡ asdf already installed"
+    skip 'asdf'
 fi
-echo "⚡ Homebrew and asdf installed"
+
 {{ end -}}
+
+echo ''

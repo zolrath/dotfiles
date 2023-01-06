@@ -1,0 +1,15 @@
+info () {
+  printf "\r  [ \033[00;34m..\033[0m ] $1.\n"
+}
+
+success () {
+  printf "\r\033[2K  [ \033[00;32mDONE\033[0m ] $1 installed.\n"
+}
+
+skip () {
+  printf "\r\033[2K  [ \033[00;33mSKIP\033[0m ] $1 already installed.\n"
+}
+
+error () {
+  printf "\r\033[2K  [ \033[00;31mERROR\033[0m ] $1\n"
+}

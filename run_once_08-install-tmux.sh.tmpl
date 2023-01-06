@@ -1,46 +1,65 @@
 #!/bin/sh
 
+. $HOME/.local/share/chezmoi/helpers
+
+echo ''
+
 {{ if eq .chezmoi.os "linux" -}}
 
+info '👓 Installing tmux'
 sudo apt install -y tmux urlview fakeroot
+success 'tmux'
 
 # Install Facebook Path Picker https://github.com/facebook/PathPicker
 if ! [ -x "$(command -v fpp)" ]; then
-  echo "Installing Facebook PathPicker"
-  cd /tmp
-  git clone https://github.com/facebook/PathPicker.git
-  cd PathPicker/debian
-  ./package.sh
-  sudo apt install ../pathpicker_*_all.deb
-  cd /tmp
-  rm -rf PathPicker
-  else
-  echo "Facebook PathPicker already exists."
+    info '📂 Installing Facebook PathPicker'
+    cd /tmp
+    git clone https://github.com/facebook/PathPicker.git
+    cd PathPicker/debian
+    ./package.sh
+    sudo apt install ../pathpicker_*_all.deb
+    cd /tmp
+    rm -rf PathPicker
+    success 'Facebook PathPicker'
+else
+    skip 'Facebook PathPicker'
 fi
 
 sudo apt remove fakeroot
 
 # Install wemux
 if ! [ -x "$(command -v wemux)" ]; then
-  echo "Installing wemux"
-  sudo git clone https://github.com/zolrath/wemux.git /usr/local/share/wemux
-  sudo ln -s /usr/local/share/wemux/wemux /usr/local/bin/wemux
-  sudo cp /usr/local/share/wemux/wemux.conf.example /usr/local/etc/wemux.conf
-  sudo sed -i "13i host_list=(zolrath)" /usr/local/etc/wemux.conf
+    info '🧔👩 Installing wemux'
+    sudo git clone https://github.com/zolrath/wemux.git /usr/local/share/wemux
+    sudo ln -s /usr/local/share/wemux/wemux /usr/local/bin/wemux
+    sudo cp /usr/local/share/wemux/wemux.conf.example /usr/local/etc/wemux.conf
+    sudo sed -i "13i host_list=(zolrath)" /usr/local/etc/wemux.conf
+    success 'wemux'
 else
-  echo "wemux already exists"
+    skip 'wemux'
 fi
 
 {{ else if eq .chezmoi.os "darwin" -}}
-  brew install tmux fpp urlview wemux
-  sudo sed -i "" "13s/brew/furd/" /usr/local/etc/wemux.conf
+info '👓 Installing tmux'
+brew install tmux
+success 'tmux'
+info '📂 Installing Facebook PathPicker'
+brew install fpp urlview
+success 'Facebook PathPicker'
+info '🧔👩 Installing wemux'
+brew install wemux
+sudo sed -i "" "13s/brew/furd/" /usr/local/etc/wemux.conf
+success 'wemux'
 {{ end -}}
 
 # Install oh-my-tmux and symlink
 if ! [ -d "$HOME/tools/oh-my-tmux" ]; then
-  echo "Installing oh-my-tmux"
-  git clone https://github.com/gpakosz/.tmux.git ~/tools/oh-my-tmux
-  ln -s -f ~/tools/oh-my-tmux/.tmux.conf ~/.tmux.conf
+    info '👕 Installing oh-my-tmux'
+    git clone https://github.com/gpakosz/.tmux.git ~/tools/oh-my-tmux
+    ln -s -f ~/tools/oh-my-tmux/.tmux.conf ~/.tmux.conf
+    success 'oh-my-tmux'
 else
-  echo "oh-my-tmux already exists"
+    skip 'oh-my-tmux'
 fi
+
+echo ''

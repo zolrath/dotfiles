@@ -1,7 +1,16 @@
 #!/bin/sh
 
-echo "Installing nodejs asdf"
+. $HOME/.local/share/chezmoi/helpers
+
+echo ''
+
+info '🟩 Installing nodejs asdf'
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-echo "Installing nodejs lts"
+success 'nodejs asdf'
+
+info '🟩 Installing nodejs lts'
 asdf install nodejs lts
 asdf global nodejs lts
+success 'nodejs lts'
+
+echo ''
