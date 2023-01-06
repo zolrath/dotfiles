@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo "Installing rust asdf"
+asdf plugin-add rust https://github.com/code-lever/asdf-rust.git
+echo "Installing rust stable"
+asdf install rust stable
+asdf global rust stable
+cargo install cross --git https://github.com/cross-rs/cross
