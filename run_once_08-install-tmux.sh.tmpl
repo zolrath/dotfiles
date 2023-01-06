@@ -12,8 +12,14 @@ sudo apt install ../pathpicker_*_all.deb
 cd /tmp
 rm -rf PathPicker
 
+# Install wemux
+sudo git clone https://github.com/zolrath/wemux.git /usr/local/share/wemux
+sudo ln -s /usr/local/share/wemux/wemux /usr/local/bin/wemux
+sudo cp /usr/local/share/wemux/wemux.conf.example /usr/local/etc/wemux.conf
+sudo cp /usr/local/share/wemux/man/wemux.1 /usr/local/share/man/man1/wemux.1
+
 {{ else if eq .chezmoi.os "darwin" -}}
-brew install tmux fpp urlview
+brew install tmux fpp urlview wemux
 {{ end -}}
 
 # Install oh-my-tmux and symlink
