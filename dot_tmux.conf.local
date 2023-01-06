@@ -14,8 +14,8 @@ set -sg escape-time 0
 set -sg repeat-time 600
 
 # Better name management
-bind c new-window \; command-prompt "rename-window '%%'"
-bind C new-window
+bind n new-window
+bind N new-window \; command-prompt "rename-window '%%'"
 
 # wemux binding
 unbind t
