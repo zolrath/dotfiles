@@ -147,7 +147,9 @@ export LESS=-R
 # path=('/home/furd/pear/bin' $path)
 # export to sub-processes (make it inherited by child processes)
 path=(${HOME}/bin $path)
+path=(${HOME}/.local/bin $path)
 export PATH
 
-eval $(thefuck --alias)
+eval "$(thefuck --alias)"
+eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"

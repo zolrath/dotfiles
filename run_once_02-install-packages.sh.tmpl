@@ -7,9 +7,10 @@ echo ''
 info '📦 Installing packages'
 
 {{ if eq .chezmoi.os "linux" -}}
-    sudo apt install -y ripgrep thefuck autojump exa xclip
+    sudo apt install -y ripgrep thefuck autojump exa xclip fzf
+    curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
 {{ else if eq .chezmoi.os "darwin" -}}
-    brew install ripgrep thefuck autojump exa
+    brew install ripgrep thefuck autojump exa fzf zoxide
 {{ end -}}
 
 success 'packages'
