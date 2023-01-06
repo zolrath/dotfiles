@@ -1,27 +1,46 @@
 #!/bin/sh
 
 {{ if eq .chezmoi.os "linux" -}}
+
 sudo apt install -y tmux urlview fakeroot
 
 # Install Facebook Path Picker https://github.com/facebook/PathPicker
-cd /tmp
-git clone https://github.com/facebook/PathPicker.git
-cd PathPicker/debian
-./package.sh
-sudo apt install ../pathpicker_*_all.deb
-cd /tmp
-rm -rf PathPicker
+if ! [ -x "$(command -v fpp)" ]; then
+  echo "Installing Facebook PathPicker"
+  cd /tmp
+  git clone https://github.com/facebook/PathPicker.git
+  cd PathPicker/debian
+  ./package.sh
+  sudo apt install ../pathpicker_*_all.deb
+  cd /tmp
+  rm -rf PathPicker
+  else
+  echo "Facebook PathPicker already exists."
+fi
+
+sudo apt remove fakeroot
 
 # Install wemux
-sudo git clone https://github.com/zolrath/wemux.git /usr/local/share/wemux
-sudo ln -s /usr/local/share/wemux/wemux /usr/local/bin/wemux
-sudo cp /usr/local/share/wemux/wemux.conf.example /usr/local/etc/wemux.conf
-sudo cp /usr/local/share/wemux/man/wemux.1 /usr/local/share/man/man1/wemux.1
+if ! [ -x "$(command -v wemux)" ]; then
+  echo "Installing wemux"
+  sudo git clone https://github.com/zolrath/wemux.git /usr/local/share/wemux
+  sudo ln -s /usr/local/share/wemux/wemux /usr/local/bin/wemux
+  sudo cp /usr/local/share/wemux/wemux.conf.example /usr/local/etc/wemux.conf
+  sudo sed -i "13i host_list=(zolrath)" /usr/local/etc/wemux.conf
+else
+  echo "wemux already exists"
+fi
 
 {{ else if eq .chezmoi.os "darwin" -}}
-brew install tmux fpp urlview wemux
+  brew install tmux fpp urlview wemux
+  sudo sed -i "13s/brew/furd/" /usr/local/etc/wemux.conf
 {{ end -}}
 
 # Install oh-my-tmux and symlink
-git clone https://github.com/gpakosz/.tmux.git ~/tools/oh-my-tmux
-ln -s -f ~/tools/oh-my-tmux/.tmux.conf ~/.tmux.conf
+if ! [ -d "$HOME/tools/oh-my-tmux" ]; then
+  echo "Installing oh-my-tmux"
+  git clone https://github.com/gpakosz/.tmux.git ~/tools/oh-my-tmux
+  ln -s -f ~/tools/oh-my-tmux/.tmux.conf ~/.tmux.conf
+else
+  echo "oh-my-tmux already exists"
+fi
