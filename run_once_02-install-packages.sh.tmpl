@@ -1,7 +1,7 @@
 #!/bin/sh
 
 {{ if eq .chezmoi.os "linux" -}}
-sudo apt install -y ripgrep thefuck autojump exa
+sudo apt install -y ripgrep thefuck autojump exa xclip
 {{ else if eq .chezmoi.os "darwin" -}}
-brew install ripgrep thefuck autojump exa
+brew install ripgrep thefuck autojump exa xclip
 {{ end -}}
