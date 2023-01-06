@@ -15,3 +15,9 @@ Swap to JetBrainsMono NF by going to "iTerm → Preferences → Profiles → Tex
 
 #### Enable word jumps and word deletion, aka natural text selection
 By default, word jumps (option + → or ←) and word deletions (option + backspace) do not work. To enable these, go to "iTerm → Preferences → Profiles → Keys → Key mappings → Presets... → Natural Text Editing → Boom! Head explodes"
+
+## WSL2 Ubuntu
+### Windows Terminal
+#### Change font to JetBrainsMono NF
+In order to allow fancy status bar lines and whatnot we're using JetBrainsMono with NerdFont characters.
+Swap to JetBrainsMono NF by going to "Windows Terminal → Settings → Defaults → Appearance → Text → Font face".
