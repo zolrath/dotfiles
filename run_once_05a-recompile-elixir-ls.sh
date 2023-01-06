@@ -23,6 +23,8 @@ git clone --depth 1 --branch v$version https://github.com/elixir-lsp/elixir-ls.g
 
 cd $elixir_ls_dir
 
+mix local.rebar --force
+mix local.hex --force
 mix deps.get
 mix elixir_ls.release -o ~/.vscode/extensions/jakebecker.elixir-ls-$version/elixir-ls-release/
 mix elixir_ls.release -o ~/tools/elixir-ls/
