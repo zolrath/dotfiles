@@ -4,22 +4,6 @@ local autocmd = vim.api.nvim_create_autocmd
 autocmd("VimResized", {
   pattern = "*",
   command = "tabdo wincmd =",
-  })
-
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = '*.lua',
-  group = 'AutoFormatting',
-  callback = function()
-    vim.lsp.buf.format({ async = true })
-  end,
-})
-
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = '*.exs?',
-  group = 'AutoFormatting',
-  callback = function()
-    vim.lsp.buf.format({ async = true })
-  end,
 })
 
 local opt = vim.opt
