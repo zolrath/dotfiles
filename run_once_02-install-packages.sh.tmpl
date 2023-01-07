@@ -8,9 +8,28 @@ info '📦 Installing packages'
 
 {{ if eq .chezmoi.os "linux" -}}
     sudo apt install -y ripgrep exa xclip fzf
-    curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+
+    if ! [ -x "$(command -v zoxide)" ]; then
+        info '📦 Installing zoxide'
+        curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+        success 'zoxide'
+    else
+        skip 'zoxide'
+    fi
+
+    if ! [ -x "$(command -v lazygit)" ]; then
+        info '📦 Installing lazygit'
+        LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep '"tag_name":' |  sed -E 's/.*"v*([^"]+)".*/\1/')
+        curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+        sudo tar xf lazygit.tar.gz -C $HOME/.local/bin/ lazygit
+        rm lazygit.tar.gz
+        success 'lazygit'
+    else
+        skip 'lazygit'
+    fi
 {{ else if eq .chezmoi.os "darwin" -}}
     brew install ripgrep exa fzf zoxide
+    brew install jesseduffield/lazygit/lazygit
 {{ end -}}
 
 success 'packages'

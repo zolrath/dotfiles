@@ -16,6 +16,6 @@ return {
             require "custom.plugins.firenvim"
         end,
     },
-    ["mg979/vim-visual-multi"] = {},
+    -- ["mg979/vim-visual-multi"] = {},
     ["lambdalisue/suda.vim"] = {},
 }
