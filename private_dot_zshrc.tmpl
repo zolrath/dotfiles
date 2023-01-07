@@ -150,6 +150,8 @@ path=(${HOME}/bin $path)
 path=(${HOME}/.local/bin $path)
 export PATH
 
+export XDG_CONFIG_HOME="$HOME/.config"
+
 eval "$(thefuck --alias)"
 eval "$(zoxide init zsh --cmd j)"
 eval "$(starship init zsh)"

@@ -1,0 +1,81 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	name = Matt Furden
+	email = zolrath@gmail.com
+
+[init]
+	defaultBranch = main
+
+[core]
+	autocrlf = input
+    pager = delta
+
+[delta]
+    features = side-by-side line-numbers decorations
+    syntax-theme = Dracula
+    plus-style = syntax "#003800"
+    minus-style = syntax "#70181F"
+
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = none
+    hunk-header-decoration-style = cyan box ul
+
+[delta "line-numbers"]
+    line-numbers-left-style = cyan
+    line-numbers-right-style = cyan
+    line-numbers-minus-style = 124
+    line-numbers-plus-style = 28
+
+[interactive]
+    diffFilter = delta --color-only --features=interactive
+
+[alias]
+	timesheet = !git log --reverse --date=short --pretty=format:\"%ad - %s%d\" --date=short --date-order --author=\"$(git config user.name)\" --branches --since=\"1 week ago\"
+
+
+# Dracula Dark Theme
+[color]
+  ui = auto
+[color "branch"]
+  current = cyan bold reverse
+  local = white
+  plain =
+  remote = cyan
+[color "diff"]
+  commit =
+  func = cyan
+  plain =
+  whitespace = magenta reverse
+  meta = white
+  frag = cyan bold reverse
+  old = red
+  new = green
+[color "grep"]
+  context =
+  filename =
+  function =
+  linenumber = white
+  match =
+  selected =
+  separator =
+[color "interactive"]
+  error =
+  header =
+  help =
+  prompt =
+[color "status"]
+  added = green
+  changed = yellow
+  header =
+  localBranch =
+  nobranch =
+  remoteBranch = cyan bold
+  unmerged = magenta bold reverse
+  untracked = red
+  updated = green bold

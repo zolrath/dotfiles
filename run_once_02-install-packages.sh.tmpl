@@ -7,7 +7,7 @@ echo ''
 info '📦 Installing packages'
 
 {{ if eq .chezmoi.os "linux" -}}
-    sudo apt install -y ripgrep exa xclip fzf
+    sudo apt install -y ripgrep exa xclip fzf git-delta
 
     if ! [ -x "$(command -v zoxide)" ]; then
         info '📦 Installing zoxide'
@@ -28,7 +28,7 @@ info '📦 Installing packages'
         skip 'lazygit'
     fi
 {{ else if eq .chezmoi.os "darwin" -}}
-    brew install ripgrep exa fzf zoxide
+    brew install ripgrep exa fzf zoxide git-delta
     brew install jesseduffield/lazygit/lazygit
 {{ end -}}
 
