@@ -1,9 +1,8 @@
-[filter "lfs"]
+
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-
 [user]
 	name = Matt Furden
 	email = zolrath@gmail.com
@@ -18,7 +17,7 @@
 [delta]
     features = line-numbers decorations
     syntax-theme = Dracula
-    plus-style = syntax "#003800"
+    plus-style = syntax "#106910"
     minus-style = syntax "#70181F"
 
 [delta "decorations"]
