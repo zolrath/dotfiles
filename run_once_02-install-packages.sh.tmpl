@@ -27,6 +27,17 @@ info '📦 Installing packages'
     else
         skip 'lazygit'
     fi
+
+    if ! [ -x "$(command -v delta)" ]; then
+        info '📦 Installing delta'
+        DELTA_VERSION=$(curl -s "https://api.github.com/repos/dandavison/delta/releases/latest" | grep '"tag_name":' |  sed -E 's/.*"v*([^"]+)".*/\1/')
+        curl -Lo delta.deb "https://github.com/dandavison/delta/releases/latest/download/git-delta_${DELTA_VERSION}_amd64.deb"
+        sudo dpkg -i delta.deb
+        rm delta.deb
+        success 'delta'
+    else
+        skip 'delta'
+    fi
 {{ else if eq .chezmoi.os "darwin" -}}
     brew install ripgrep exa fzf zoxide git-delta
     brew install jesseduffield/lazygit/lazygit
