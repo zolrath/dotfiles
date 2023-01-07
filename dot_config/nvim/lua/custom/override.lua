@@ -53,10 +53,12 @@ M.mason = {
 }
 
 M.nvimtree = {
+    ignore_ft_on_setup = { '.git', 'node_modules', '.cache' },
     git = {
         enable = true,
     },
     renderer = {
+        group_empty = true,
         highlight_git = true,
         icons = {
             show = {
@@ -66,6 +68,11 @@ M.nvimtree = {
     },
     view = {
         side = "right",
+        mappings = {
+            list = {
+                { key = "u", action = "dir_up" },
+            },
+        },
     },
 }
 
