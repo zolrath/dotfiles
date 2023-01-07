@@ -1,8 +1,5 @@
 alias ex="explorer.exe ."
 alias explorer="explorer.exe ."
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
 alias c="code ."
 alias rm='rm -i'
 alias cp='cp -i'
