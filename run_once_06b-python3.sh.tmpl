@@ -1,0 +1,19 @@
+#!/bin/sh
+
+. $HOME/.local/share/chezmoi/helpers
+
+echo ''
+
+info '⚙️ Installing python asdf'
+asdf plugin-add python
+success 'python asdf'
+
+info '🐍 Installing python'
+#{{ if eq .chezmoi.os "darwin" -}}
+# export ASDF_PYTHON_PATCH_URL="https://github.com/python/cpython/commit/8ea6353.patch?full_index=1"
+#{{ end -}}
+asdf install python 3.11.1
+asdf global python 3.11.1
+success 'python'
+
+echo ''
