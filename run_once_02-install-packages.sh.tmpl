@@ -7,7 +7,7 @@ echo ''
 info '📦 Installing packages'
 
 {{ if eq .chezmoi.os "linux" -}}
-    sudo apt install -y ripgrep exa xclip fzf git-delta
+    sudo apt install -y ripgrep exa fzf git-delta
 
     if ! [ -x "$(command -v zoxide)" ]; then
         info '📦 Installing zoxide'
