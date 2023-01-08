@@ -21,3 +21,6 @@ alias lS='exa -1' # one column, just names
 alias lt="exa --tree --level=2 -I 'node_modules'" # tree
 
 alias vim="nvim"
+
+alias cz="chezmoi"
+alias lg="lazygit"
