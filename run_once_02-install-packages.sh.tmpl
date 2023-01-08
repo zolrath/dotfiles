@@ -38,9 +38,19 @@ info '📦 Installing packages'
     else
         skip 'delta'
     fi
+
+    if ! [ -x "$(command -v lazydocker)" ]; then
+
+        info '📦 Installing lazydocker'
+        curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
+        success 'lazydocker'
+    else
+        skip 'lazydocker'
+    fi
 {{ else if eq .chezmoi.os "darwin" -}}
     brew install ripgrep exa fzf zoxide git-delta
     brew install jesseduffield/lazygit/lazygit
+    brew install jesseduffield/lazydocker/lazydocker
 {{ end -}}
 
 success 'packages'
