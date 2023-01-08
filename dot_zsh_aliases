@@ -24,3 +24,9 @@ alias vim="nvim"
 
 alias cz="chezmoi"
 alias lg="lazygit"
+alias ldoc="lazydocker"
+
+function dbdev() {
+    docker run --name $1_dev -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres
+}
+
