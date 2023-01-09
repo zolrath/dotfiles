@@ -9,6 +9,7 @@ alias h='history'
 alias which='type -a'
 alias edit='vim'
 alias ccd='clear && cd'
+alias cg='cd `git rev-parse --show-toplevel`'
 alias tmux="tmux -2"
 
 # some more ls aliases
