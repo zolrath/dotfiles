@@ -330,4 +330,10 @@ require("lazy").setup({
 			require("user.firenvim")
 		end,
 	},
+	{
+		"asiryk/auto-hlsearch.nvim",
+		config = function()
+			require("auto-hlsearch").setup({})
+		end,
+	},
 })
