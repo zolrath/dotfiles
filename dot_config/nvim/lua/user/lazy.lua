@@ -353,4 +353,11 @@ require("lazy").setup({
 			require("auto-hlsearch").setup({})
 		end,
 	},
+	{
+		"mhanberg/elixir.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("user.elixir-nvim")
+		end,
+	},
 })

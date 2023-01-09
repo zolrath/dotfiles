@@ -1,5 +1,18 @@
 require("nvim-treesitter.configs").setup({
-	ensure_installed = { "lua", "markdown", "markdown_inline", "bash", "python" }, -- put the language you want in this array
+	ensure_installed = {
+		"lua",
+		"markdown",
+		"markdown_inline",
+		"bash",
+		"python",
+		"elixir",
+		"erlang",
+		"eex",
+		"heex",
+		"html",
+		"surface",
+		"css",
+	}, -- put the language you want in this array
 	-- ensure_installed = "all",
 	sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
 	ignore_install = {}, -- List of parsers to ignore installing
