@@ -16,13 +16,17 @@ fi
 bob install stable
 bob use stable
 
+info '💻 Installing beautysh'
 pip3 install beautysh
-pip3 install autopep8
+success 'beautysh'
 
-{{ if eq .chezmoi.os "linux" -}}
-    apt install -y stylua
-{{ else if eq .chezmoi.os "darwin" -}}
-    brew install stylua
-{{ end -}}
+info '💻 Installing autopep8'
+pip3 install autopep8
+success 'autopep8'
+
+info '💻 Installing stylua'
+cargo install stylua
+asdf reshim rust
+success 'stylua'
 
 echo ''
