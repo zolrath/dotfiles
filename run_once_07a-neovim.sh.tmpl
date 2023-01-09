@@ -13,20 +13,45 @@ else
     skip 'bob'
 fi
 
-bob install stable
 bob use stable
 
-info '💻 Installing beautysh'
-pip3 install beautysh
-success 'beautysh'
+if ! [ -x "$(command -v beautysh)" ]; then
+    info '💻 Installing beautysh'
+    pip3 install beautysh
+    asdf reshim python
+    success 'beautysh'
+else
+    skip 'beautysh'
+fi
 
-info '💻 Installing autopep8'
-pip3 install autopep8
-success 'autopep8'
+if ! [ -x "$(command -v autopep8)" ]; then
+    info '💻 Installing autopep8'
+    pip3 install autopep8
+    asdf reshim python
+    success 'autopep8'
+else
+    skip 'autopep8'
+fi
 
-info '💻 Installing stylua'
-cargo install stylua
-asdf reshim rust
-success 'stylua'
+if ! [ -x "$(command -v stylua)" ]; then
+    info '💻 Installing stylua'
+    cargo install stylua
+    asdf reshim rust
+    success 'stylua'
+else
+    skip 'stylua'
+fi
+
+if ! [ -x "$(command -v shellcheck)" ]; then
+    info '💻 Installing shellcheck'
+    {{ if eq .chezmoi.os "darwin" -}}
+    brew install shellcheck
+    {{ else if eq .chezmoi.os "linux" -}}
+    sudo apt install shellcheck
+    {{ end -}}
+    success 'shellcheck'
+else
+    skip 'shellcheck'
+fi
 
 echo ''
