@@ -130,12 +130,24 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"tpope/vim-projectionist",
+		config = function()
+			require("user.projectionist")
+		end,
+	},
+	{
+		"zolrath/telescope-projectionist.nvim",
+		branch = "local-get-default",
+		dependencies = {
+			{ "tpope/vim-projectionist" },
+			{ "nvim-telescope/telescope.nvim", lazy = false },
+		},
+	},
+	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
 			{ "nvim-telescope/telescope-file-browser.nvim", lazy = false },
-			{
-				"ahmedkhalf/project.nvim",
-			},
+			{ "ahmedkhalf/project.nvim" },
 		},
 		config = function()
 			require("user.telescope")
