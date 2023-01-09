@@ -146,8 +146,11 @@ export LESS=-R
 # or prepend
 # path=('/home/furd/pear/bin' $path)
 # export to sub-processes (make it inherited by child processes)
+
+path=(${HOME}/.local/share/neovim/bin $path)
 path=(${HOME}/bin $path)
 path=(${HOME}/.local/bin $path)
+
 export PATH
 
 export XDG_CONFIG_HOME="$HOME/.config"
