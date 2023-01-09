@@ -8,13 +8,15 @@ autocmd("VimResized", {
 
 local opt = vim.opt
 
-opt.tabstop = 4
-opt.softtabstop = 4
-opt.shiftwidth = 4
+opt.cmdheight = 0
+opt.tabstop = 2
+opt.softtabstop = 2
+opt.shiftwidth = 2
 opt.shiftround = false
 opt.expandtab = true
 opt.autoindent = true
 opt.smartindent = true
+opt.permanent_undo = true,
 -- opt.guifont = { "JetBrainsMono NF", ":h14" }
 --
 local function tab_win_closed(winnr)
