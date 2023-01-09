@@ -1,39 +1,40 @@
-local elixirSites = {".*exercism\\.org.*"}
-local ignoreSites = {"localhost", ".*furd-livebook\\.fly\\.dev.*"}
+local elixirSites = { ".*exercism\\.org.*" }
+local ignoreSites = { "localhost", ".*livebook\\.fly\\.dev.*" }
 
 local localSettings = {
-    [".*"] = {
-        cmdline = "neovim",
-        content = "elixir",
-        priority = 0,
-        selector = "textarea",
-        takeover = "always",
-    }
+	[".*"] = {
+		cmdline = "neovim",
+		content = "elixir",
+		priority = 0,
+		selector = "textarea",
+		takeover = "always",
+	},
 }
 
 for _, site in pairs(elixirSites) do
-    localSettings[site] = {
-        cmdline = "neovim",
-        content = "elixir",
-        priority = 1,
-        selector = "textarea",
-        takeover = "always",
-        filename = '{hostname%32}_{pathname%32}_{selector%32}_{timestamp%32}.ex'
-    }
+	localSettings[site] = {
+		cmdline = "neovim",
+		content = "elixir",
+		priority = 1,
+		selector = "textarea",
+		takeover = "always",
+		filename = "{hostname%32}_{pathname%32}_{selector%32}_{timestamp%32}.ex",
+	}
 end
 
 for _, site in pairs(ignoreSites) do
-    localSettings[site] = {
-        priority = 2,
-        takeover = "never",
-    }
+	localSettings[site] = {
+		priority = 2,
+		takeover = "never",
+	}
 end
 
 vim.g.firenvim_config = {
-    localSettings = localSettings
+	localSettings = localSettings,
 }
 
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+	[[
 function! OnUIEnter(event) abort
 
 if 'Firenvim' ==# get(get(nvim_get_chan_info(a:event.chan), 'client', {}), 'name', '')
@@ -52,4 +53,6 @@ if 'Firenvim' ==# get(get(nvim_get_chan_info(a:event.chan), 'client', {}), 'name
 endif
 endfunction
 autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
-]], false)
+]],
+	false
+)

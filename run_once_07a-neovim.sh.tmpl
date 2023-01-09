@@ -4,9 +4,6 @@
 
 echo ''
 
-info '📄 Installing nvchad'
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
-
 if ! [ -x "$(command -v bob)" ]; then
     info '💻 Installing bob'
     cargo install bob-nvim
@@ -18,5 +15,14 @@ fi
 
 bob install stable
 bob use stable
+
+pip3 install beautysh
+pip3 install autopep8
+
+{{ if eq .chezmoi.os "linux" -}}
+    apt install -y stylua
+{{ else if eq .chezmoi.os "darwin" -}}
+    brew install stylua
+{{ end -}}
 
 echo ''
