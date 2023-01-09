@@ -48,6 +48,13 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	end,
 })
 
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = { "*.sh.tmpl" },
+	callback = function()
+		vim.cmd("set filetype=sh")
+	end,
+})
+
 -- vim.api.nvim_create_autocmd("FileType", {
 -- 	pattern = "zsh",
 -- 	callback = function()
