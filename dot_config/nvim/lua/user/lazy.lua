@@ -21,13 +21,13 @@ require("lazy").setup({
 		timeout = 600,
 	},
 	{
-		"catppuccin/nvim",
-		name = "catppuccin",
+		"Mofiqul/dracula.nvim",
+		name = "dracula",
 		lazy = false, -- make sure we load this during startup if it is your main colorscheme
 		priority = 1000, -- make sure to load this before all the other start plugins
 		config = function()
-			require("user.colorschemes.catppuccin")
-			vim.cmd("colorscheme catppuccin")
+			require("user.colorschemes.dracula")
+			vim.cmd("colorscheme dracula")
 		end,
 		dependencies = {
 			"lukas-reineke/indent-blankline.nvim",
@@ -37,6 +37,23 @@ require("lazy").setup({
 			end,
 		},
 	},
+	-- {
+	-- 	"catppuccin/nvim",
+	-- 	name = "catppuccin",
+	-- 	lazy = false, -- make sure we load this during startup if it is your main colorscheme
+	-- 	priority = 1000, -- make sure to load this before all the other start plugins
+	-- 	config = function()
+	-- 		require("user.colorschemes.catppuccin")
+	-- 		vim.cmd("colorscheme catppuccin")
+	-- 	end,
+	-- 	dependencies = {
+	-- 		"lukas-reineke/indent-blankline.nvim",
+	-- 		event = "InsertEnter",
+	-- 		config = function()
+	-- 			require("user.indentline")
+	-- 		end,
+	-- 	},
+	-- },
 	"neovim/nvim-lspconfig",
 	{
 		"williamboman/mason.nvim",
