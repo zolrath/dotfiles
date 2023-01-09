@@ -1,21 +1,24 @@
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
 
 [user]
-	name = Matt Furden
-	email = zolrath@gmail.com
+    name = Matt Furden
+    email = zolrath@gmail.com
+
+[push]
+    autoSetupRemote = true
 
 [credential]
-	helper = store
+    helper = store
 
 [init]
-	defaultBranch = main
+    defaultBranch = main
 
 [core]
-	autocrlf = input
+    autocrlf = input
     pager = delta
 
 [delta]
@@ -40,7 +43,7 @@
     diffFilter = delta --color-only --features=interactive
 
 [alias]
-	timesheet = !git log --reverse --date=short --pretty=format:\"%ad - %s%d\" --date=short --date-order --author=\"$(git config user.name)\" --branches --since=\"1 week ago\"
+    timesheet = !git log --reverse --date=short --pretty=format:\"%ad - %s%d\" --date=short --date-order --author=\"$(git config user.name)\" --branches --since=\"1 week ago\"
 
 
 # Dracula Dark Theme
