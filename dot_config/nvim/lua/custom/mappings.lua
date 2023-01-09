@@ -37,4 +37,16 @@ M.git = {
    },
 }
 
+-- M.nvterm = {
+--   n = {
+--     ["<leader>cc"] = {
+--       function()
+--         require("nvterm.terminal").send("clear && g++ -o out " .. vim.fn.expand "%" .. " && ./out", "vertical")
+--       end,
+--
+--       "compile & run a cpp file",
+--     },
+--   },
+-- }
+
 return M

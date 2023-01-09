@@ -1,10 +1,3 @@
-vim.api.nvim_create_augroup('AutoFormatting', {})
-vim.api.nvim_create_autocmd('BufWritePre', {
-  group = 'AutoFormatting',
-  callback = function()
-    vim.lsp.buf.format()
-  end,
-})
 
 local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
