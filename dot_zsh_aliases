@@ -22,6 +22,8 @@ alias lt="exa --tree --level=2 -I 'node_modules'" # tree
 
 alias vim="nvim"
 
+alias cpv='rsync -ah --info=progress2'
+
 alias cz="chezmoi"
 alias lg="lazygit"
 alias ldoc="lazydocker"
