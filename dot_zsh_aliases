@@ -33,3 +33,4 @@ function dbdev() {
     docker run --name $1_dev -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres
 }
 
+alias czll="chezmoi add ~/.config/nvim/lazy-lock.json"
