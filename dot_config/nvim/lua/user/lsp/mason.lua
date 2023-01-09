@@ -16,6 +16,7 @@ local servers = {
 	"taplo",
 	"tsserver",
 	"elixirls",
+	"tailwindcss",
 }
 local settings = {
 	ui = {
