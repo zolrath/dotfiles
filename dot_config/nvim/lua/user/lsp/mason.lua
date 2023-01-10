@@ -17,6 +17,8 @@ local servers = {
 	"tsserver",
 	"elixirls",
 	"tailwindcss",
+	"html",
+	"emmet_ls",
 }
 local settings = {
 	ui = {
