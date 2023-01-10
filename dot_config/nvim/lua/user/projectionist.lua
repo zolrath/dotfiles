@@ -1,9 +1,23 @@
 vim.g.projectionist_heuristics = vim.json.decode([[
 {
+  "Cargo.toml": {
+    "src/*.rs": { "type": "source" },
+    "tests/*.rs": { "type": "test" },
+    "benchmarks/*.rs": { "type": "benchmarks" },
+    "Cargo.toml": { "type": "config" }
+  },
+  "package.json": {
+    "*.js": { "type": "source", "make": "yarn" },
+    "*.ts": { "type": "source", "make": "yarn" },
+    "package.json": { "type": "config" }
+  },
   "mix.exs": {
+    "apps/*/mix.ex": { "type": "app" },
+    "mix.exs": { "type": "mix" },
+    "config/*.exs": { "type": "config" },
     "lib/**/live/*_live.ex": {
       "type": "live",
-      "alternate": "test/{dirname}/live/{basename}_live.exs",
+      "alternate": "test/{dirname}/live/{basename}_live_test.exs",
       "template": [
         "defmodule {dirname|camelcase|capitalize}.{basename|camelcase|capitalize}Live do",
         "  use {dirname|camelcase|capitalize}, :live_view",
@@ -21,17 +35,17 @@ vim.g.projectionist_heuristics = vim.json.decode([[
         "end"
       ]
     },
-  "*eex": {
-    "type": "template",
-    "related": [
-      "{dirname|dirname|dirname}/controllers/{dirname|basename}_controller.ex",
-      "{dirname|dirname|dirname}/live/{dirname|basename}_live.ex",
-      "{dirname|dirname|dirname}/views/{dirname|basename}_view.ex"
-    ],
-    "template": [
-      "<%# {basename} heex template %>"
-    ]
-  },
+    "*eex": {
+      "type": "template",
+      "related": [
+        "{dirname}/controllers/{dirname|basename}_controller.ex",
+        "{dirname}/live/{dirname|basename}_live.ex",
+        "{dirname}/views/{dirname|basename}_view.ex"
+      ],
+      "template": [
+        "<%# {basename} heex template %>"
+      ]
+    },
     "lib/**/views/*_view.ex": {
       "type": "view",
       "alternate": "test/{dirname}/views/{basename}_view_test.exs",
@@ -97,27 +111,28 @@ vim.g.projectionist_heuristics = vim.json.decode([[
         "  use {dirname|camelcase|capitalize}.FeatureCase, async: true",
         "end"
       ]
+    },
+    "lib/*.ex": {
+      "alternate": "test/{}_test.exs",
+      "type": "source",
+      "template": [
+        "defmodule {camelcase|capitalize|dot} do",
+        "end"
+      ]
+    },
+    "test/*_test.exs": {
+      "alternate": "lib/{}.ex",
+      "type": "test",
+      "template": [
+        "defmodule {camelcase|capitalize|dot}Test do",
+        "  use ExUnit.Case, async: true",
+        "",
+        "  alias {camelcase|capitalize|dot}",
+        "",
+        "  doctest {camelcase|capitalize|dot}",
+        "end"
+      ]
     }
   }
 }
 ]])
-
-    -- "lib/*.ex": {
-    --   "alternate": "test/{}_test.exs",
-    --   "type": "source",
-    --   "template": [
-    --     "defmodule {camelcase|capitalize|dot} do",
-    --     "end"
-    --   ]
-    -- },
-    -- "test/*_test.exs": {
-    --   "alternate": "lib/{}.ex",
-    --   "type": "test",
-    --   "template": [
-    --     "defmodule {camelcase|capitalize|dot}Test do",
-    --     "  use ExUnit.Case, async: true",
-    --     "",
-    --     "  alias {camelcase|capitalize|dot}",
-    --     "end"
-    --   ]
-    -- }
