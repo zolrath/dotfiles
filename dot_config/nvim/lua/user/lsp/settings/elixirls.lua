@@ -4,5 +4,5 @@ return {
 	setup = {
 		cmd = { elixirls_path },
     filetypes = { "elixir", "eelixir", "heex", "eex", "surface" }
-	},
-}
+  },
+} 
