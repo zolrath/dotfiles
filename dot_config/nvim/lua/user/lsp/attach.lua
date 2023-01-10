@@ -38,6 +38,16 @@ end
 
 M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
+local banned_messages = { "No information available" }
+vim.notify = function(msg, ...)
+  for _, banned in ipairs(banned_messages) do
+    if msg == banned then
+      return
+    end
+  end
+  require("notify")(msg, ...)
+end
+
 --this enables an option to format code when you save them
 function M.enable_format_on_save()
 	vim.cmd([[
