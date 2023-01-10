@@ -1,3 +1,8 @@
+-- disable emmet for now
+if true then
+  return {}
+end
+
 return {
   -- add emmet to mason
   {
