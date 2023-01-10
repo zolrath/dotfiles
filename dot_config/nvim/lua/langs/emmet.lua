@@ -1,9 +1,16 @@
 return {
+  -- add emmet to mason
+  {
+    "williamboman/mason.nvim",
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, { "emmet-ls" })
+    end,
+  },
+
+  -- add emmet
   {
     "neovim/nvim-lspconfig",
-    ---@class PluginLspOpts
     opts = {
-      ---@type lspconfig.options
       servers = {
         emmet_ls = {
           filetypes = {

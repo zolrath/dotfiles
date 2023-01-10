@@ -1,9 +1,16 @@
 return {
+  -- add tailwind to mason
+  {
+    "williamboman/mason.nvim",
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, { "tailwindcss-language-server" })
+    end,
+  },
+
+  -- add tailwind
   {
     "neovim/nvim-lspconfig",
-    ---@class PluginLspOpts
     opts = {
-      ---@type lspconfig.options
       servers = {
         tailwindcss = {
           filetypes = {
