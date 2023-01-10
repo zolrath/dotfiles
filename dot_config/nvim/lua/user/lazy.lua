@@ -365,13 +365,13 @@ require("lazy").setup({
 			require("auto-hlsearch").setup({})
 		end,
 	},
-	{
-		"mhanberg/elixir.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require("user.elixir-nvim")
-		end,
-	},
+	-- {
+	-- 	"mhanberg/elixir.nvim",
+	-- 	dependencies = { "nvim-lua/plenary.nvim" },
+	-- 	config = function()
+	-- 		require("user.elixir-nvim")
+	-- 	end,
+	-- },
 	"mattn/webapi-vim",
 	{
 		"lucidstack/hex.vim",

@@ -10,20 +10,20 @@ elixir.setup({
 	settings = elixir.settings({
 		dialyzerEnabled = false,
 		fetchDeps = false,
-		enableTestLenses = false,
+		enableTestLenses = true,
 		suggestSpecs = false,
 	}),
 
 	on_attach = function(client, bufnr)
-		local map_opts = { buffer = true, noremap = true }
-
+		local opts = { buffer = true, noremap = true, silent = true }
 		-- run the codelens under the cursor
-		vim.keymap.set("n", "<leader>r", vim.lsp.codelens.run, map_opts)
+		vim.api.nvim_buf_set_keymap(bufnr, "n",  "<leader>r", vim.lsp.codelens.run, opts)
 		-- remove the pipe operator
-		vim.keymap.set("n", "<leader>fp", ":ElixirFromPipe<cr>", map_opts)
+		vim.api.nvim_buf_set_keymap(bufnr, "n",  "<leader>efp", ":ElixirFromPipe<cr>", opts)
 		-- add the pipe operator
-		vim.keymap.set("n", "<leader>tp", ":ElixirToPipe<cr>", map_opts)
-		vim.keymap.set("v", "<leader>lem", ":ElixirExpandMacro<cr>", map_opts)
+		vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>etp", ":ElixirToPipe<cr>", opts)
+		vim.api.nvim_buf_set_keymap(bufnr, "n",  "<leader>lem", ":ElixirExpandMacro<cr>", opts)
+
 		-- update capabilities for nvim-cmp: https://github.com/hrsh7th/nvim-cmp
 		-- require("cmp_nvim_lsp").default_capabilities(capabilities)
 	end,
