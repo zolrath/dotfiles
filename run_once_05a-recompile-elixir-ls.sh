@@ -4,7 +4,7 @@
 
 . $HOME/.local/share/chezmoi/helpers
 
-version=0.12.0
+version=0.13.0
 elixir_ls_dir=/tmp/elixir_ls
 
 set -e
