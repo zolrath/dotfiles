@@ -54,4 +54,12 @@ else
     skip 'shellcheck'
 fi
 
+if ! [ -x "$(command -v rustywind)" ]; then
+    info '💻 Installing rustywind'
+    npm install -g rustywind
+    asdf reshim nodejs
+else
+    skip 'rustywind'
+fi
+
 echo ''

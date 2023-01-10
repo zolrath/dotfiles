@@ -34,6 +34,11 @@ null_ls.setup({
 		formatting.autopep8,
 		formatting.stylua,
 		formatting.beautysh,
+		formatting.rustywind.with({
+			filetypes = {
+				"javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte", "html", "elixir", "eelixir"
+			}
+		}),
 		formatting.astyle.with({
 			extra_args = { "--indent=spaces=4", "style=google" },
 		}),
