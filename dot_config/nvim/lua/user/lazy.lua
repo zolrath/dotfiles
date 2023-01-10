@@ -280,12 +280,6 @@ require("lazy").setup({
 	},
 	{ "ThePrimeagen/vim-be-good", cmd = "VimBeGood" },
 	{
-		"andweeb/presence.nvim",
-		config = function()
-			require("user.presence")
-		end,
-	},
-	{
 		"mfussenegger/nvim-dap",
 		commit = "6b12294a57001d994022df8acbe2ef7327d30587",
 		lazy = false,
