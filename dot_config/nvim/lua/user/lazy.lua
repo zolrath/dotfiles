@@ -372,4 +372,9 @@ require("lazy").setup({
 			require("user.elixir-nvim")
 		end,
 	},
+	"mattn/webapi-vim",
+	{
+		"lucidstack/hex.vim",
+		dependencies = { "mattn/webapi-vim" },
+	}
 })
