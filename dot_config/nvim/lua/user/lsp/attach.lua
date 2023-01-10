@@ -9,6 +9,11 @@ local function attach_navic(client, bufnr)
 	navic.attach(client, bufnr)
 end
 
+
+local function attach_tailwind(client, bufnr)
+  require("tailwindcss-colors").buf_attach(bufnr)
+end
+
 local function lsp_keymaps(bufnr)
 	local opts = { noremap = true, silent = true }
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>Telescope lsp_declarations<CR>", opts)
@@ -27,6 +32,7 @@ M.on_attach = function(client, bufnr)
 	end
 	lsp_keymaps(bufnr)
 	attach_navic(client, bufnr)
+	attach_tailwind(client, bufnr)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

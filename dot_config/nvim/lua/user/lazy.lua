@@ -370,5 +370,12 @@ require("lazy").setup({
 	{
 		"lucidstack/hex.vim",
 		dependencies = { "mattn/webapi-vim" },
+	},
+	{
+		"themaxmarchuk/tailwindcss-colors.nvim",
+		module = "tailwindcss-colors",
+		config = function()
+			require("tailwindcss-colors").setup()
+		end
 	}
 })
