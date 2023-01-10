@@ -34,3 +34,4 @@ function dbdev() {
 }
 
 alias czll="chezmoi add ~/.config/nvim/lazy-lock.json"
+alias cza="chezmoi apply; source ~/.zshrc"
