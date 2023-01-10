@@ -1,11 +1,15 @@
 return {
   {
     "zbirenbaum/copilot-cmp",
+    opts = {},
   },
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
-    event = "VeryLazy",
-    config = true,
+    lazy = false,
+    opts = {
+      suggestion = { enabled = false },
+      panel = { enabled = false },
+    },
   },
 }
