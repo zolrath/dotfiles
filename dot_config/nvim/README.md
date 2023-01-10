@@ -1,11 +1,23 @@
-# Neovim + Kitchen Sink
+# LazolVim
 
-## After Installation
+Yet another attempt at a decent setup, this time based off [LazyVim](https://github.com/LazyVim/LazyVim)
 
-After launching neovim for the first time, lazy will automatically install all the extensions and will give you some errors, just ignore them and reopen neovim the errors should be resolved.
+## 🚀 Getting Started
 
-## Uninstallation and Cleanup
+Refer to the comments in the files on how to customize **LazyVim**.
 
-```bash
-rm -rf $HOME/.config/nvim $HOME/.local/share/nvim $HOME/.cache/nvim
-```
+## 📂 File Structure
+
+<pre>
+~/.config/nvim
+├── lua
+│   ├── config
+│   │   ├── autocmds.lua
+│   │   ├── keymaps.lua
+│   │   ├── lazy.lua
+│   │   └── options.lua
+│   └── plugins
+│       └── example.lua
+├── init.lua
+└── stylua.toml
+</pre>
