@@ -55,24 +55,24 @@ return {
               " Display lines make a bit more sense to me for this use case.
               nnoremap j gj
               nnoremap k gk
+
+              let s:fontsize = 18
+              function! AdjustFontSizeF(amount)
+              let s:fontsize = s:fontsize+a:amount
+              execute "set guifont=JetBrainsMono\\ Nerd\\ Font\\ Mono:h" . s:fontsize
+              call rpcnotify(0, 'Gui', 'WindowMaximized', 1)
+              endfunction
+
+              noremap  <C-=> :call AdjustFontSizeF(1)<CR>
+              noremap  <C--> :call AdjustFontSizeF(-1)<CR>
+              inoremap <C-=> :call AdjustFontSizeF(1)<CR>
+              inoremap <C--> :call AdjustFontSizeF(-1)<CR>
+
+              autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
+              autocmd FocusLost * ++nested write
+              autocmd InsertLeave * ++nested write
             endif
           endfunction
-
-          let s:fontsize = 18
-          function! AdjustFontSizeF(amount)
-            let s:fontsize = s:fontsize+a:amount
-            execute "set guifont=JetBrainsMono\\ Nerd\\ Font\\ Mono:h" . s:fontsize
-            call rpcnotify(0, 'Gui', 'WindowMaximized', 1)
-          endfunction
-
-          noremap  <C-=> :call AdjustFontSizeF(1)<CR>
-          noremap  <C--> :call AdjustFontSizeF(-1)<CR>
-          inoremap <C-=> :call AdjustFontSizeF(1)<CR>
-          inoremap <C--> :call AdjustFontSizeF(-1)<CR>
-
-          autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
-          autocmd FocusLost * ++nested write
-          autocmd InsertLeave * ++nested write
         ]],
         false
       )
