@@ -12,10 +12,9 @@ return {
       local localSettings = {
         [".*"] = {
           cmdline = "neovim",
-          content = "elixir",
           priority = 0,
           selector = "textarea",
-          takeover = "always",
+          takeover = "never",
         },
       }
 
@@ -44,23 +43,17 @@ return {
       vim.api.nvim_exec(
         [[
           function! OnUIEnter(event) abort
-
-          if 'Firenvim' ==# get(get(nvim_get_chan_info(a:event.chan), 'client', {}), 'name', '')
-          set guifont=JetBrainsMono\ NF:h12
-          let s:fontsize = 12
-          function! AdjustFontSizeF(amount)
-          let s:fontsize = s:fontsize+a:amount
-          execute "set guifont=JetBrainsMono\\ NF:h" . s:fontsize
-          call rpcnotify(0, 'Gui', 'WindowMaximized', 1)
+            if 'Firenvim' ==# get(get(nvim_get_chan_info(a:event.chan), 'client', {}), 'name', '')
+              set guifont=JetBrainsMono\ NF:h12
+              let s:fontsize = 12
+              set noruler noshowcmd
+              set laststatus=0 showtabline=0 signcolumn=no
+            endif
           endfunction
 
-          noremap  <C-=> :call AdjustFontSizeF(1)<CR>
-          noremap  <C--> :call AdjustFontSizeF(-1)<CR>
-          inoremap <C-=> :call AdjustFontSizeF(1)<CR>
-          inoremap <C--> :call AdjustFontSizeF(-1)<CR>
-          endif
-          endfunction
           autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
+          autocmd FocusLost * ++nested write
+          autocmd InsertLeave * ++nested write
         ]],
         false
       )
