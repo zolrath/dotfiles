@@ -1,5 +1,4 @@
-require("user.options")
-require("user.lazy")
-require("user.keymaps")
-require("user.autocommands")
-require("user.colorscheme")
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
+
+require("lspconfig.ui.windows").default_options.border = "rounded"

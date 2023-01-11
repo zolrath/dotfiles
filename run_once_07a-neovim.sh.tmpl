@@ -62,4 +62,9 @@ else
     skip 'rustywind'
 fi
 
+
+info '💻 Installing neovim packages'
+nvim --headless -c "call firenvim#install(0, 'export PATH=\"$PATH\"')" -c quit
+success 'neovim packages'
+
 echo ''
