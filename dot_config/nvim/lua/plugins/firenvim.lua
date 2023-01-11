@@ -44,12 +44,31 @@ return {
         [[
           function! OnUIEnter(event) abort
             if 'Firenvim' ==# get(get(nvim_get_chan_info(a:event.chan), 'client', {}), 'name', '')
-              set guifont=JetBrainsMono\ NF:h12
-              let s:fontsize = 12
+              set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h18
               set noruler noshowcmd
               set laststatus=0 showtabline=0 signcolumn=no
+
+              set spell
+              set textwidth=0
+              set wrap
+
+              " Display lines make a bit more sense to me for this use case.
+              nnoremap j gj
+              nnoremap k gk
             endif
           endfunction
+
+          let s:fontsize = 18
+          function! AdjustFontSizeF(amount)
+            let s:fontsize = s:fontsize+a:amount
+            execute "set guifont=JetBrainsMono\\ Nerd\\ Font\\ Mono:h" . s:fontsize
+            call rpcnotify(0, 'Gui', 'WindowMaximized', 1)
+          endfunction
+
+          noremap  <C-=> :call AdjustFontSizeF(1)<CR>
+          noremap  <C--> :call AdjustFontSizeF(-1)<CR>
+          inoremap <C-=> :call AdjustFontSizeF(1)<CR>
+          inoremap <C--> :call AdjustFontSizeF(-1)<CR>
 
           autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
           autocmd FocusLost * ++nested write
