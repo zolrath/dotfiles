@@ -158,7 +158,13 @@ export XDG_CONFIG_HOME="$HOME/.config"
 source ~/.secrets
 
 # Where should I put you?
-bindkey -s "^f" "tmux-sessionizer\n"
+bindkey -s "^f" "tsesh\n"
+
+{{ if eq .chezmoi.os "linux" -}}
+export LOC="desktop"
+{{ else if eq .chezmoi.os "darwin" -}}
+export LOC="laptop"
+{{ end -}}
 
 eval "$(thefuck --alias)"
 eval "$(zoxide init zsh --cmd j)"

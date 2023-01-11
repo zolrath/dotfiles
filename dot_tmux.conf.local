@@ -21,9 +21,7 @@ bind N new-window \; command-prompt "rename-window '%%'"
 unbind t
 bind t run-shell 'wemux display_users'
 
-# forget the find window.  That is for chumps
-unbind f
-bind-key -r f run-shell "tmux neww ~/.local/scripts/tmux-sessionizer"
+bind Tab run-shell "tsesh --popup"
 bind C-k run-shell "tmux-kill-sessions" \; display-message "killed all other sessions"
 
 # safe keys - L C R H T N S
