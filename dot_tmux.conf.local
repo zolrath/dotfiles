@@ -21,6 +21,14 @@ bind N new-window \; command-prompt "rename-window '%%'"
 unbind t
 bind t run-shell 'wemux display_users'
 
+# forget the find window.  That is for chumps
+unbind f
+bind-key -r f run-shell "tmux neww ~/.local/scripts/tmux-sessionizer"
+
+# safe keys - L C R H T N S
+bind-key -r L run-shell "~/.local/scripts/tmux-sessionizer ~/code/elixir/lights_out/"
+bind-key -r C run-shell "~/.local/scripts/tmux-sessionizer ~/code/documintlabs"
+
 # -- windows & pane creation ---------------------------------------------------
 
 # new window retains current path, possible values are:

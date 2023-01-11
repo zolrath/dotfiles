@@ -150,11 +150,15 @@ export LESS=-R
 path=(${HOME}/.local/share/neovim/bin $path)
 path=(${HOME}/bin $path)
 path=(${HOME}/.local/bin $path)
+path=(${HOME}/.local/scripts $path)
 
 export PATH
 
 export XDG_CONFIG_HOME="$HOME/.config"
 source ~/.secrets
+
+# Where should I put you?
+bindkey -s "^f" "tmux-sessionizer\n"
 
 eval "$(thefuck --alias)"
 eval "$(zoxide init zsh --cmd j)"
