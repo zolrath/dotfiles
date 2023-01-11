@@ -1,6 +1,6 @@
 local elixirls_path = vim.fn.expand("$HOME/tools/elixir-ls/language_server.sh")
 
-return {
+local entries = {
   -- add elixir to treesitter
   {
     "nvim-treesitter/nvim-treesitter",
@@ -31,7 +31,10 @@ return {
       },
     },
   },
-  {
+}
+
+if not vim.g.started_by_firenvim then
+  table.insert(entries, {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
       local null_ls = require("null-ls")
@@ -41,10 +44,12 @@ return {
       -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
       local diagnostics = null_ls.builtins.diagnostics
 
-      opts.sources = opts.vim.list_extend(opts.sources, {
+      opts.sources = vim.list_extend(opts.sources, {
         formatting.mix,
         diagnostics.credo,
       })
     end,
-  },
-}
+  })
+end
+
+return entries
