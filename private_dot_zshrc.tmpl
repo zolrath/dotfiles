@@ -96,17 +96,17 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
 # Download zimfw plugin manager if missing.
 if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
-  if (( ${+commands[curl]} )); then
-    curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
-        https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
-  else
-    mkdir -p ${ZIM_HOME} && wget -nv -O ${ZIM_HOME}/zimfw.zsh \
-        https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
-  fi
+    if (( ${+commands[curl]} )); then
+        curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
+            https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+    else
+        mkdir -p ${ZIM_HOME} && wget -nv -O ${ZIM_HOME}/zimfw.zsh \
+            https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+    fi
 fi
 # Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
 if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
-  source ${ZIM_HOME}/zimfw.zsh init -q
+    source ${ZIM_HOME}/zimfw.zsh init -q
 fi
 # Initialize modules.
 source ${ZIM_HOME}/init.zsh
@@ -166,13 +166,13 @@ bindkey -s "^f" "tsesh\n"
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
 
 function __fsel_files() {
-  setopt localoptions pipefail no_aliases 2> /dev/null
-  eval rg --files --no-ignore-vcs --hidden | fzf -m "$@" | while read item; do
-    echo -n "${(q)item} "
-  done
-  local ret=$?
-  echo
-  return $ret
+    setopt localoptions pipefail no_aliases 2> /dev/null
+    eval rg --files --no-ignore-vcs --hidden | fzf -m "$@" | while read item; do
+        echo -n "${(q)item} "
+    done
+    local ret=$?
+    echo
+    return $ret
 }
 
 function fzf-vim {
@@ -196,7 +196,7 @@ export LOC="laptop"
 
 eval "$(thefuck --alias)"
 eval "$(zoxide init zsh --cmd j)"
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
