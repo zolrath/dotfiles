@@ -1,3 +1,16 @@
+local tailwind_filetypes = {
+  "html",
+  "typescriptreact",
+  "javascriptreact",
+  "css",
+  "sass",
+  "scss",
+  "less",
+  "javascript",
+  "typescript",
+  "heex",
+  "elixir",
+}
 return {
   -- add tailwind to mason
   {
@@ -6,26 +19,25 @@ return {
       vim.list_extend(opts.ensure_installed, { "tailwindcss-language-server" })
     end,
   },
-
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    opts = function(_, opts)
+      local null_ls = require("null-ls")
+      local formatting = null_ls.builtins.formatting
+      opts.sources = vim.list_extend(opts.sources, {
+        formatting.rustywind.with({
+          filetypes = tailwind_filetypes,
+        }),
+      })
+    end,
+  },
   -- add tailwind
   {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
         tailwindcss = {
-          filetypes = {
-            "html",
-            "typescriptreact",
-            "javascriptreact",
-            "css",
-            "sass",
-            "scss",
-            "less",
-            "javascript",
-            "typescript",
-            "heex",
-            "elixir",
-          },
+          filetypes = tailwind_filetypes,
           init_options = {
             userLanguages = {
               elixir = "phoenix-heex",
