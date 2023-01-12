@@ -1,0 +1,35 @@
+#!/bin/sh
+
+. $HOME/.local/share/chezmoi/helpers
+
+echo ''
+
+info '💻 Installing wezterm'
+
+{{ if eq .chezmoi.os "linux" -}}
+
+# If we're in WSL
+{{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
+
+winget install wez.wezterm
+
+# Otherwise we're in normal linux
+{{   else }}
+
+cd /tmp
+curl -LO https://github.com/wez/wezterm/releases/download/nightly/wezterm-nightly.Ubuntu22.04.deb
+sudo apt install -y ./wezterm-nightly.Ubuntu20.04.deb
+
+{{   end -}}
+
+{{ else if eq .chezmoi.os "darwin" -}}
+
+
+brew tap wez/wezterm
+brew install --cask wez/wezterm/wezterm
+
+{{ end -}}
+
+success 'wezterm'
+
+echo ''
