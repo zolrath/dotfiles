@@ -11,7 +11,7 @@ info '💻 Installing wezterm'
 # If we're in WSL
 {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
 
-winget install wez.wezterm
+winget.exe install wez.wezterm
 
 # Otherwise we're in normal linux
 {{   else }}
