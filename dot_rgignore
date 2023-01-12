@@ -1,4 +1,9 @@
 node_modules/
+.git/
+.github/
+.idea/
+.cache/
+.elixir_ls/
 deps/
 _build/
 *~
