@@ -1,47 +1,52 @@
-if true then
-  return {}
-end
-
 return {
+  -- copilot
   {
     "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    lazy = false,
-    opts = {
-      suggestion = { enabled = false },
-      panel = { enabled = false },
-    },
-  },
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = { "zbirenbaum/copilot-cmp" },
-    opts = function(_, opts)
-      local has_copilot, copilot_cmp = pcall(require, "copilot_cmp.comparators")
-      local cmp = require("cmp")
-
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "copilot" } }))
-      opts.sorting = {
-        sorting = {
-          --keep priority weight at 2 for much closer matches to appear above copilot
-          --set to 1 to make copilot always appear on top
-          priority_weight = 2,
-          comparators = {
-            -- order matters here
-            cmp.config.compare.exact,
-            --deprioritize_snippet,
-            has_copilot and copilot_cmp.prioritize or nil,
-            has_copilot and copilot_cmp.score or nil,
-
-            cmp.config.compare.recently_used,
-            cmp.config.compare.offset,
-            -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
-            cmp.config.compare.score,
-            cmp.config.compare.sort_text,
-            cmp.config.compare.length,
-            cmp.config.compare.order,
+    event = "BufEnter",
+    config = function()
+      require("copilot").setup({
+        panel = {
+          enabled = true,
+          auto_refresh = true,
+          keymap = {
+            jump_prev = "[[",
+            jump_next = "]]",
+            accept = "<CR>",
+            refresh = "gr",
+            open = "<M-CR>",
           },
         },
-      }
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          debounce = 75,
+          keymap = {
+            accept = "<M-l>",
+            next = "<M-]>",
+            prev = "<M-[>",
+            dismiss = "<C-]>",
+          },
+        },
+        filetypes = {
+          yaml = false,
+          markdown = false,
+          help = false,
+          gitcommit = false,
+          gitrebase = false,
+          hgcommit = false,
+          svn = false,
+          cvs = false,
+          ["."] = false,
+        },
+        copilot_node_command = "node", -- Node version must be < 18
+        plugin_manager_path = vim.fn.stdpath("data") .. "/lazy",
+        server_opts_overrides = {},
+      })
     end,
+  },
+  {
+    "zbirenbaum/copilot-cmp",
+    dependencies = { "zbirenbaum/copilot.lua" },
+    config = true,
   },
 }
