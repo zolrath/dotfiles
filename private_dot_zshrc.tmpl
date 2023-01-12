@@ -171,6 +171,7 @@ export LOC="laptop"
 eval "$(thefuck --alias)"
 eval "$(zoxide init zsh --cmd j)"
 # eval "$(starship init zsh)"
+eval "$(zellij setup --generate-auto-start zsh)"
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
