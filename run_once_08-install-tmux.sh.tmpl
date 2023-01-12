@@ -60,14 +60,13 @@ sudo sed -i "" "13s/brew/furd/" /usr/local/etc/wemux.conf
 success 'wemux'
 {{ end -}}
 
-# Install oh-my-tmux and symlink
-if ! [ -d "$HOME/tools/oh-my-tmux" ]; then
-    info '👕 Installing oh-my-tmux'
-    git clone https://github.com/gpakosz/.tmux.git ~/tools/oh-my-tmux
-    ln -s -f ~/tools/oh-my-tmux/.tmux.conf ~/.tmux.conf
-    success 'oh-my-tmux'
+# Add tpm
+if ! [ -d "$HOME/.tmux/plugins/tpm" ]; then
+    info '👕 Installing tpm'
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    success 'tpm'
 else
-    skip 'oh-my-tmux'
+    skip 'tpm'
 fi
 
 echo ''
