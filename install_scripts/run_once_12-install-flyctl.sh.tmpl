@@ -1,0 +1,21 @@
+#!/bin/sh
+
+. $HOME/.local/share/chezmoi/helpers
+
+echo ''
+
+info '🚀 Installing Flyctl'
+
+{{ if eq .chezmoi.os "darwin" -}}
+
+brew install flyctl
+
+{{ else if eq .chezmoi.os "linux" -}}
+
+curl -L https://fly.io/install.sh | sh
+
+{{ end -}}
+
+success 'Flyctl'
+
+echo ''
