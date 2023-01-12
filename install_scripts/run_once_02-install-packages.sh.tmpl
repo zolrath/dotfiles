@@ -8,7 +8,7 @@ info '📦 Installing packages'
 
 {{ if eq .chezmoi.os "linux" -}}
 
-sudo apt install -y ripgrep exa fzf git-delta
+sudo apt install -y ripgrep exa fzf git-delta chafa
 
 if ! [ -x "$(command -v zoxide)" ]; then
     info '📦 Installing zoxide'
@@ -62,7 +62,7 @@ fi
 
 {{ else if eq .chezmoi.os "darwin" -}}
 
-brew install ripgrep exa fzf zoxide git-delta gnu-sed glow
+brew install ripgrep exa fzf zoxide git-delta gnu-sed glow chafa
 brew install jesseduffield/lazygit/lazygit
 brew install jesseduffield/lazydocker/lazydocker
 
