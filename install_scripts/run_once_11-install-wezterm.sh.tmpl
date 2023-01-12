@@ -11,25 +11,46 @@ info '💻 Installing wezterm'
 # If we're in WSL
 {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
 
-winget.exe install wez.wezterm
+
+if ! [ -x "$(command -v wezterm.exe)" ]; then
+    winget.exe install wez.wezterm
+    success 'wezterm'
+else
+    skip 'wezterm'
+fi
+
+# wezterm.lua hash: {{ include "dot_config/wezterm/wezterm.lua" | sha256sum }}
+# test
+info '💻 Copying wezterm config to Windows'
+mkdir -p /mnt/c/Users/furd/.config/wezterm/ && cp ~/.local/share/chezmoi/dot_config/wezterm/wezterm.lua /mnt/c/Users/furd/.config/wezterm/
+success 'copied wezterm config'
 
 # Otherwise we're in normal linux
 {{   else }}
 
-cd /tmp
-curl -LO https://github.com/wez/wezterm/releases/download/nightly/wezterm-nightly.Ubuntu22.04.deb
-sudo apt install -y ./wezterm-nightly.Ubuntu20.04.deb
+if ! [ -x "$(command -v wezterm)" ]; then
+    cd /tmp
+    curl -LO https://github.com/wez/wezterm/releases/download/nightly/wezterm-nightly.Ubuntu22.04.deb
+    sudo apt install -y ./wezterm-nightly.Ubuntu20.04.deb
+    success 'wezterm'
+else
+    skip 'wezterm'
+fi
 
 {{   end -}}
 
 {{ else if eq .chezmoi.os "darwin" -}}
 
+if ! [ -x "$(command -v wezterm)" ]; then
+    brew tap wez/wezterm
+    brew install --cask wez/wezterm/wezterm
+    success 'wezterm'
+else
+    skip 'wezterm'
+fi
 
-brew tap wez/wezterm
-brew install --cask wez/wezterm/wezterm
 
 {{ end -}}
 
-success 'wezterm'
 
 echo ''

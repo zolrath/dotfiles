@@ -1,5 +1,6 @@
 local wezterm = require("wezterm")
 
+-- This file is copied to the Windows installation as well, if modified be sure to rerun chezmoi
 local config = {
 	check_for_updates = false,
 	color_scheme = "Catppuccin Macchiato",
@@ -9,7 +10,10 @@ local config = {
 		brightness = 1.0,
 	},
 	default_prog = { "/bin/zsh", "-l" },
-	font_size = 16.0,
+
+	font_size = 14.0,
+	font = wezterm.font("JetBrainsMono Nerd Font Mono", { weight = "Regular" }),
+
 	launch_menu = {},
 	leader = { key = "Space", mods = "CTRL" },
 	disable_default_key_bindings = true,
@@ -52,10 +56,20 @@ local config = {
 }
 
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
-	config.front_end = "Software" -- OpenGL doesn't work quite well with RDP.
-	config.term = "" -- Set to empty so FZF works on windows
-	config.default_prog = { "cmd.exe" }
+	local wsl_domains = wezterm.default_wsl_domains()
+
+	for _, dom in ipairs(wsl_domains) do
+		dom.default_cwd = "~"
+	end
+
+	config.wsl_domains = wsl_domains
+	config.default_domain = "WSL:Ubuntu"
+	config.default_prog = { "wsl.exe" }
+
+	--config.front_end = "Software" -- OpenGL doesn't work quite well with RDP.
+	--config.term = "" -- Set to empty so FZF works on windows
 	table.insert(config.launch_menu, { label = "PowerShell", args = { "powershell.exe", "-NoLogo" } })
+	table.insert(config.launch_menu, { label = "cmd", args = { "cmd.exe" } })
 
 	-- Find installed visual studio version(s) and add their compilation
 	-- environment command prompts to the menu
