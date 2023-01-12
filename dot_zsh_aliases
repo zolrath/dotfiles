@@ -35,5 +35,33 @@ function dbdev() {
 
 alias zr="zellij run --"
 alias zrf="zellij run -f --"
+
 alias czll="chezmoi add ~/.config/nvim/lazy-lock.json"
 alias cza="chezmoi apply; source ~/.zshrc"
+
+# Where should I put you?
+bindkey -s "^f" "tsesh\n"
+
+function __fsel_files() {
+    setopt localoptions pipefail no_aliases 2> /dev/null
+    eval rg --files --no-ignore-vcs --hidden | fzf -m "$@" | while read item; do
+        echo -n "${(q)item} "
+    done
+    local ret=$?
+    echo
+    return $ret
+}
+
+function fzf-vim {
+    selected=$(__fsel_files)
+    if [[ -z "$selected" ]]; then
+        zle redisplay
+        return 0
+    fi
+    zle push-line # Clear buffer
+    BUFFER="nvim $selected";
+    zle accept-line
+}
+zle -N fzf-vim
+bindkey '^v' fzf-vim
+
