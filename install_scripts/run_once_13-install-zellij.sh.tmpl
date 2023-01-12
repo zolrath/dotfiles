@@ -1,0 +1,14 @@
+#!/bin/sh
+
+. $HOME/.local/share/chezmoi/helpers
+
+echo ''
+
+info '📄 Installing zellij'
+
+cargo install --locked zellij
+asdf reshim rust
+
+success 'zellij'
+
+echo ''
