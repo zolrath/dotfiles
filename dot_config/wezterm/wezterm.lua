@@ -19,7 +19,7 @@ local config = {
 	use_ime = false,
 
 	window_close_confirmation = "NeverPrompt",
-	initial_cols = 232,
+	initial_cols = 185,
 	initial_rows = 38,
 	hide_tab_bar_if_only_one_tab = true,
 	default_prog = { "/bin/zsh", "-l" },
