@@ -5,11 +5,14 @@
 echo ''
 
 info '💤 Installing zsh'
+
 {{ if eq .chezmoi.os "linux" -}}
+
 sudo apt update
 sudo apt install -y zsh
 
 {{ else if eq .chezmoi.os "darwin" -}}
+
 brew install zsh
 
 {{ end -}}
@@ -30,9 +33,11 @@ fi
 info '🚀 Installing Starship'
 
 {{ if eq .chezmoi.os "linux" -}}
+
 curl -sS https://starship.rs/install.sh | sh
 
 {{ else if eq .chezmoi.os "darwin" -}}
+
 brew install starship
 
 {{ end -}}

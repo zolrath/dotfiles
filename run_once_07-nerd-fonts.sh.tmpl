@@ -13,10 +13,15 @@ git sparse-checkout add patched-fonts/JetBrainsMono
 cd nerd-fonts
 
 {{ if eq .chezmoi.os "darwin" -}}
+
 ./install.sh JetBrainsMono
+
 {{ else if eq .chezmoi.os "linux" -}}
+
 powershell.exe -File ./install.ps1 JetBrainsMono
+
 {{ end -}}
+
 cd ..
 rm -rf nerd-fonts
 success 'JetBrainsMono Nerd Font'

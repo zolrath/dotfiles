@@ -16,8 +16,10 @@ if ! [ -x "$(command -v fpp)" ]; then
     cd /tmp
     git clone https://github.com/facebook/PathPicker.git
     cd PathPicker/debian
+
     ./package.sh
     sudo apt install ../pathpicker_*_all.deb
+
     cd /tmp
     rm -rf PathPicker
     success 'Facebook PathPicker'
@@ -33,6 +35,8 @@ if ! [ -x "$(command -v wemux)" ]; then
     sudo git clone https://github.com/zolrath/wemux.git /usr/local/share/wemux
     sudo ln -s /usr/local/share/wemux/wemux /usr/local/bin/wemux
     sudo cp /usr/local/share/wemux/wemux.conf.example /usr/local/etc/wemux.conf
+
+    # Set wemux host user.
     sudo sed -i "13i host_list=(zolrath)" /usr/local/etc/wemux.conf
     success 'wemux'
 else
@@ -43,11 +47,15 @@ fi
 info '👓 Installing tmux'
 brew install tmux
 success 'tmux'
+
 info '📂 Installing Facebook PathPicker'
 brew install fpp urlview
 success 'Facebook PathPicker'
+
 info '🧔👩 Installing wemux'
 brew install wemux
+
+# Set wemux host user.
 sudo sed -i "" "13s/brew/furd/" /usr/local/etc/wemux.conf
 success 'wemux'
 {{ end -}}

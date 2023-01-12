@@ -7,17 +7,20 @@ echo ''
 info '💧 Installing elixir'
 
 {{ if eq .chezmoi.os "linux" -}}
+
 info '💧 Installing necessary packages for Erlang compilation'
 
 apt-get -y install unzip build-essential autoconf m4 libncurses5-dev libwxgtk3.0-gtk3-dev libwxgtk-webview3.0-gtk3-dev libgl1-mesa-dev libglu1-mesa-dev libpng-dev libssh-dev unixodbc-dev xsltproc fop libxml2-utils libncurses-dev openjdk-11-jdk
 
 {{ else if eq .chezmoi.os "darwin" -}}
+
 info '💧 Installing necessary packages for Erlang compilation'
 
 brew install autoconf openssl@1.1 wxwidgets libxslt fop
 
 info '💧 Setting kerl configuration options to correct OpenSSL issues on macos'
 export KERL_CONFIGURE_OPTIONS="--without-javac --with-ssl=$(brew --prefix openssl@1.1)"
+
 {{ end -}}
 
 info '💧 Installing erlang asdf'
@@ -38,4 +41,4 @@ asdf install elixir 1.14.2-otp-25
 asdf global elixir 1.14.2-otp-25
 success 'elixir'
 
- echo ''
+echo ''

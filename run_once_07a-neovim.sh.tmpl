@@ -49,6 +49,7 @@ if ! [ -x "$(command -v shellcheck)" ]; then
     {{ else if eq .chezmoi.os "linux" -}}
     sudo apt install shellcheck
     {{ end -}}
+
     success 'shellcheck'
 else
     skip 'shellcheck'

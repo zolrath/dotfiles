@@ -7,9 +7,13 @@ echo ''
 info '👆 Installing thefuck'
 
 {{ if eq .chezmoi.os "linux" -}}
-    pip install --user thefuck
+
+pip install --user thefuck
+
 {{ else if eq .chezmoi.os "darwin" -}}
-    brew install thefuck
+
+brew install thefuck
+
 {{ end -}}
 
 success 'thefuck'
