@@ -5,14 +5,13 @@
 echo ''
 
 if ! [ -x "$(command -v bob)" ]; then
-    info '💻 Installing bob'
-    cargo install bob-nvim
-    asdf reshim rust
-    success 'bob'
+    info '💻 Installing asdf neovim'
+    asdf plugin add neovim
+    asdf global neovim stable
+    success 'asdf neovim'
 else
-    skip 'bob'
+    skip 'asdf neovim'
 fi
-
 bob use stable
 
 if ! [ -x "$(command -v beautysh)" ]; then

@@ -1,0 +1,68 @@
+#!/bin/sh
+
+. $HOME/.local/share/chezmoi/helpers
+
+echo ''
+
+info '📦 Installing packages'
+
+{{ if eq .chezmoi.os "linux" -}}
+
+sudo apt install -y ripgrep exa fzf chafa
+
+if ! [ -x "$(command -v lazydocker)" ]; then
+
+    info '📦 Installing lazydocker'
+    curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
+    success 'lazydocker'
+else
+    skip 'lazydocker'
+fi
+
+if ! [ -x "$(command -v glow)" ]; then
+    info '📦 Installing glow'
+    sudo mkdir -p /etc/apt/keyrings
+    curl -fsSL https://repo.charm.sh/apt/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/charm.gpg
+    echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | sudo tee /etc/apt/sources.list.d/charm.list
+    sudo apt update && sudo apt install glow
+    success 'glow'
+else
+    skip 'glow'
+fi
+
+{{ else if eq .chezmoi.os "darwin" -}}
+
+brew install ripgrep exa fzf gnu-sed glow chafa lazydocker
+
+{{ end -}}
+
+if ! [ -x "$(command -v lazygit)" ]; then
+    info '📦 Installing lazygit'
+    asdf plugin add lazygit
+    asdf global lazygit latest
+    success 'lazygit'
+else
+    skip 'lazygit'
+fi
+
+if ! [ -x "$(command -v zoxide)" ]; then
+    info '📦 Installing zoxide'
+    asdf plugin add zoxide https://github.com/nyrst/asdf-zoxide.git
+    asdf global zoxide latest
+    success 'zoxide'
+else
+    skip 'zoxide'
+fi
+
+if ! [ -x "$(command -v delta)" ]; then
+    info '📦 Installing delta'
+    asdf plugin add delta https://github.com/andweeb/asdf-delta.git
+    asdf global delta latest
+    success 'delta'
+else
+    skip 'delta'
+fi
+
+success 'packages'
+
+echo ''
