@@ -1,0 +1,32 @@
+#!/bin/bash
+
+. $HOME/.local/share/chezmoi/helpers
+
+echo ''
+
+{{ if eq .chezmoi.os "darwin" -}}
+
+
+info '🐠 Installing fd'
+brew install fd
+success 'fd'
+
+info '🐠 Installing bat'
+brew install bat
+success 'bat'
+
+{{ else if eq .chezmoi.os "linux" -}}
+
+if ! [ -x "$(command -v fish)" ]; then
+    info '🐠 Installing fish shell'
+    sudo apt-add-repository ppa:fish-shell/release-3
+    sudo apt-get update && sudo apt-get upgrade
+    sudo apt-get install fish
+    success 'fish shell'
+else
+    skip 'fish shell'
+fi
+
+{{ end -}}
+
+echo ''

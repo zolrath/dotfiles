@@ -31,6 +31,7 @@ fi
 if ! [ -e "$HOME/.config/fish/functions/fisher.fish" ]; then
     info '🐠 Installing fisher plugin manager'
     fish -c "curl -sL git.io/fisher | source && fisher install jorgebucaran/fisher"
+    fish -c "fisher update"
     success 'fisher'
 else
     skip 'fisher'
