@@ -11,6 +11,9 @@ set -q MANPATH; or set MANPATH ''; set -gx MANPATH "/opt/homebrew/share/man" $MA
 set -q INFOPATH; or set INFOPATH ''; set -gx INFOPATH "/opt/homebrew/share/info" $INFOPATH;
 
 set -q PATH; or set PATH ''; set -gx PATH "/opt/homebrew/bin" "/opt/homebrew/sbin" $PATH;
+fish_add_path ~/.local/bin
+fish_add_path ~/.local/scripts
+fish_add_path ~/bin
 
 #set -U fish_user_paths "/usr/local/sbin" $fish_user_paths # homebrew - Intel
 set -g fish_user_paths "/opt/homebrew/bin" $fish_user_paths # homebrew ARM
