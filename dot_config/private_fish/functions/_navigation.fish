@@ -1,22 +1,25 @@
 function vim; command nvim $argv; end
 
-function l; command exa -Flagh --sort name --git --icons --group-directories-first $argv; end
-function ll; command exa -Flagh --git --icons --group-directories-first --sort modified $argv; end
-function la; command exa -Fla --icons; end
-function tree; command exa --tree --icons $argv; end
-function ls; command exa $argv; end
-function cll; command clear; and exa -Flah --icons --sort modified $argv; end
+alias l="exa -Flagh --sort name --git --icons --group-directories-first"
+alias ll="exa -Flagh --git --icons --group-directories-first --sort modified"
+alias la="exa -Fla --icons"
+alias tree="exa --tree --icons"
+alias ls="exa"
+alias cll="clear; and exa -Flah --icons --sort modified"
 
-function ex; command explorer.exe .; end
-function rm; command rm -i $argv; end
-function cp; command cp -i $argv; end
-function mv; command mv -i $argv; end
-function mkdir; command mkdir -p $argv; end
-function ccd; command clear && cd $argv; end
-function cg; command cd (git rev-parse --show-toplevel); end
-function lg; command lazygit; end
+alias ex="explorer.exe ."
+alias rm="rm -i"
+alias cp="cp -i"
+alias mv="mv -i"
+alias mkdir="mkdir -p"
+alias ccd="clear && cd"
+alias cg="cd (git rev-parse --show-toplevel)"
+alias lg="lazygit"
 
-function c; code .; end
+alias fd="fdfind"
+alias bat="batcat"
+
+alias c="code ."
 
 function multicd
     echo cd (string repeat -n (math (string length -- $argv[1]) - 1) ../)
