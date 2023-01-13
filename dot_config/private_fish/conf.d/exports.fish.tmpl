@@ -1,16 +1,23 @@
 # set default key bindings
 set -g fish_key_bindings fish_default_key_bindings
 
-set -x --global EDITOR nvim
-set -x --global LESS -R
-set -x --global FZF_DEFAULT_COMMAND 'rg --files --no-ignore-vcs --hidden'
-set -x --global FZF_DEFAULT_OPTS '--cycle --layout=reverse --border --height=90% --preview-window=wrap --marker="*"'
+set -x LESS -R
+set -x FZF_DEFAULT_COMMAND 'rg --files --no-ignore-vcs --hidden'
+set -x FZF_DEFAULT_OPTS '--cycle --layout=reverse --border --height=90% --preview-window=wrap --marker="*"'
+set -x FZF_LEGACY_KEYBINDINGS 0
+
+set -x EDITOR "nvim"
+set -x SHELL (which fish)
+set -x TERM xterm-256color
+
+set -x LANG en_US.UTF-8
+set -x LC_ALL en_US.UTF-8
+set -x LC_CTYPE en_US.UTF-8
+set -x LANGUAGE en_US.UTF-8
+
 
 {{ if eq .chezmoi.os "linux" -}}
-set -x --global LOC "desktop"
+set -x LOC "desktop"
 {{ else if eq .chezmoi.os "darwin" -}}
-set -x --global LOC "laptop"
+set -x LOC "laptop"
 {{ end -}}
-
-# Source Multi-function files
-source ~/.config/fish/functions/_navigation.fish
