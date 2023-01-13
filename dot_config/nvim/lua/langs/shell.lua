@@ -1,4 +1,11 @@
 return {
+  -- add to treesitter
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, { "fish", "bash" })
+    end,
+  },
   {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
