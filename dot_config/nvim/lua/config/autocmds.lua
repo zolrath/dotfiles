@@ -19,6 +19,28 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {
+    "gitcommit",
+  },
+  command = "startinsert",
+  group = vim.api.nvim_create_augroup("AutoInsert", { clear = true }),
+})
+
+-- ensure the parent folder exists, so it gets properly added to the lsp
+-- context and everything just works.
+vim.api.nvim_create_autocmd("BufNewFile", {
+  pattern = "*",
+  callback = function()
+    local dir = vim.fn.expand("<afile>:p:h")
+    if vim.fn.isdirectory(dir) == 0 then
+      vim.fn.mkdir(dir, "p")
+      vim.cmd([[ :e % ]])
+    end
+  end,
+  group = vim.api.nvim_create_augroup("Mkdir", { clear = true }),
+})
+
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = { "*.livemd" },
   callback = function()
