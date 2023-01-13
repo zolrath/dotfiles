@@ -4,15 +4,15 @@
 
 echo ''
 
-if ! [ -x "$(command -v bob)" ]; then
+if ! [ -x "$(command -v nvim)" ]; then
     info '💻 Installing asdf neovim'
     asdf plugin add neovim
+    asdf install neovim stable
     asdf global neovim stable
     success 'asdf neovim'
 else
     skip 'asdf neovim'
 fi
-bob use stable
 
 if ! [ -x "$(command -v beautysh)" ]; then
     info '💻 Installing beautysh'
