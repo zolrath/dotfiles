@@ -1,16 +1,4 @@
 # General Aliases
-alias editcz "cd (chezmoi source-path); and vim .; and chezmoi apply; and prevd"
-alias editfish "cd (chezmoi source-path)/dot_config/private_fish/; and chezmoi edit ~/.config/fish/config.fish; and chezmoi apply; and source ~/.config/fish/config.fish; and prevd"
-# alias editvim "cd (chezmoi source-path)/dot_config/nvim/; and chezmoi edit ~/.config/nvim/init.lua; and chezmoi apply; and prevd"
-#
-function editvim 
-  cd (chezmoi source-path)/dot_config/nvim/
-  chezmoi edit ~/.config/nvim/init.lua
-  chezmoi add ~/.config/nvim/lazy-lock.json
-  chezmoi apply
-  prevd
-end
-
 alias j "z"
 alias cat "bat"
 alias mkt "cd (mktemp -d)"

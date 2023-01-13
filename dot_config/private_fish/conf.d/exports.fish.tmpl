@@ -23,7 +23,6 @@ set -x LC_ALL en_US.UTF-8
 set -x LC_CTYPE en_US.UTF-8
 set -x LANGUAGE en_US.UTF-8
 
-
 {{ if eq .chezmoi.os "linux" -}}
 set -x LOC "desktop"
 {{ else if eq .chezmoi.os "darwin" -}}

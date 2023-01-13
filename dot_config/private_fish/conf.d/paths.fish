@@ -7,12 +7,14 @@ function setpath
   test -e $argv[1]; and fish_add_path $argv[1]
 end
 
+set -q MANPATH || set MANPATH ''
 function setmanpath
-  test -e $argv[1]; and set MANPATH $argv[1] $MANPATH 
+  test -e $argv[1]; and set -gx MANPATH $MANPATH $argv[1]
 end
 
+set -q INFOPATH || set INFOPATH ''
 function setinfopath
-  test -e $argv[1]; and set INFOPATH $argv[1] $INFOPATH 
+  test -e $argv[1]; and set -gx INFOPATH $INFOPATH $argv[1]
 end
 
 if test -z "$XDG_RUNTIME_DIR"
@@ -24,9 +26,9 @@ if test -z "$XDG_RUNTIME_DIR"
 end
 
 # Set Nix include path if it exists
-if test -e ~/.nix-profile/etc/profile.d/nix.sh
-  fenv source ~/.nix-profile/etc/profile.d/nix.sh
-end
+#if test -e ~/.nix-profile/etc/profile.d/nix.sh
+#  fenv source ~/.nix-profile/etc/profile.d/nix.sh
+#end
 
 # Homebrew paths
 set -gx HOMEBREW_PREFIX "/opt/homebrew";
@@ -35,10 +37,6 @@ set -gx HOMEBREW_REPOSITORY "/opt/homebrew";
 setpath /opt/homebrew/bin
 setmanpath /opt/homebrew/share/man
 setinfopath /opt/homebrew/share/info
-
-#set -U fish_user_paths "/usr/local/sbin" $fish_user_paths # homebrew - Intel
-set -g fish_user_paths "/opt/homebrew/bin" $fish_user_paths # homebrew ARM
-
 
 # My paths
 setpath ~/.local/scripts
