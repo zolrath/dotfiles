@@ -1,8 +1,15 @@
 # General Aliases
-
-alias editcz "cd (chezmoi source-path)/dot_config/private_fish/; and chezmoi edit ~/.config/fish/config.fish; and chezmoi apply; and source ~/.config/fish/config.fish; and prevd"
+alias editcz "cd (chezmoi source-path); and vim .; and chezmoi apply; and prevd"
 alias editfish "cd (chezmoi source-path)/dot_config/private_fish/; and chezmoi edit ~/.config/fish/config.fish; and chezmoi apply; and source ~/.config/fish/config.fish; and prevd"
-alias editvim "cd (chezmoi source-path)/dot_config/nvim/; and chezmoi edit ~/.config/nvim/init.lua; and chezmoi apply; and prevd"
+# alias editvim "cd (chezmoi source-path)/dot_config/nvim/; and chezmoi edit ~/.config/nvim/init.lua; and chezmoi apply; and prevd"
+#
+function editvim 
+  cd (chezmoi source-path)/dot_config/nvim/
+  chezmoi edit ~/.config/nvim/init.lua
+  chezmoi add ~/.config/nvim/lazy-lock.json
+  chezmoi apply
+  prevd
+end
 
 alias j "z"
 alias cat "bat"
@@ -33,14 +40,19 @@ alias ccd "clear && cd"
 alias cg "cd (git rev-parse --show-toplevel)"
 abbr lg "lazygit"
 
-alias fd "fdfind"
-alias bat "batcat"
-
 abbr c "code ."
 
 # Aliases that overwrite other, existing commands
 if command --search hub > /dev/null do
   alias git "hub"
+end
+
+if command --search fdfind > /dev/null do
+  alias fd "fdfind"
+end
+
+if command --search batcat > /dev/null do
+  alias bat "batcat"
 end
 
 if command --search exa > /dev/null do
