@@ -1,23 +1,27 @@
 # General Aliases
-alias editconfig "chezmoi edit ~/.config/fish/config.fish; and chezmoi apply; and source ~/.config/fish/config.fish"
+
+alias editcz "cd (chezmoi source-path)/dot_config/private_fish/; and chezmoi edit ~/.config/fish/config.fish; and chezmoi apply; and source ~/.config/fish/config.fish; and prevd"
+alias editfish "cd (chezmoi source-path)/dot_config/private_fish/; and chezmoi edit ~/.config/fish/config.fish; and chezmoi apply; and source ~/.config/fish/config.fish; and prevd"
+alias editvim "cd (chezmoi source-path)/dot_config/nvim/; and chezmoi edit ~/.config/nvim/init.lua; and chezmoi apply; and prevd"
+
 alias j "z"
 alias cat "bat"
 alias mkt "cd (mktemp -d)"
 abbr cz "chezmoi"
-# Git Aliases
-alias g "git"
-alias gs "g status --short"
-alias gl "g log --color --graph --abbrev-commit --oneline"
-alias gqp "g add --all; and g commit; and g push"
-alias gqc "g add --all; and g commit"
-alias gpl "g pull"
-alias gps "g push"
-alias gc "g commit"
-alias gaa "g add --all"
-alias gco "g checkout"
-alias gse "g send-email"
-alias wip "g add --all; and g commit -m WIP"
-alias squish "gs; and g commit -a --amend -C HEAD"
+
+# Git
+abbr    gst  "git status"
+abbr    gd   "git diff"
+abbr    gdh  "git diff HEAD"
+abbr    gc   "git clone $1 $2"
+abbr    gcl  "git clean -fdx"
+abbr    gcm  "git commit"
+abbr    ga   "git add -u ."
+abbr    gaa  "git add -A ."
+abbr    gpo  "git push origin $1"
+abbr    glo  "git log --color --graph --abbrev-commit --oneline"
+abbr    grhh "git reset --hard HEAD"
+abbr    gcp  "git cherry-pick $1"
 
 alias vim "nvim"
 alias ex "explorer.exe ."

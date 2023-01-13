@@ -1,7 +1,15 @@
 # set default key bindings
 set -g fish_key_bindings fish_default_key_bindings
 
-set -x LESS -R
+# set some sensible default options to always pass into invocations of less
+set -x LESS "--ignore-case --LONG-PROMPT --RAW-CONTROL-CHARS --tabs=4 --window=-4"
+
+# don't store any history of commands executed in less
+set -x LESSHISTFILE /dev/null
+
+# point ripgrep at its config file
+set -x RIPGREP_CONFIG_PATH ~/.config/ripgrep
+
 set -x FZF_DEFAULT_COMMAND 'rg --files --no-ignore-vcs --hidden'
 set -x FZF_DEFAULT_OPTS '--cycle --layout=reverse --border --height=90% --preview-window=wrap --marker="*"'
 set -x FZF_LEGACY_KEYBINDINGS 0
