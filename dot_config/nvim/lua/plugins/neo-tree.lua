@@ -1,8 +1,6 @@
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
-    branch = "main",
-    commit = "8238865e",
     cmd = "Neotree",
     opts = {
       filesystem = {
