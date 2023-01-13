@@ -1,0 +1,50 @@
+#!/bin/bash
+
+. $HOME/.local/share/chezmoi/helpers
+
+echo ''
+
+{{ if eq .chezmoi.os "darwin" -}}
+
+if ! [ -x "$(command -v fish)" ]; then
+    info '🐠 Installing fish shell'
+    brew install fish
+    success 'fish shell'
+else
+    skip 'fish shell'
+fi
+
+{{ else if eq .chezmoi.os "linux" -}}
+
+if ! [ -x "$(command -v fish)" ]; then
+    info '🐠 Installing fish shell'
+    sudo apt-add-repository ppa:fish-shell/release-3
+    sudo apt-get update && sudo apt-get upgrade
+    sudo apt-get install fish
+    success 'fish shell'
+else
+    skip 'fish shell'
+fi
+
+{{ end -}}
+
+if ! [ -e "$HOME/.config/fish/functions/fisher.fish" ]; then
+    info '🐠 Installing fisher plugin manager'
+    fish -c "curl -sL git.io/fisher | source && fisher install jorgebucaran/fisher"
+    success 'fisher'
+else
+    skip 'fisher'
+fi
+
+#=============
+# change default shell to fish
+#=============
+if [ "$(basename "$SHELL")" = "fish" ]; then
+    info 'Default shell is already fish'
+else
+    info 'Changing default shell to fish'
+    chsh -s $(which fish)
+    success 'fish set to default shell'
+fi
+
+echo ''
