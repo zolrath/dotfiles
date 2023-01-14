@@ -1,5 +1,10 @@
 " vim: filetype=vifm :
 
+" Custom Mappings [[[
+nnoremap t tj
+nnoremap T t
+" ]]]
+
 " Marks [[[
 " :mark mark /full/directory/path [filename]
 
@@ -77,6 +82,11 @@ nnoremap <space>r :fzfmarks<cr>
 nnoremap <space>e :fdcddir<cr>
   " edit file from child directory in vim
 nnoremap <space>f :fdeditfiles<cr>
+nnoremap <space><tab> :tabnew<cr>
+nnoremap H :tabprev<cr>
+nnoremap L :tabnext<cr>
+nnoremap <space>bd :tabclose<cr>
+nnoremap <space> <nop>
 
 " Start shell in current directory
 nnoremap S :shell<CR>
@@ -107,7 +117,7 @@ nnoremap yc :!xlip -sel c -i %c %i<CR>
 nnoremap o :file<CR>
 
 " Quit vifm
-nnoremap Q :quit<CR>
+nnoremap q :quit<CR>
 " ]]]
 
 
@@ -456,6 +466,8 @@ endif
 nnoremap I cw<c-a>
 nnoremap cc cw<c-u>
 nnoremap A cw
+nnoremap cW cw
+nnoremap cw cW
 
 " Open console in current directory
 nnoremap ,t :!xterm &<cr>
