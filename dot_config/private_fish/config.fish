@@ -3,8 +3,6 @@
 ###################################
 status is-interactive || exit
 
-
-source ~/.config/fish/functions/aliases.fish
 fzf_configure_bindings --directory=\cf --variables=\ev --git_log=\eo --git_status=\eg --processes=\ep
 
 set -x fish_color_command B7D847
