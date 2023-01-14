@@ -19,10 +19,10 @@ local config = {
 	use_ime = false,
 
 	window_close_confirmation = "NeverPrompt",
-	initial_cols = 185,
+	initial_cols = 160,
 	initial_rows = 38,
 	hide_tab_bar_if_only_one_tab = true,
-	default_prog = { "/bin/zsh", "-l" },
+	default_prog = { "/bin/fish", "-l" },
 
 	font_size = 14.0,
 	font = wezterm.font("JetBrainsMono Nerd Font Mono", { weight = "Regular" }),
@@ -42,8 +42,8 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	config.default_domain = "WSL:Ubuntu"
 	config.default_prog = { "wsl.exe" }
 
-	--config.front_end = "Software" -- OpenGL doesn't work quite well with RDP.
-	--config.term = "" -- Set to empty so FZF works on windows
+	-- config.front_end = "Software" -- OpenGL doesn't work quite well with RDP.
+	-- config.term = "" -- Set to empty so FZF works on windows
 	table.insert(config.launch_menu, { label = "PowerShell", args = { "powershell.exe", "-NoLogo" } })
 	table.insert(config.launch_menu, { label = "cmd", args = { "cmd.exe" } })
 
@@ -62,7 +62,7 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	end
 else
 	table.insert(config.launch_menu, { label = "bash", args = { "bash", "-l" } })
-	table.insert(config.launch_menu, { label = "zsh", args = { "zsh", "-l" } })
+	table.insert(config.launch_menu, { label = "fish", args = { "fish", "-l" } })
 end
 
 return config
