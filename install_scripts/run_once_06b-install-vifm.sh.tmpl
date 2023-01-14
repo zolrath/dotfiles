@@ -1,0 +1,42 @@
+#!/bin/bash
+
+. $HOME/.local/share/chezmoi/helpers
+
+echo ''
+
+info '📦 Installing vifm'
+
+{{ if eq .chezmoi.os "linux" -}}
+
+if ! [ -x "$(command -v vifm)" ]; then
+    # set -o xtrace -o errtrace -o errexit -o nounset -o pipefail
+
+    version="$(curl --location --head https://github.com/vifm/vifm/releases/latest | grep -i location: | sed 's/^.*\/tag\/\([^\/]*\)\r$/\1/')"
+    filename_prefix="vifm"
+    filename_postfix="x86_64.AppImage"
+    uri_to_download="https://github.com/vifm/vifm/releases/download/${version}/${filename_prefix}-${version}-${filename_postfix}"
+
+    curl --fail --show-error --location "$uri_to_download" -o "/tmp/vifm"
+
+    mv --force /tmp/vifm "${HOME}/bin/vifm" &&
+    chmod a+x "${HOME}/bin/vifm"
+
+    if [ ! -x "${HOME}/bin/vifm" ]; then
+        error 'vifm install failed'
+    else
+        success 'vifm'
+    fi
+
+else
+    skip 'vifm'
+fi
+
+{{ else if eq .chezmoi.os "darwin" -}}
+
+if ! [ -x "$(command -v vifm)" ]; then
+    brew install vifm
+    success 'vifm'
+else
+    skip 'vifm'
+fi
+{{ end -}}
