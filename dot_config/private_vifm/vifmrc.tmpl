@@ -484,6 +484,7 @@ set classify+=' ::*.7z,,*.apk,,*.bz2,,*.cpio,,*.deb,,*.gz,,*.gzip,,*.gem,,*.l
              \  ::*.twig::,
              \  ::*.vim,,*.vimrc::,
              \  ::*.xul::'
+
 " ------------------------------------------------------------------------------
 
 " What should be saved automatically between vifm sessions.  Drop "savedirs"
@@ -616,6 +617,8 @@ set findprg=fd\ --color=never\ %p\ %s
 set findprg=fdfind\ --color=never\ %p\ %s
 {{ end -}}
 
+set showtabline=always
+
 " command to start vim
 set vicmd=nvim
 
@@ -689,7 +692,17 @@ if !has('win')
 endif
 
 " Set custom status line look
-set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
+" set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
+highlight User1 ctermbg=yellow ctermfg=black
+highlight User2 ctermbg=none ctermfg=blue cterm=bold
+highlight User3 ctermbg=none ctermfg=red cterm=bold
+highlight User4 ctermbg=none ctermfg=yellow cterm=bold
+highlight User5 ctermbg=none ctermfg=purple
+
+" Set custom status line look
+" %N after size would be a newline"
+set statusline="%1* %-10t %2* owner:%u:%-7g %5* size:%s %3* attr:%A %4* %20d "
+
 
 " Single pane when started via vim plugin
 if $MYVIMRC != '' | only | endif
