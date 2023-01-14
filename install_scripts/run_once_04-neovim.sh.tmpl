@@ -15,7 +15,7 @@ else
 fi
 
 if ! [ -x "$(command -v beautysh)" ]; then
-    info '💻 Installing beautysh'
+    info '💅 Installing beautysh'
     pip3 install beautysh
     asdf reshim python
     success 'beautysh'
@@ -24,7 +24,7 @@ else
 fi
 
 if ! [ -x "$(command -v autopep8)" ]; then
-    info '💻 Installing autopep8'
+    info '🫑  Installing autopep8'
     pip3 install autopep8
     asdf reshim python
     success 'autopep8'
@@ -33,7 +33,7 @@ else
 fi
 
 if ! [ -x "$(command -v stylua)" ]; then
-    info '💻 Installing stylua'
+    info '😎 Installing stylua'
     cargo install stylua
     asdf reshim rust
     success 'stylua'
@@ -42,7 +42,7 @@ else
 fi
 
 if ! [ -x "$(command -v shellcheck)" ]; then
-    info '💻 Installing shellcheck'
+    info '🤓 Installing shellcheck'
     {{ if eq .chezmoi.os "darwin" -}}
     brew install shellcheck
     {{ else if eq .chezmoi.os "linux" -}}
@@ -55,7 +55,7 @@ else
 fi
 
 if ! [ -x "$(command -v rustywind)" ]; then
-    info '💻 Installing rustywind'
+    info '💨 Installing rustywind'
     npm install -g rustywind
     asdf reshim nodejs
 else
