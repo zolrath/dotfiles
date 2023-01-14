@@ -1,0 +1,27 @@
+# General Aliases
+abbr cz "chezmoi"
+abbr lg "lazygit"
+
+{{ if eq .chezmoi.os "linux" -}}
+  alias bat "batcat"
+  alias fd "fdfind"
+{{ end -}}
+
+abbr --add dotdot --regex '^\.\.+$' --function multicd
+abbr -a !! --position anywhere --function last_history_item
+
+alias mkt "cd (mktemp -d)"
+alias rm "rm -i"
+alias cp "cp -i"
+alias mv "mv -i"
+alias ccd "clear && cd"
+alias cg "cd (git rev-parse --show-toplevel)"
+
+# if command --search exa > /dev/null do
+  alias l "exa -Flagh --sort name --git --icons --group-directories-first"
+  alias ll "exa -Flagh --git --icons --group-directories-first --sort modified"
+  alias la "exa -Fla --icons"
+  alias tree "exa --tree --icons"
+  alias ls "exa"
+  alias cll "clear; and exa -Flah --icons --sort modified"
+# end

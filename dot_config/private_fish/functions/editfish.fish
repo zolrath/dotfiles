@@ -1,0 +1,7 @@
+function editfish 
+  cd (chezmoi source-path)/dot_config/private_fish/
+  chezmoi edit ~/.config/fish/config.fish
+  chezmoi apply
+  source ~/.config/fish/config.fish
+  prevd
+end
