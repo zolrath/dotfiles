@@ -22,9 +22,9 @@ local config = {
 	initial_cols = 160,
 	initial_rows = 38,
 	hide_tab_bar_if_only_one_tab = true,
-	default_prog = { "/bin/fish", "-l" },
+	default_prog = { "/usr/local/bin/fish", "-l" },
 
-	font_size = 14.0,
+	font_size = 16.0,
 	font = wezterm.font("JetBrainsMono Nerd Font Mono", { weight = "Regular" }),
 
 	launch_menu = {},
@@ -32,6 +32,8 @@ local config = {
 }
 
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
+	config.font_size = 14.0
+
 	local wsl_domains = wezterm.default_wsl_domains()
 
 	for _, dom in ipairs(wsl_domains) do
