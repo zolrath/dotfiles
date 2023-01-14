@@ -29,7 +29,7 @@ highlight TopLineSel      cterm=none ctermfg=magenta    ctermbg=none
 highlight StatusLine      cterm=none ctermfg=blue       ctermbg=none
 highlight Border          cterm=none ctermfg=blue       ctermbg=none
 
-highlight Selected        cterm=bold ctermfg=magenta    ctermbg=default
+highlight Selected        cterm=bold ctermfg=magenta    ctermbg=black
 highlight CurrLine        cterm=bold ctermfg=236    ctermbg=blue
 
 highlight WildMenu        cterm=none,reverse ctermfg=blue ctermbg=236
