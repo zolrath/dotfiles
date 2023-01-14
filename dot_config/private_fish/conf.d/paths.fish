@@ -1,5 +1,4 @@
 # Setting up the Path
-
 set -e fish_user_paths
 
 # Convenience function for only setting PATH if the specified directory exists
