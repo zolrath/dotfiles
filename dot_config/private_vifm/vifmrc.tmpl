@@ -120,260 +120,326 @@ nnoremap o :file<CR>
 nnoremap q :quit<CR>
 " ]]]
 
-
-
-
-
 " ------------------------------------------------------------------------------
 
-" The file type is for the default programs to be used with
-" a file extension.
-" :filetype pattern1,pattern2 defaultprogram,program2
-" :fileviewer pattern1,pattern2 consoleviewer
+" File types [[[
+" The file type is for the default programs to be used with a file extension
 " The other programs for the file type can be accessed with the :file command
-" The command macros like %f, %F, %d, %D may be used in the commands.
-" The %a macro is ignored.  To use a % you must put %%.
+" The command macros %c, %C, %f, %F, %b, %d, %D may be used in the commands
 
-" For automated FUSE mounts, you must register an extension with :file[x]type
-" in one of following formats:
-"
-" :filetype extensions FUSE_MOUNT|some_mount_command using %SOURCE_FILE and %DESTINATION_DIR variables
-" %SOURCE_FILE and %DESTINATION_DIR are filled in by vifm at runtime.
-" A sample line might look like this:
-" :filetype *.zip,*.jar,*.war,*.ear FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR
-"
-" :filetype extensions FUSE_MOUNT2|some_mount_command using %PARAM and %DESTINATION_DIR variables
-" %PARAM and %DESTINATION_DIR are filled in by vifm at runtime.
-" A sample line might look like this:
-" :filetype *.ssh FUSE_MOUNT2|sshfs %PARAM %DESTINATION_DIR
-" %PARAM value is filled from the first line of file (whole line).
-" Example first line for SshMount filetype: root@127.0.0.1:/
-"
-" You can also add %CLEAR if you want to clear screen before running FUSE
-" program.
+" Documents [[[
+filextype *.pdf,*.epub
+    \ {Zathura} zathura %f %i &,
+    \ {Okular} okular %f %i &,
+    \ {MComix} mcomix %f %i &
+filextype *.doc,*.docx,*.odt,*.tmdx
+    \ {Calligra} calligrawords %f %i &,
+    \ {FreeOffice} freeoffice-textmaker %f %i &
+filextype *.ppt,*.pptx,*.odp,*.prdx
+    \ {Calligra} calligrastage %f %i &,
+    \ {FreeOffice} freeoffice-presentations %f %i &,
+filextype *.xls,*.xlsx,*.csv,*.pmdx
+    \ {Calligra} calligrasheets %f %i &,
+    \ {FreeOffice} freeoffice-planmaker %f %i &
+fileviewer *.pdf pdftotext -nopgbrk %c -
+fileviewer *.epub pandoc -f epub -t plain %c
+fileviewer *.docx pandoc -f docx -t plain %c
+fileviewer *.odt pandoc -f odt -t plain %c
+fileviewer *.ipynb pandoc -f ipynb -t gfm %c
+" ]]]
 
-" Syntax highlighting in preview
-"
-" Explicitly set highlight type for some extensions
-"
-" 256-color terminal
-fileviewer {*.py,*.json,*.xml,*.md,*.html,*.go,*.css,*.ex,*.exs,*.html.heex} bat --color always --wrap never --pager never %c -p
+" Audio [[[
+filetype *.aac,
+    \*.au,
+    \*.axa,
+    \*.flac,
+    \*.mid,
+    \*.midi,
+    \*.mka,
+    \*.mp3,
+    \*.mpc,
+    \*.oga,
+    \*.ogg,
+    \*.ra,
+    \*.spx,
+    \*.wav,
+    \*.xspf
+    \ {MPV} mpv %f &
+fileviewer *.aac,
+    \*.au,
+    \*.axa,
+    \*.flac,
+    \*.mid,
+    \*.midi,
+    \*.mka,
+    \*.mp3,
+    \*.mpc,
+    \*.oga,
+    \*.ogg,
+    \*.ra,
+    \*.spx,
+    \*.wav,
+    \*.xspf
+    \ ffprobe -hide_banner %c 2>&1
+" ]]]
 
-" Pdf
-filextype {*.pdf},<application/pdf> zathura %c %i &, apvlv %c, xpdf %c
-fileviewer {*.pdf},<application/pdf> pdftotext -nopgbrk %c -
+" Videos [[[
+filextype *.anx,
+    \*.asf,
+    \*.avi,
+    \*.axv,
+    \*.cgm,
+    \*.dl,
+    \*.emf,
+    \*.flc,
+    \*.fli,
+    \*.flv,
+    \*.gl,
+    \*.m2v,
+    \*.m4v,
+    \*.mkv,
+    \*.mov,
+    \*.mp4,
+    \*.mp4v,
+    \*.mpeg,
+    \*.mpg,
+    \*.nuv,
+    \*.ogm,
+    \*.ogv,
+    \*.ogx,
+    \*.pak,
+    \*.qt,
+    \*.rm,
+    \*.rmvb,
+    \*.vob,
+    \*.wmv,
+    \*.xcf,
+    \*.xwd,
+    \*.yuv
+    \ {MPV} mpv %f &
+fileviewer *.anx,
+    \*.asf,
+    \*.avi,
+    \*.axv,
+    \*.cgm,
+    \*.dl,
+    \*.emf,
+    \*.flc,
+    \*.fli,
+    \*.flv,
+    \*.gl,
+    \*.m2v,
+    \*.m4v,
+    \*.mkv,
+    \*.mov,
+    \*.mp4,
+    \*.mp4v,
+    \*.mpeg,
+    \*.mpg,
+    \*.nuv,
+    \*.ogm,
+    \*.ogv,
+    \*.ogx,
+    \*.pak,
+    \*.qt,
+    \*.rm,
+    \*.rmvb,
+    \*.vob,
+    \*.wmv,
+    \*.xcf,
+    \*.xwd,
+    \*.yuv
+    \ ffprobe -hide_banner %c 2>&1
+" ]]]
 
-" PostScript
-filextype {*.ps,*.eps,*.ps.gz},<application/postscript>
-        \ {View in zathura}
-        \ zathura %f,
-        \ {View in gv}
-        \ gv %c %i &,
+" Images [[[
+filextype *.apng,
+    \*.bmp,
+    \*.gif,
+    \*.ico,
+    \*.icon,
+    \*.j2k,
+    \*.jp2,
+    \*.jpeg,
+    \*.jpf,
+    \*.jpg,
+    \*.jpm,
+    \*.jpx,
+    \*.jxl,
+    \*.mng,
+    \*.pbm,
+    \*.pcx,
+    \*.pgm,
+    \*.png,
+    \*.ppm,
+    \*.psd,
+    \*.tga,
+    \*.tif,
+    \*.tiff,
+    \*.webp,
+    \*.xbm,
+    \*.xpm
+    \ {ImageMagick} display %f %i &,
+    \ {Eye of Gnome} eog %f %i &,
+    \ {Gwenview} gwenview %f %i &,
+    \ {GIMP} gimp %f %i &,
+    \ {Krita} krita %f %i &
+filextype *.svg,*.svgz
+    \ {ImageMagick} display %f %i &,
+    \ {Eye of Gnome} eog %f %i &,
+    \ {Gwenview} gwenview %f %i &,
+    \ {Inkscape} inkscape %f %i &,
+    \ {Karbon} karbon %f %i &
+fileviewer *.apng,
+    \*.bmp,
+    \*.gif,
+    \*.ico,
+    \*.icon,
+    \*.j2k,
+    \*.jp2,
+    \*.jpeg,
+    \*.jpf,
+    \*.jpg,
+    \*.jpm,
+    \*.jpx,
+    \*.jxl,
+    \*.mng,
+    \*.pbm,
+    \*.pcx,
+    \*.pgm,
+    \*.png,
+    \*.ppm,
+    \*.svg,
+    \*.svgz,
+    \*.tga,
+    \*.tif,
+    \*.tiff,
+    \*.webp,
+    \*.xbm,
+    \*.xpm
+    \ identify -verbose %c
+" ]]]
 
-" Djvu
-filextype {*.djvu},<image/vnd.djvu>
-        \ {View in zathura}
-        \ zathura %f,
-        \ {View in apvlv}
-        \ apvlv %f,
+" Archives [[[
+filextype *.7z,
+    \*.apk,
+    \*.cb7,
+    \*.cbr,
+    \*.cbz,
+    \*.deb,
+    \*.ear,
+    \*.jar,
+    \*.oxt
+    \*.rar,
+    \*.rpm,
+    \*.tar.br
+    \*.tar.bz2,
+    \*.tar.gz,
+    \*.tar.xz,
+    \*.tar.zst,
+    \*.tbz2,
+    \*.tgz,
+    \*.txz,
+    \*.war,
+    \*.zip
+    \ {Ark} ark %f %i &
+filextype *.7z,
+    \*.cb7,
+    \*.cbr,
+    \*.cbz,
+    \*.rar,
+    \*.zip
+    \ {MComix} mcomix %f %i &,
+    \ {Zathura} zathura %f %i &
+filetype *.7z,*.cb7 {Extract} 7z x %f
+filetype *.asar {Extract} asar e %f %f:r
+filetype *.rar,*.cbr {Extract} unrar %f
+filetype *.rpa {Extract} unrpa -s %f
+filetype *.tar {Extract} tar xf %f
+filetype *.tar.br {Extract} tar -I brotli -xf %f
+filetype *.tar.bz2,*.tbz2 {Extract} tar xjf %f
+filetype *.tar.gz,*.tgz {Extract} tar xzf %f
+filetype *.tar.xz,*.txz {Extract} tar xJf %f
+filetype *.tar.zst {Extract} tar -I zst -xf %f
+filetype *.apk,
+    \*.cbz,
+    \*.ear,
+    \*.jar,
+    \*.oxt,
+    \*.war,
+    \*.zip
+    \ {Extract} unzip %f
+filetype *.pkg.tar,*.pkg.tar.*
+    \ {Install} sudo pacman -U %f
+fileviewer *.7z,*.cb7 7z l %c
+fileviewer *.asar asar l %c
+fileviewer *.rar,*.cbr unrar v %c
+fileviewer *.rpa unrpa -l %c
+fileviewer *.tar tar tf %c
+fileviewer *.tar.br,*.tbr tar -I brotli -tf %c
+fileviewer *.tar.bz2,*.tbz2 tar tjf %c
+fileviewer *.tar.gz,*.tgz tar tzf %c
+fileviewer *.tar.xz,*.txz tar tJf %c
+fileviewer *.tar.zst,*.tzst tar -I zst -tf %c
+fileviewer *.apk,
+    \*.cbz,
+    \*.ear,
+    \*.jar,
+    \*.oxt,
+    \*.war,
+    \*.zip
+    \ zip -sf %c
+" ]]]
 
-" Audio
-filetype {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus},
-        \<audio/*>
-       \ {Play using ffplay}
-       \ ffplay -nodisp -autoexit %c,
-       \ {Play using MPlayer}
-       \ mplayer %f,
-fileviewer {*.mp3},<audio/mpeg> mp3info
-fileviewer {*.flac},<audio/flac> soxi
+" Web [[[
+filextype *.html,*.htm
+    \ {qutebrowser} qutebrowser -- %f %i &,
+    \ {Firefox} firefox -- %f %i &,
+    \ {Chromium} chromium -- %f %i &
+" ]]]
 
-" Video
-filextype {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
-          \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
-          \*.as[fx]},
-         \<video/*>
-        \ {View using ffplay}
-        \ ffplay -fs -autoexit %f,
-        \ {View using Dragon}
-        \ dragon %f:p,
-        \ {View using mplayer}
-        \ mplayer %f,
-fileviewer {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
-           \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
-           \*.as[fx]},
-          \<video/*>
-         \ ffprobe -pretty %c 2>&1
+" Hashes [[[
+filetype *.b2 {Verify} b2sum -c %f %S
+filetype *.md5 {Verify} md5sum -c %f %S
+filetype *.sha1 {Verify} sha1sum -c %f %S
+filetype *.sha256 {Verify} sha256sum -c %f %S
+filetype *.sha384 {Verify} sha384sum -c %f %S
+filetype *.sha512 {Verify} sha512sum -c %f %S
+" ]]]
 
-" Web
-filextype {*.html,*.htm},<text/html>
-        \ {Open with dwb}
-        \ dwb %f %i &,
-        \ {Open with firefox}
-        \ firefox %f &,
-        \ {Open with uzbl}
-        \ uzbl-browser %f %i &,
-filetype {*.html,*.htm},<text/html> links, lynx
+" Torrents [[[
+filetype *.torrent {Aria2} aria2c %f &
+filextype *.torrent {qBittorrent} qbittorent %f %i &
+fileviewer *.torrent dumptorrent -v %c
+" ]]]
 
-" Object
-filetype {*.o},<application/x-object> nm %f | less
+" GPG files [[[
+filetype *.asc,*.sig {Verify} gpg --verify %c
+fileviewer *.gpg gpg --decrypt %c
+" ]]]
 
-" Man page
-filetype {*.[1-8]},<text/troff> man ./%c
-fileviewer {*.[1-8]},<text/troff> man ./%c | col -b
+" Binary files [[[
+filextype *.out,*.exe,*.bin,*.run {Okteta} okteta %f %i &
+filetype *.class {Decompile} cfr %f --outputdir %d %i &
+fileviewer *.out,*.exe,*.bin,*.run xxd -u %c
+fileviewer *.class cfr %c
+fileviewer *.lnk pylnk3 p %c
+fileviewer *.o nm %c
+" ]]]
 
-" Images
-filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
-        \ {View in sxiv}
-        \ sxiv %f,
-        \ {View in gpicview}
-        \ gpicview %c,
-        \ {View in shotwell}
-        \ shotwell,
-fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
-         \ identify %f
+" IDE projects [[[
+filextype *.pro
+    \ {Qt Creator} qtcreator %f %i &,
+    \ {CLion} clion %d %i &
+filextype .idea/
+    \ {IntelliJ} intellij-idea-ultimate-edition %d %i &,
+    \ {CLion} clion %d %i &,
+    \ {PhpStorm} phpstorm %d %i &,
+    \ {PyCharm} pycharm %d %i &
+" ]]]
 
-" OpenRaster
-filextype *.ora
-        \ {Edit in MyPaint}
-        \ mypaint %f,
 
-" Mindmap
-filextype *.vym
-        \ {Open with VYM}
-        \ vym %f &,
-
-" MD5
-filetype *.md5
-       \ {Check MD5 hash sum}
-       \ md5sum -c %f %S,
-
-" SHA1
-filetype *.sha1
-       \ {Check SHA1 hash sum}
-       \ sha1sum -c %f %S,
-
-" SHA256
-filetype *.sha256
-       \ {Check SHA256 hash sum}
-       \ sha256sum -c %f %S,
-
-" SHA512
-filetype *.sha512
-       \ {Check SHA512 hash sum}
-       \ sha512sum -c %f %S,
-
-" GPG signature
-filetype {*.asc},<application/pgp-signature>
-       \ {Check signature}
-       \ !!gpg --verify %c,
-
-" Torrent
-filetype {*.torrent},<application/x-bittorrent> ktorrent %f &
-fileviewer {*.torrent},<application/x-bittorrent> dumptorrent -v %c
-
-" FuseZipMount
-filetype {*.zip,*.jar,*.war,*.ear,*.oxt,*.apkg},
-        \<application/zip,application/java-archive>
-       \ {Mount with fuse-zip}
-       \ FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR,
-       \ {View contents}
-       \ zip -sf %c | less,
-       \ {Extract here}
-       \ tar -xf %c,
-fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c
-
-" ArchiveMount
-filetype {*.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz,*.tar.zst,*.tzst},
-        \<application/x-tar>
-       \ {Mount with archivemount}
-       \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
-fileviewer *.tgz,*.tar.gz tar -tzf %c
-fileviewer *.tar.bz2,*.tbz2 tar -tjf %c
-fileviewer *.tar.xz,*.txz tar -tJf %c
-fileviewer *.tar.zst,*.tzst tar -t --zstd -f %c
-fileviewer {*.tar},<application/x-tar> tar -tf %c
-
-" Rar2FsMount and rar archives
-filetype {*.rar},<application/x-rar>
-       \ {Mount with rar2fs}
-       \ FUSE_MOUNT|rar2fs %SOURCE_FILE %DESTINATION_DIR,
-fileviewer {*.rar},<application/x-rar> unrar v %c
-
-" IsoMount
-filetype {*.iso},<application/x-iso9660-image>
-       \ {Mount with fuseiso}
-       \ FUSE_MOUNT|fuseiso %SOURCE_FILE %DESTINATION_DIR,
-
-" SshMount
-filetype *.ssh
-       \ {Mount with sshfs}
-       \ FUSE_MOUNT2|sshfs %PARAM %DESTINATION_DIR %FOREGROUND,
-
-" FtpMount
-filetype *.ftp
-       \ {Mount with curlftpfs}
-       \ FUSE_MOUNT2|curlftpfs -o ftp_port=-,,disable_eprt %PARAM %DESTINATION_DIR %FOREGROUND,
-
-" Fuse7z and 7z archives
-filetype {*.7z},<application/x-7z-compressed>
-       \ {Mount with fuse-7z}
-       \ FUSE_MOUNT|fuse-7z %SOURCE_FILE %DESTINATION_DIR,
-fileviewer {*.7z},<application/x-7z-compressed> 7z l %c
-
-" Office files
-filextype {*.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx,*.ppt},
-         \<application/vnd.openxmlformats-officedocument.*,
-          \application/msword,
-          \application/vnd.ms-excel>
-        \ libreoffice %f &
-fileviewer {*.doc},<application/msword> catdoc %c
-fileviewer {*.docx},
-          \<application/
-           \vnd.openxmlformats-officedocument.wordprocessingml.document>
-         \ docx2txt.pl %f -
-
-" TuDu files
-filetype *.tudu tudu -f %c
-
-" Qt projects
-filextype *.pro qtcreator %f &
-
-" Directories
-filextype */
-        \ {View in thunar}
-        \ Thunar %f &,
-
-" Syntax highlighting in preview
-"
-" Explicitly set highlight type for some extensions
-"
-" 256-color terminal
-" fileviewer *.[ch],*.[ch]pp highlight -O xterm256 -s dante --syntax c %c
-" fileviewer Makefile,Makefile.* highlight -O xterm256 -s dante --syntax make %c
-"
-" 16-color terminal
-" fileviewer *.c,*.h highlight -O ansi -s dante %c
-"
-" Or leave it for automatic detection
-"
-" fileviewer *[^/] pygmentize -O style=monokai -f console256 -g
-
-" Displaying pictures in terminal
-"
-" fileviewer *.jpg,*.png shellpic %c
-
-" Open all other files with default system programs (you can also remove all
-" :file[x]type commands above to ensure they don't interfere with system-wide
-" settings).  By default all unknown files are opened with 'vi[x]cmd'
-" uncommenting one of lines below will result in ignoring 'vi[x]cmd' option
-" for unknown file types.
-" For *nix:
-" filetype * xdg-open
-" For OS X:
-" filetype * open
-" For Windows:
-" filetype * start, explorer %"f &
-
+" Other [[[
 
 " remaining files:
 fileviewer *[!/] bat --color always --wrap never --pager never %c -p
@@ -385,6 +451,20 @@ if executable('exa')
 elseif executable('tree')
   fileviewer */,.*/ tree -L 2 -I .git %c
 endif
+
+filextype */
+    \ {Dolphin} dolphin %f %i &,
+    \ {Gwenview} gwenview %f %i &,
+    \ {MPV} mpv %f &
+filetype * {Default} open
+" For *nix:
+" filetype * xdg-open
+" For OS X:
+" filetype * open
+" For Windows:
+" filetype * start, explorer %"f &
+" ]]]
+" ]]]
 
 
 " GETTING ICONS TO DISPLAY IN VIFM
