@@ -1,0 +1,14 @@
+#!/bin/sh
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+info 🌳' Installing broot'
+
+cargo install --locked broot
+asdf reshim rust
+
+success 'broot'
+
+echo ''

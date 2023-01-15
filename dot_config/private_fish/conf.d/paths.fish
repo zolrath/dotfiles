@@ -37,6 +37,9 @@ setpath /opt/homebrew/bin
 setmanpath /opt/homebrew/share/man
 setinfopath /opt/homebrew/share/info
 
+# Add CUDA to path
+setpath /usr/local/cuda/bin
+
 # My paths
 setpath ~/.local/scripts
 setpath ~/.local/bin
