@@ -9,11 +9,6 @@ function add_info_path
   test -e $argv[1]; and set -gx INFOPATH $INFOPATH $argv[1]
 end
 
-# Set Nix include path if it exists
-#if test -e ~/.nix-profile/etc/profile.d/nix.sh
-#  fenv source ~/.nix-profile/etc/profile.d/nix.sh
-#end
-
 # Homebrew paths
 set -gx HOMEBREW_PREFIX "/opt/homebrew";
 set -gx HOMEBREW_CELLAR "/opt/homebrew/Cellar";
