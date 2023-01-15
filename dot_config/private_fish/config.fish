@@ -10,8 +10,8 @@ set -x fish_color_command B7D847
 # suppress the default login message
 set -g fish_greeting
 
-direnv hook fish | source
+# direnv hook fish | source
 
 set ZELLIJ_AUTO_ATTACH false
 set ZELLIJ_AUTO_EXIT true
-eval (zellij setup --generate-auto-start fish | string collect)
+#eval (zellij setup --generate-auto-start fish | string collect)

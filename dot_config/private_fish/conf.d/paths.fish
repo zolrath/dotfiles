@@ -2,17 +2,13 @@
 set -e fish_user_paths
 
 # Convenience function for only setting PATH if the specified directory exists
-function setpath
-  test -e $argv[1]; and fish_add_path $argv[1]
-end
-
 set -q MANPATH || set MANPATH ''
-function setmanpath
+function add_man_path
   test -e $argv[1]; and set -gx MANPATH $MANPATH $argv[1]
 end
 
 set -q INFOPATH || set INFOPATH ''
-function setinfopath
+function add_info_path
   test -e $argv[1]; and set -gx INFOPATH $INFOPATH $argv[1]
 end
 
@@ -33,14 +29,14 @@ end
 set -gx HOMEBREW_PREFIX "/opt/homebrew";
 set -gx HOMEBREW_CELLAR "/opt/homebrew/Cellar";
 set -gx HOMEBREW_REPOSITORY "/opt/homebrew";
-setpath /opt/homebrew/bin
-setmanpath /opt/homebrew/share/man
-setinfopath /opt/homebrew/share/info
+fish_add_path /opt/homebrew/bin
+add_man_path /opt/homebrew/share/man
+add_info_path /opt/homebrew/share/info
 
 # Add CUDA to path
-setpath /usr/local/cuda/bin
+fish_add_path /usr/local/cuda/bin
 
 # My paths
-setpath ~/.local/scripts
-setpath ~/.local/bin
-setpath ~/bin
+fish_add_path ~/.local/scripts
+fish_add_path ~/.local/bin
+fish_add_path ~/bin
