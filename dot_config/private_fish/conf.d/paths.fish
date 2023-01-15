@@ -9,14 +9,6 @@ function add_info_path
   test -e $argv[1]; and set -gx INFOPATH $INFOPATH $argv[1]
 end
 
-if test -z "$XDG_RUNTIME_DIR"
-  set -x XDG_RUNTIME_DIR "/tmp/$USER-runtime-dir"
-  if test ! -e "$XDG_RUNTIME_DIR"
-    mkdir "$XDG_RUNTIME_DIR"
-    chmod 0700 "$XDG_RUNTIME_DIR"
-  end
-end
-
 # Set Nix include path if it exists
 #if test -e ~/.nix-profile/etc/profile.d/nix.sh
 #  fenv source ~/.nix-profile/etc/profile.d/nix.sh
