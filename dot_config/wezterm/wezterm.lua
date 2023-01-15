@@ -27,11 +27,14 @@ local config = {
 	font_size = 16.0,
 	font = wezterm.font("JetBrainsMono Nerd Font Mono", { weight = "Regular" }),
 
+	front_end = "WebGpu",
+
 	launch_menu = {},
 	set_environment_variables = {},
 }
 
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
+	config.webgpu_power_preference = "HighPerformance"
 	config.font_size = 14.0
 
 	local wsl_domains = wezterm.default_wsl_domains()
