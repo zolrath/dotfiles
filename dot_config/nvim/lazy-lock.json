@@ -53,6 +53,7 @@
   "readline.nvim": { "branch": "master", "commit": "cab666cbd026dea9c817182e22255ecb3b3419b1" },
   "rust-tools.nvim": { "branch": "master", "commit": "df584e84393ef255f5b8cbd709677d6a3a5bf42f" },
   "tabout.nvim": { "branch": "master", "commit": "c37ce26f316a2df693140450b8def41e89c0f57e" },
+  "tailwindcss-colorizer-cmp.nvim": { "branch": "main", "commit": "09fbf6dfd85ecae5e45b9200b37a79fc87e1fc40" },
   "telescope.nvim": { "branch": "master", "commit": "2f32775405f6706348b71d0bb8a15a22852a61e4" },
   "todo-comments.nvim": { "branch": "main", "commit": "077c59586d9d0726b0696dc5680eb863f4e04bc5" },
   "tokyonight.nvim": { "branch": "main", "commit": "def91651c41f6d1d43ebcb50763324d35331baee" },
