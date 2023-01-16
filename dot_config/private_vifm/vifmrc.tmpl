@@ -3,10 +3,12 @@
 " Custom Mappings [[[
 nnoremap t tj
 nnoremap T t
+nnoremap O :!sudo vim %f<cr>
 " ]]]
 
 " Marks [[[
 " :mark mark /full/directory/path [filename]
+
 
 mark d ~/.local/share/chezmoi/
 mark c ~/code/
@@ -87,6 +89,7 @@ nnoremap H :tabprev<cr>
 nnoremap L :tabnext<cr>
 nnoremap <space>bd :tabclose<cr>
 nnoremap <space> <nop>
+nnoremap zh za
 
 " Start shell in current directory
 nnoremap S :shell<CR>
@@ -114,7 +117,7 @@ nnoremap yf :!printf -- %c:p | xclip -sel c %i<CR>
 nnoremap yc :!xlip -sel c -i %c %i<CR>
 
 " Open filetype dialog
-nnoremap o :file<CR>
+" nnoremap o :file<CR>
 
 " Quit vifm
 nnoremap q :quit<CR>
@@ -596,7 +599,7 @@ set vifminfo=dhistory,chistory,state,tui,shistory,
 nnoremap w :view<cr>
 vnoremap w :view<cr>gv
 
-" Open file in existing instance of gvim
+" Open file in nvim
 nnoremap o :!nvim %f<cr>
 
 " Open file in the background using its default program
@@ -685,6 +688,9 @@ nnoremap <a-o> :sync %c<cr>
 " ------------------------------------------------------------------------------
 
 " Base Settings [[[
+
+" show hidden files on launch
+set dotfiles
 
 " Use ripgrep instead of grep
 " set grepprg="rg\ --color=never\ -Hn\ %i\ %a\ %s"
