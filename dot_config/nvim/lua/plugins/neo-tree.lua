@@ -7,6 +7,10 @@ return {
         follow_current_file = true,
         hijack_netrw_behavior = "open_current",
         window = {
+          mappings = {
+            ["l"] = "open",
+            ["h"] = "close_node",
+          },
           position = "float",
           popup = {
             position = { col = "0%", row = "2" },
