@@ -14,6 +14,8 @@
 [credential]
     helper = store
 
+[credential "https://github.com"]
+	helper = !gh auth git-credential
 [init]
     defaultBranch = main
 
@@ -45,6 +47,13 @@
 [alias]
     timesheet = !git log --reverse --date=short --pretty=format:\"%ad - %s%d\" --date=short --date-order --author=\"$(git config user.name)\" --branches --since=\"1 week ago\"
 
+[url "git@github.com:"]
+	insteadOf = http://github.com/
+	insteadOf = @gh:
+
+[url "git@gitlab.com:"]
+	insteadOf = http://gitlab.com/
+	insteadOf = @gl:
 
 # Dracula Dark Theme
 [color]
