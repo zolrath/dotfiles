@@ -21,6 +21,7 @@ local entries = {
   {
     "neovim/nvim-lspconfig",
     opts = {
+      format = { timeout_ms = 1000 },
       servers = {
         elixirls = {
           setup = {
