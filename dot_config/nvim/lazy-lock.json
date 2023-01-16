@@ -38,6 +38,7 @@
   "null-ls.nvim": { "branch": "main", "commit": "c02509dc9a5f71ccbfa48fc7d2614686b538f80e" },
   "nvim-bufferline.lua": { "branch": "main", "commit": "028a87933d99f8bb88f2f70a4def3ff9574f3594" },
   "nvim-cmp": { "branch": "main", "commit": "983453e32cb35533a119725883c04436d16c0120" },
+  "nvim-highlight-colors": { "branch": "main", "commit": "5d20935b99d976ffa0d8226a78a8b2e091f0f699" },
   "nvim-lspconfig": { "branch": "master", "commit": "2df0fbdadd947cd2995566a0117b8802a9ba74f4" },
   "nvim-navic": { "branch": "master", "commit": "7a2b823152fe4de65ee7925b0e32d26ed73bc57c" },
   "nvim-neoclip.lua": { "branch": "main", "commit": "e112a0bfaf137bcc0df361a4bad98bc21657ae2c" },
