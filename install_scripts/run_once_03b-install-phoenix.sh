@@ -2,7 +2,7 @@
 
 . $HOME/.local/share/chezmoi/helpers
 
-version=1.7.0-rc.1
+version=1.7.0-rc.2
 
 echo ''
 
