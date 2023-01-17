@@ -95,14 +95,5 @@ return {
         },
       },
     },
-    {
-      "brenoprata10/nvim-highlight-colors",
-      ft = tailwind_filetypes,
-      opts = {
-        render = "background", -- or 'foreground' or 'first_column'
-        enable_named_colors = true,
-        enable_tailwind = true,
-      },
-    },
   },
 }
