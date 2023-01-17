@@ -1,0 +1,41 @@
+#!/bin/sh
+
+. $HOME/.local/share/chezmoi/helpers
+
+echo ''
+
+info '⚙️ getting rust-src'
+rustup component add rust-src
+success 'rust-src'
+
+if ! [ -x "$(command -v evcxr_repl)" ]; then
+    info 'install evcxr_repl'
+    cargo install evcxr_repl
+    success 'evcxr_repl'
+else
+    skip 'evcxr_repl'
+fi
+
+if ! [ -x "$(command -v evcxr_jupyter)" ]; then
+    info '⚙️ Installing rust evcxr_jupyter'
+    cargo install evcxr_jupyter
+    asdf reshim rust
+    evcxr_jupyter --install
+    success 'rust evcxr_jupyter'
+else
+    skip 'evcxr_jupyter'
+fi
+
+if ! [ -x "$(command -v jupyter)" ]; then
+    info '⚙️ Installing jupyter notebook'
+    {{ if eq .chezmoi.os "linux" -}}
+    sudo apt install jupyter-notebook
+    {{ else if eq .chezmoi.os "darwin" -}}
+    brew install jupyter
+    {{ end -}}
+    success 'jupyter notebook'
+else
+    skip 'jupyter notebook'
+fi
+
+echo ''
