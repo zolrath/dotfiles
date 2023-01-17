@@ -52,10 +52,6 @@ return {
               set textwidth=0
               set wrap
 
-              " Display lines make a bit more sense to me for this use case.
-              nnoremap j gj
-              nnoremap k gk
-
               let s:fontsize = 18
               function! AdjustFontSizeF(amount)
               let s:fontsize = s:fontsize+a:amount
