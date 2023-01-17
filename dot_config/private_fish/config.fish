@@ -11,6 +11,9 @@ set -x fish_color_command B7D847
 set -g fish_greeting
 
 # direnv hook fish | source
+#
+bind --mode default \cb _cd_git_root
+bind --mode insert \cb _cd_git_root
 
 set ZELLIJ_AUTO_ATTACH false
 set ZELLIJ_AUTO_EXIT true
