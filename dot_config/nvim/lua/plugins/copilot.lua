@@ -1,4 +1,22 @@
 return {
+  -- auto completion
+  {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies = {
+      "zbirenbaum/copilot.lua",
+    },
+    init = function()
+      local cmp = require("cmp")
+      cmp.event:on("menu_opened", function()
+        vim.b.copilot_suggestion_hidden = true
+      end)
+
+      cmp.event:on("menu_closed", function()
+        vim.b.copilot_suggestion_hidden = false
+      end)
+    end,
+  },
   -- copilot
   {
     "zbirenbaum/copilot.lua",
@@ -11,7 +29,7 @@ return {
           keymap = {
             jump_prev = "[[",
             jump_next = "]]",
-            accept = "<CR>",
+            accept = "<Tab>",
             refresh = "gr",
             open = "<M-CR>",
           },
@@ -21,7 +39,7 @@ return {
           auto_trigger = true,
           debounce = 75,
           keymap = {
-            accept = "<M-;>",
+            accept = "<CR>",
             next = "<M-]>",
             prev = "<M-[>",
             dismiss = "<C-]>",
@@ -43,10 +61,5 @@ return {
         server_opts_overrides = {},
       })
     end,
-  },
-  {
-    "zbirenbaum/copilot-cmp",
-    dependencies = { "zbirenbaum/copilot.lua" },
-    config = true,
   },
 }
