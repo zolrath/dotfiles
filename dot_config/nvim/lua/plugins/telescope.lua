@@ -6,6 +6,7 @@ return {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
     keys = {
+      { "<leader><space>", "<cmd>Telescope smart_open<cr>", desc = "Smart open" },
       -- Enhanced version of "/" search command
       { "<leader>/", builtin.current_buffer_fuzzy_find, desc = "Fuzzy search in buffer" },
       { "<leader>s/", builtin.search_history, desc = "Search history" },

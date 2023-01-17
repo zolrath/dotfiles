@@ -14,6 +14,7 @@ else
     skip 'asdf neovim'
 fi
 
+# Formatting for bash
 if ! [ -x "$(command -v beautysh)" ]; then
     info '💅 Installing beautysh'
     pip3 install beautysh
@@ -23,6 +24,7 @@ else
     skip 'beautysh'
 fi
 
+# Formatting for python
 if ! [ -x "$(command -v autopep8)" ]; then
     info '🫑  Installing autopep8'
     pip3 install autopep8
@@ -32,6 +34,7 @@ else
     skip 'autopep8'
 fi
 
+# Provides formatting for lua
 if ! [ -x "$(command -v stylua)" ]; then
     info '😎 Installing stylua'
     cargo install stylua
@@ -41,6 +44,8 @@ else
     skip 'stylua'
 fi
 
+
+# Shellcheck provides code analysis for bash scripts
 if ! [ -x "$(command -v shellcheck)" ]; then
     info '🤓 Installing shellcheck'
     {{ if eq .chezmoi.os "darwin" -}}
@@ -54,6 +59,7 @@ else
     skip 'shellcheck'
 fi
 
+# Needed for tailwind formatting with null-ls
 if ! [ -x "$(command -v rustywind)" ]; then
     info '💨 Installing rustywind'
     npm install -g rustywind
@@ -62,9 +68,23 @@ else
     skip 'rustywind'
 fi
 
+# Needed for danielfalk/smart-open.nvim
+if ! [ -x "$(command -v sqlite)" ]; then
+    info '💨 Installing sqlite'
+    {{ if eq .chezmoi.os "linux" -}}
+    sudo apt install sqlite3 libsqlite3-dev
+    {{ else if eq .chezmoi.os "darwin" -}}
+    brew install sqlite
+    {{ end -}}
+else
+    skip 'sqlite'
+fi
 
 info '💻 Installing neovim packages'
+
+nvim --headless "+Lazy! sync" +qa &>/dev/null
 nvim --headless -c "call firenvim#install(0, 'export PATH=\"$PATH\"')" -c quit
+
 success 'neovim packages'
 
 echo ''
