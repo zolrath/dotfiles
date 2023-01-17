@@ -38,10 +38,10 @@ return {
           ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         }),
         sources = cmp.config.sources({
-          { name = "nvim_lsp" },
-          { name = "luasnip" },
-          { name = "buffer" },
-          { name = "path" },
+          { name = "nvim_lsp", priority = 1000 },
+          { name = "luasnip", priority = 750 },
+          { name = "path", priority = 500 },
+          { name = "buffer", priority = 250 },
         }),
         sorting = {
           comparators = {
