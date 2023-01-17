@@ -8,6 +8,8 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
+vim.keymap.set("n", ";", ":")
+
 local readline = require("readline")
 vim.keymap.set("!", "<C-k>", readline.kill_line)
 vim.keymap.set("!", "<C-u>", readline.backward_kill_line)
