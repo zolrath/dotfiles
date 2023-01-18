@@ -11,6 +11,7 @@ local config = {
 	},
 	harfbuzz_features = { "zero" },
 	use_dead_keys = false,
+	enable_kitty_keyboard = true,
 
 	-- allow macOS alt key to function properly in terminal
 	send_composed_key_when_left_alt_is_pressed = false,
