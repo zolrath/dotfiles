@@ -1,13 +1,22 @@
 return {
   {
     "rareitems/put_at_end.nvim",
-    event = "BufEnter",
-    keys = function()
-      local p = require("put_at_end")
-      return {
-        { "<leader>;", p.put_semicolon, desc = "Put semicolon at EOL" },
-        { "<leader>,", p.put_period, desc = "Put comma at EOL" },
-      }
-    end,
+    event = "BufReadPost",
+    keys = {
+      {
+        "<leader>;",
+        function()
+          require("put_at_end").put_semicolon()
+        end,
+        desc = "Put semicolon at EOL",
+      },
+      {
+        "<leader>,",
+        function()
+          require("put_at_end").put_period()
+        end,
+        desc = "Put comma at EOL",
+      },
+    },
   },
 }

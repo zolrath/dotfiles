@@ -6,12 +6,35 @@ return {
       use_default_keymaps = false,
     },
     keys = function()
-      local m = require("sibling-swap")
       return {
-        { "mh", m.swap_with_left, desc = "Swap with left" },
-        { "ml", m.swap_with_right, desc = "Swap with right" },
-        { "mH", m.swap_with_left_with_opp, desc = "Swap with left with operator" },
-        { "mL", m.swap_with_right_with_opp, desc = "Swap with right with operator" },
+        {
+          "mh",
+          function()
+            require("sibling-swap").swap_with_left()
+          end,
+          desc = "Swap with left",
+        },
+        {
+          "ml",
+          function()
+            require("sibling-swap").swap_with_right()
+          end,
+          desc = "Swap with right",
+        },
+        {
+          "mH",
+          function()
+            require("sibling-swap").swap_with_left_with_opp()
+          end,
+          desc = "Swap with left with operator",
+        },
+        {
+          "mL",
+          function()
+            require("sibling-swap").swap_with_right_with_opp()
+          end,
+          desc = "Swap with right with operator",
+        },
       }
     end,
   },
