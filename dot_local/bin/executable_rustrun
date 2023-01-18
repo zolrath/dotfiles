@@ -1,0 +1,9 @@
+#!/bin/bash
+if [ $# -eq 0 ]; then
+    echo "Usage: rust <file> <rustc options> ..."
+    echo "Compiles a rust file, runs the output, and deletes output."
+    exit 1
+fi
+
+name=$(basename $1 .rs)
+rustc $@ && ./$name && rm $name
