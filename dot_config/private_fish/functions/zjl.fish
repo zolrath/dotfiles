@@ -8,8 +8,14 @@ function zjl --description "run zellij with layout"
     set -l layout_dir (zellij setup --check | grep "LAYOUT DIR" - | grep -o '".*"' - | tr -d '"')
 
     if test -d $layout_dir
-      set layout (fd -e kdl . $layout_dir | sed 's|.*/||' | sort | fzf --layout=reverse-list --query="$argv")
-      zellij --layout (basename $layout .kdl)
+      set layout (fd -e kdl . $layout_dir | sed 's|.*/||' | sed 's|\.[^.]*$||' | sort | fzf --layout=reverse-list --query="$argv")
+
+      if test -n "$layout"
+        zellij --layout $layout
+      else
+        echo "No layout selected"
+        return 1
+      end
     else
       return 1
     end
