@@ -16,8 +16,10 @@ local config = {
 	-- allow macOS alt key to function properly in terminal
 	send_composed_key_when_left_alt_is_pressed = false,
 	send_composed_key_when_right_alt_is_pressed = true,
+
 	-- similarly, don't ask the macOS IME/text services to compose input
-	use_ime = false,
+	-- actually, this seems to be breaking a number of nvim plugins on macOS - leave ime on
+	-- use_ime = false,
 
 	window_close_confirmation = "NeverPrompt",
 	initial_cols = 160,
