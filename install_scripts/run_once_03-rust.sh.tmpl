@@ -1,26 +1,17 @@
 #!/bin/sh
 
-. $HOME/.local/share/chezmoi/helpers
+. "$(chezmoi source-path)/helpers"
 
 echo ''
 
-info '⚙️ Installing rust asdf'
-asdf plugin-add rust https://github.com/code-lever/asdf-rust.git
-success 'rust asdf'
-
-info '⚙️ Installing rust'
-asdf install rust stable
-asdf global rust stable
-success 'rust'
-
-info '⚙️ Installing rust cross'
-cargo install cross --git https://github.com/cross-rs/cross
-success 'rust cross'
-
-info '⚙️ Installing bacon'
-cargo install --locked bacon
-success 'bacon'
-
-asdf reshim rust
+if ! [ -x "$(command -v rustup)" ]; then
+    info '⚙️ Installing rustup'
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    success 'rustup'
+else
+    info 'rustup already installed, updating'
+    rustup update
+    skip 'rustup'
+fi
 
 echo ''

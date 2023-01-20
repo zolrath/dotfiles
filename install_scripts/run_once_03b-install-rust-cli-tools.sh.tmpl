@@ -1,0 +1,52 @@
+#!/bin/sh
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+if ! [ -x "$(command -v cargo-binstall)" ]; then
+    info '⚙️ Installing cargo-binstall'
+    cargo install cargo-binstall
+    success 'cargo-binstall'
+else
+    skip 'cargo-binstall'
+fi
+
+if ! [ -x "$(command -v cross)" ]; then
+    info '⚙️ Installing rust cross'
+    cargo binstall --no-confirm cross
+    success 'rust cross'
+else
+    skip 'rust cross'
+fi
+
+if ! [ -x "$(command -v bacon)" ]; then
+    info '⚙️ Installing bacon'
+    cargo binstall --no-confirm bacon
+    success 'bacon'
+else
+    skip 'bacon'
+fi
+
+if ! [ -x "$(command -v hyperfine)" ]; then
+    info '📊 Installing hyperfine'
+
+    cargo binstall --no-confirm hyperfine
+
+    success 'hyperfine'
+else
+    skip 'hyperfine'
+fi
+
+
+if ! [ -x "$(command -v hexyl)" ]; then
+    info '0️⃣1️⃣ Installing hexyl'
+
+    cargo binstall --no-confirm hexyl
+
+    success 'hexyl'
+else
+    skip 'hexyl'
+fi
+
+echo ''
