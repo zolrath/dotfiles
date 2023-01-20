@@ -20,6 +20,25 @@ else
     skip 'cargo watch'
 fi
 
+# Find unused dependencies in Cargo.toml.
+# https://github.com/est31/cargo-udeps
+if ! [ -x "$(command -v cargo-udeps)" ]; then
+    info '📦 Installing cargo udeps'
+    cargo binstall --no-confirm cargo-udeps
+    success 'cargo udeps'
+else
+    skip 'cargo udeps'
+fi
+
+# Cargo subcommand to bundle your code into one .rs file for competitive programming.
+# https://github.com/qryxip/cargo-equip
+if ! [ -x "$(command -v cargo-equip)" ]; then
+    info '📦 Installing cargo equip'
+    cargo binstall --no-confirm cargo-equip
+    success 'cargo equip'
+else
+    skip 'cargo equip'
+fi
 
 if ! [ -x "$(command -v cross)" ]; then
     info '✝  Installing rust cross'
