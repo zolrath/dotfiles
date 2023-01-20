@@ -21,6 +21,7 @@ add_info_path /opt/homebrew/share/info
 fish_add_path /usr/local/cuda/bin
 
 # My paths
+fish_add_path ~/.cargo/bin
 fish_add_path ~/.local/scripts
 fish_add_path ~/.local/bin
 fish_add_path ~/bin
