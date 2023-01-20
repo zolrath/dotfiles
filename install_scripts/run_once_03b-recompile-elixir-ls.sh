@@ -2,7 +2,7 @@
 #
 # Little script to recompile ElixirLS with the current elixir version.
 
-. $HOME/.local/share/chezmoi/helpers
+. "$(chezmoi source-path)/helpers"
 
 version=0.13.0
 elixir_ls_dir=/tmp/elixir_ls

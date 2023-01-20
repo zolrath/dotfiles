@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. $HOME/.local/share/chezmoi/helpers
+. "$(chezmoi source-path)/helpers"
 
 version=1.7.0-rc.2
 
