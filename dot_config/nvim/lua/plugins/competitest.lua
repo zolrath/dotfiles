@@ -4,7 +4,7 @@ return {
     dependencies = {
       "MunifTanjim/nui.nvim",
     },
-    lazy = false,
+    lazy = "BufReadPost",
     config = true,
     init = function()
       local wk = require("which-key")
