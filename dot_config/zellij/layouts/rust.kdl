@@ -2,17 +2,18 @@ layout {
   pane split_direction="vertical" {
     pane edit="src/main.rs"
     pane split_direction="horizontal" {
-      cargo { args "run"; }
-      cargo { args "test"; }
-      cargo { args "check"; }
+      bacon size="80%" { args "run"; }
+      // bacon size="20%" { args "test"; }
+      // bacon { args "clippy"; }
     }
   }
   pane size=1 borderless=true {
     plugin location="zellij:compact-bar"
   }
 
-  pane_template name="cargo" {
-    command "cargo"
-    start_suspended true
+  pane_template name="bacon" {
+    command "bacon"
+    close_on_exit true
+    start_suspended false
   }
 }
