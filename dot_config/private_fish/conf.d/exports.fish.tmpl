@@ -33,6 +33,8 @@ set -x LOC "desktop"
 set -x LOC "laptop"
 {{ end -}}
 
+set -x FLYCTL_INSTALL ~/.fly
+
 set -x ERL_AFLAGS "-kernel shell_history enabled"
 # Elixir XLA - use GPU
 set -x XLA_TARGET "cuda118"

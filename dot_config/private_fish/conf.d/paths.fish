@@ -20,6 +20,9 @@ add_info_path /opt/homebrew/share/info
 # Add CUDA to path
 fish_add_path /usr/local/cuda/bin
 
+# Fly.io cli path
+fish_add_path "$FLYCTL_INSTALL/bin"
+
 # My paths
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.local/scripts
