@@ -4,11 +4,15 @@
 
 echo ''
 
-info 🌳' Installing broot'
 
-cargo install --locked broot
-asdf reshim rust
+if ! [ -x "$(command -v broot)" ]; then
+    info 🌳' Installing broot'
+    cargo install --locked broot
+    asdf reshim rust
+    success 'broot'
+else
+    skip 'broot'
+fi
 
-success 'broot'
 
 echo ''
