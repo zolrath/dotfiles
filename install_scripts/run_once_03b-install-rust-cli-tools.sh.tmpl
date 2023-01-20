@@ -12,8 +12,17 @@ else
     skip 'cargo-binstall'
 fi
 
+if ! [ -x "$(command -v cargo-watch)" ]; then
+    info '📦👀 Installing cargo watch'
+    cargo binstall --no-confirm cargo-watch
+    success 'cargo watch'
+else
+    skip 'cargo watch'
+fi
+
+
 if ! [ -x "$(command -v cross)" ]; then
-    info '⚙️ Installing rust cross'
+    info '✝  Installing rust cross'
     cargo binstall --no-confirm cross
     success 'rust cross'
 else
@@ -21,7 +30,7 @@ else
 fi
 
 if ! [ -x "$(command -v bacon)" ]; then
-    info '⚙️ Installing bacon'
+    info '🥓 Installing bacon'
     cargo binstall --no-confirm bacon
     success 'bacon'
 else
@@ -40,7 +49,7 @@ fi
 
 
 if ! [ -x "$(command -v hexyl)" ]; then
-    info '0️⃣1️⃣ Installing hexyl'
+    info '0xff Installing hexyl'
 
     cargo binstall --no-confirm hexyl
 
