@@ -36,3 +36,6 @@ set -x LOC "laptop"
 set -x ERL_AFLAGS "-kernel shell_history enabled"
 # Elixir XLA - use GPU
 set -x XLA_TARGET "cuda118"
+
+# source secrets file, not exposed in dotfiles
+source ~/.secrets
