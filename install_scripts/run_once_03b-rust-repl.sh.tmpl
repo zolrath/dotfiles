@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. $HOME/.local/share/chezmoi/helpers
+. "$(chezmoi source-path)/helpers"
 
 echo ''
 
@@ -10,7 +10,7 @@ success 'rust-src'
 
 if ! [ -x "$(command -v evcxr_repl)" ]; then
     info 'install evcxr_repl'
-    cargo install evcxr_repl
+    cargo binstall --no-confirm evcxr_repl
     success 'evcxr_repl'
 else
     skip 'evcxr_repl'
@@ -18,8 +18,7 @@ fi
 
 if ! [ -x "$(command -v evcxr_jupyter)" ]; then
     info '⚙️ Installing rust evcxr_jupyter'
-    cargo install evcxr_jupyter
-    asdf reshim rust
+    cargo binstall --no-confirm evcxr_jupyter
     evcxr_jupyter --install
     success 'rust evcxr_jupyter'
 else

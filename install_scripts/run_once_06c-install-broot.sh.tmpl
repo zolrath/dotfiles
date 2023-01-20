@@ -7,8 +7,7 @@ echo ''
 
 if ! [ -x "$(command -v broot)" ]; then
     info 🌳' Installing broot'
-    cargo install --locked broot
-    asdf reshim rust
+    cargo binstall --no-confirm broot
     success 'broot'
 else
     skip 'broot'

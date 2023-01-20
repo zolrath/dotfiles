@@ -1,13 +1,12 @@
 #!/bin/sh
 
-. $HOME/.local/share/chezmoi/helpers
+. "$(chezmoi source-path)/helpers"
 
 echo ''
 
 info '😴 Installing lazycli'
 
-cargo install --locked lazycli
-asdf reshim rust
+cargo binstall --no-confirm lazycli
 
 success 'lazycli'
 
