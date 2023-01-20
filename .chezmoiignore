@@ -1,0 +1,6 @@
+{{ if ne .chezmoi.os "darwin" }}
+Library/Application Support/org.dystroy.bacon/prefs.toml
+{{ end }}
+{{ if ne .chezmoi.os "linux" }}
+.config/bacon/prefs.toml
+{{ end }}
