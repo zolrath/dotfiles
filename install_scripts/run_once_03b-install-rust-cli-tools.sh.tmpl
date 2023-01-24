@@ -77,4 +77,14 @@ else
     skip 'hexyl'
 fi
 
+if ! [ -x "$(command -v hyperfine)" ]; then
+    info '0xff Installing hyperfine'
+
+    cargo binstall --no-confirm hyperfine
+
+    success 'hyperfine'
+else
+    skip 'hyperfine'
+fi
+
 echo ''
