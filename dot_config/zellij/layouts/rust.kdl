@@ -1,10 +1,10 @@
 layout {
   pane split_direction="vertical" {
-    pane edit="src/main.rs"
+    pane size="65%" edit="src/main.rs"
     pane split_direction="horizontal" {
-      bacon size="80%" { args "run"; }
-      // bacon size="20%" { args "test"; }
-      // bacon { args "clippy"; }
+      bacon { args "clippy"; }
+      // bacon { args "test"; }
+      // bacon { args "run"; }
     }
   }
   pane size=1 borderless=true {
