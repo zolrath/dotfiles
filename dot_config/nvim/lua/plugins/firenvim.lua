@@ -6,7 +6,8 @@ return {
       vim.fn["firenvim#install"](0)
     end,
     config = function()
-      local elixirSites = { ".*exercism\\.org.*" }
+      local elixirSites = { ".*exercism\\.org/tracks/elixir/.*" }
+      local rustSites = { ".*exercism\\.org/tracks/rust/.*" }
       local ignoreSites = { "localhost", ".*livebook\\.fly\\.dev.*" }
 
       local localSettings = {
@@ -26,6 +27,17 @@ return {
           selector = "textarea",
           takeover = "always",
           filename = "{hostname%32}_{pathname%32}_{selector%32}_{timestamp%32}.ex",
+        }
+      end
+
+      for _, site in pairs(rustSites) do
+        localSettings[site] = {
+          cmdline = "neovim",
+          content = "rust",
+          priority = 1,
+          selector = "textarea",
+          takeover = "always",
+          filename = "{hostname%32}_{pathname%32}_{selector%32}_{timestamp%32}.rs",
         }
       end
 
