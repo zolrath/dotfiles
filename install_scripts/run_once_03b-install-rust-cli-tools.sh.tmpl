@@ -87,4 +87,14 @@ else
     skip 'hyperfine'
 fi
 
+if ! [ -x "$(command -v print_key)" ]; then
+    info '#️⃣  Installing print_key'
+
+    cargo binstall --no-confirm print_key
+
+    success 'print_key'
+else
+    skip 'print_key'
+fi
+
 echo ''
