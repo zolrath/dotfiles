@@ -1,0 +1,6 @@
+[[language]]
+name = "rust"
+auto-format = true
+
+[language.config]
+checkOnSave = { command = "clippy" }
