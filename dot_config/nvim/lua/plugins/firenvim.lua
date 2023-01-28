@@ -56,25 +56,12 @@ return {
         [[
           function! OnUIEnter(event) abort
             if 'Firenvim' ==# get(get(nvim_get_chan_info(a:event.chan), 'client', {}), 'name', '')
-              set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h18
               set noruler noshowcmd
               set laststatus=0 showtabline=0 signcolumn=no
 
               set spell
               set textwidth=0
               set wrap
-
-              let s:fontsize = 18
-              function! AdjustFontSizeF(amount)
-              let s:fontsize = s:fontsize+a:amount
-              execute "set guifont=JetBrainsMono\\ Nerd\\ Font\\ Mono:h" . s:fontsize
-              call rpcnotify(0, 'Gui', 'WindowMaximized', 1)
-              endfunction
-
-              noremap  <C-=> :call AdjustFontSizeF(1)<CR>
-              noremap  <C--> :call AdjustFontSizeF(-1)<CR>
-              inoremap <C-=> :call AdjustFontSizeF(1)<CR>
-              inoremap <C--> :call AdjustFontSizeF(-1)<CR>
 
               autocmd UIEnter * call OnUIEnter(deepcopy(v:event))
               autocmd FocusLost * ++nested write
