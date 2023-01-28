@@ -11,6 +11,7 @@ return {
       wk.register({
         mode = { "n" },
         ["<leader>cc"] = { name = "+competitest" },
+        ["<leader>ccg"] = { name = "+competitest/get" },
       })
     end,
     keys = {
@@ -18,7 +19,9 @@ return {
       { "<leader>cce", "<cmd>CompetiTestEdit<cr>", desc = "Edit existing testcase" },
       { "<leader>ccd", "<cmd>CompetiTestDelete<cr>", desc = "Delete existing testcase" },
       { "<leader>ccr", "<cmd>CompetiTestRun<cr>", desc = "Run testcases" },
-      { "<leader>ccg", "<cmd>CompetiTestReceive<cr>", desc = "Get testcases from site" },
+      { "<leader>ccgt", "<cmd>CompetiTestReceive testcases<cr>", desc = "Get testcases from site" },
+      { "<leader>ccgp", "<cmd>CompetiTestReceive problem<cr>", desc = "Get source and testcases from site" },
+      { "<leader>ccgc", "<cmd>CompetiTestReceive contest<cr>", desc = "Get entire contest from site" },
     },
     opts = {
       testcases_use_single_file = true,
