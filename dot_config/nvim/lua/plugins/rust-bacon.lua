@@ -1,6 +1,11 @@
 return {
   {
     "Canop/nvim-bacon",
+    init = function()
+      require("which-key").register({
+        ["<leader>r"] = { name = "+rust/bacon" },
+      })
+    end,
     keys = {
       {
         "<leader>rn",
