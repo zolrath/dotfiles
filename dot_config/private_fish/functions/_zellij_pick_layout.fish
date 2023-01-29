@@ -8,7 +8,7 @@ function _zellij_pick_layout
     set -l default_layouts (string join \n default strider compact)
     set -l custom_layouts (fd -e kdl . $layout_dir | sed 's|.*/||' | sed 's|\.[^.]*$||')
 
-    set layout (printf "%s\n" $default_layouts $custom_layouts | sort | fzf --layout=reverse-list --query="$argv")
+    set layout (printf "%s\n" $default_layouts $custom_layouts | sort | fzf --layout=reverse-list --select-1 --query="$argv")
 
     if test -n "$layout"
       echo "$layout"

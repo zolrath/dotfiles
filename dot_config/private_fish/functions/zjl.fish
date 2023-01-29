@@ -4,7 +4,7 @@ function zjl --description "run zellij with layout"
         return 1
     end
 
-  set -l layout (_zellij_pick_layout)
+  set -l layout (_zellij_pick_layout $argv)
 
   if test -n "$layout"
     zellij --layout "$layout"
