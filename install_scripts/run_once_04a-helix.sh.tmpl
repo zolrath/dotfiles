@@ -1,0 +1,51 @@
+#!/bin/bash
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+{{ if eq .chezmoi.os "linux" -}}
+
+if ! [ -x "$(command -v hx)" ]; then
+    info '📦 Installing helix'
+    set -o xtrace -o errtrace -o errexit -o nounset -o pipefail
+
+    version="$(curl --location --head https://github.com/helix-editor/helix/releases/latest | grep -i location: | sed 's/^.*\/tag\/\([^\/]*\)\r$/\1/')"
+    filename_prefix="helix-"
+    filename_suffix="-x86_64.AppImage"
+    uri_to_download="https://github.com/helix-editor/helix/releases/download/${version}/${filename_prefix}${version}${filename_suffix}"
+
+    curl --fail --show-error --location "$uri_to_download" -o "/tmp/hx"
+
+    mv --force /tmp/hx "${HOME}/bin/hx" &&
+    chmod a+x "${HOME}/bin/hx"
+
+    if [ ! -x "${HOME}/bin/helix" ]; then
+        error 'helix install failed'
+    else
+        success 'helix'
+    fi
+else
+    skip 'helix'
+fi
+
+{{ else if eq .chezmoi.os "darwin" -}}
+
+if ! [ -x "$(command -v hx)" ]; then
+    info '📦 Installing helix'
+    brew install helix
+    success 'helix'
+else
+    skip 'helix'
+fi
+{{ end -}}
+
+
+if ! [ -x "$(command -v rust-analyzer)" ]; then
+    info "Setting up rust analyzer"
+    rustup component add rust-analyzer
+    sudo ln -s $(rustup which rust-analyzer ) /usr/local/bin/rust-analyzer
+    success 'rust-analyzer'
+else
+    skip 'rust-analyzer'
+fi
