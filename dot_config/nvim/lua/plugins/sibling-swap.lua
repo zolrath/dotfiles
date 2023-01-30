@@ -1,7 +1,6 @@
 return {
   {
     "Wansmer/sibling-swap.nvim",
-    event = "InsertEnter",
     opts = {
       use_default_keymaps = false,
     },

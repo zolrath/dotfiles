@@ -1,7 +1,32 @@
 return {
   {
+    "Sup3Legacy/fontsize.nvim",
+    event = "BufReadPost",
+    init = function()
+      require("fontsize").init({
+        font = "JetBrainsMono Nerd Font Mono",
+        min = 10,
+        default = 14,
+        max = 32,
+        step = 2,
+      })
+    end,
+    keys = {
+      {
+        "<Leader>uz",
+        "<cmd>FontIncrease<CR>",
+        desc = "Increase font size",
+      },
+      {
+        "<Leader>uZ",
+        "<cmd>FontDecrease<CR>",
+        desc = "Decrease font size",
+      },
+    },
+  },
+  {
     "glacambre/firenvim",
-    lazy = false,
+    event = "VeryLazy",
     build = function()
       vim.fn["firenvim#install"](0)
     end,

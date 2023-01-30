@@ -1,7 +1,7 @@
 return {
   {
     "nvim-zh/colorful-winsep.nvim",
-    event = "BufEnter",
+    event = "WinEnter",
     config = true,
   },
 }

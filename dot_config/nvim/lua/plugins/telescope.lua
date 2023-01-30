@@ -1,43 +1,130 @@
-local builtin = require("telescope.builtin")
-
 return {
-  -- fuzzy finder
+  -- Add Smart Open
   {
-    "nvim-telescope/telescope.nvim",
-    cmd = "Telescope",
+    "danielfalk/smart-open.nvim",
+    dependencies = { "kkharji/sqlite.lua" },
+    config = function()
+      require("telescope").load_extension("smart_open")
+    end,
     keys = {
       { "<leader><space>", "<cmd>Telescope smart_open<cr>", desc = "Smart open" },
-      -- Enhanced version of "/" search command
-      { "<leader>/", builtin.current_buffer_fuzzy_find, desc = "Fuzzy search in buffer" },
-      { "<leader>s/", builtin.search_history, desc = "Search history" },
-
-      -- Enhanced version of "*"
-      { "<leader>*", builtin.grep_string, desc = "Search word under cursor" },
-
-      { "<leader>sb", builtin.buffers, desc = "Buffers" },
-      { "<leader>so", builtin.oldfiles, desc = "Old files" },
-      { "<leader>sf", builtin.find_files, desc = "Files" },
-      -- { "<leader>sF", "<Cmd>Telescope file_browser<CR>", desc = "Browse files" },
-
-      -- By starting grep_string with empty search key, we fuzzy over everything
-      { "<leader>st", "<cmd>Telescope grep_string search= theme=ivy <CR>", desc = "Fuzzy search workspace" },
-
-      -- sH, sM to search help and manpage would be more "consistent", but I search help more often than highlight, so lowercase is reserved for that
-      { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
-      { "<leader>sH", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
-      { "<leader>sM", builtin.man_pages, desc = "[M]an Page" },
-
-      -- Since ; and : is the same button to start command
-      { "<leader>s;", "<cmd>Telescope commands<cr>", desc = "Commands" },
-      { "<leader>sc", builtin.command_history, desc = "Command history" },
-
-      -- since register start with tick already
-      { "<leader>s'", builtin.registers, desc = "Registers" },
-      { "<leader>sj", builtin.jumplist, desc = "Jumplist" },
-      { "<leader>sp", builtin.builtin, desc = "Pickers" },
-
-      { "<leader>sO", builtin.vim_options, desc = "Vim options" },
-      --{ "<leader>s<Tab>", "<Cmd>Telescope telescope-tabs list_tabs<CR>", desc = "Tabs" },
     },
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    },
+    event = "VimEnter",
+    keys = {
+      {
+        "<leader>gb",
+        function()
+          local actions = require("telescope.actions")
+          require("telescope.builtin").git_branches({
+            attach_mappings = function(prompt_bufnr, map)
+              map("i", "<c-d>", actions.git_delete_branch)
+              map("n", "<c-d>", actions.git_delete_branch)
+              return true
+            end,
+          })
+        end,
+        desc = "Find Git Branches",
+      },
+      {
+        "<leader>ff",
+        function()
+          require("telescope.builtin").find_files({ hidden = true })
+        end,
+        desc = "Find Files",
+      },
+      {
+        "<leader>fg",
+        function()
+          require("telescope.builtin").live_grep({ hidden = false })
+        end,
+        desc = "Find Grep",
+      },
+      {
+        "<leader>fb",
+        function()
+          require("telescope.builtin").buffers({})
+        end,
+        desc = "Find Buffers",
+      },
+      {
+        "<leader>gs",
+        function()
+          require("telescope.builtin").git_status({})
+        end,
+        desc = "Find Git Status",
+      },
+      {
+        "<leader>gl",
+        function()
+          require("telescope.builtin").git_commits({})
+        end,
+        desc = "Find Git Log",
+      },
+      {
+        "<leader>f/",
+        function()
+          require("telescope.builtin").current_buffer_fuzzy_find({})
+        end,
+        desc = "Find In File",
+      },
+    },
+    config = function()
+      local telescope = require("telescope")
+      telescope.setup({
+        defaults = {
+          vimgrep_arguments = {
+            "rg",
+            "--color=never",
+            "--column",
+            "--hidden",
+            "--line-number",
+            "--no-heading",
+            "--smart-case",
+            "--with-filename",
+          },
+          prompt_prefix = " ❯ ",
+          selection_caret = "❯ ",
+          entry_prefix = "  ",
+          initial_mode = "insert",
+          selection_strategy = "reset",
+          sorting_strategy = "descending",
+          layout_strategy = "horizontal",
+          layout_config = {
+            horizontal = { mirror = false },
+            vertical = { mirror = false },
+            prompt_position = "bottom",
+            width = 0.8,
+            preview_cutoff = 120,
+          },
+          mappings = {
+            i = {
+              ["<esc>"] = function(...)
+                return require("telescope.actions").close(...)
+              end,
+            },
+          },
+          path_display = { "absolute" },
+          -- file_sorter = require("telescope.sorters").get_fzy_sorter,
+          file_ignore_patterns = { "^.git/" },
+          -- generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+          winblend = 0,
+          border = {},
+          borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+          color_devicons = true,
+          use_less = true,
+          set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+          file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+          grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+          qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+        },
+      })
+      telescope.load_extension("fzf")
+    end,
   },
 }

@@ -9,6 +9,20 @@ local entries = {
     end,
   },
 
+  -- add endwise for automatic end insertion
+  {
+    "RRethy/nvim-treesitter-endwise",
+    event = "BufReadPost",
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      endwise = {
+        enable = true,
+      },
+    },
+  },
+
   -- add html/css/emmet to mason
   {
     "williamboman/mason.nvim",

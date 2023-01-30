@@ -1,3 +1,7 @@
+if true then
+  return {}
+end
+
 return {
   -- auto completion
   {
@@ -39,7 +43,7 @@ return {
           auto_trigger = true,
           debounce = 75,
           keymap = {
-            accept = "<CR>",
+            accept = "<M-CR>",
             next = "<M-]>",
             prev = "<M-[>",
             dismiss = "<C-]>",

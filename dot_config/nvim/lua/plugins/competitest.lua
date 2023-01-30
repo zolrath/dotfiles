@@ -4,17 +4,9 @@ return {
     dependencies = {
       "MunifTanjim/nui.nvim",
     },
-    lazy = "BufReadPost",
-    config = true,
-    init = function()
-      local wk = require("which-key")
-      wk.register({
-        mode = { "n" },
-        ["<leader>cc"] = { name = "+competitest" },
-        ["<leader>ccg"] = { name = "+competitest/get" },
-      })
-    end,
     keys = {
+      { "<leader>cc", desc = "+competitest" },
+      { "<leader>ccg", desc = "+competitest/get" },
       { "<leader>cca", "<cmd>CompetiTestAdd<cr>", desc = "Add new testcase" },
       { "<leader>cce", "<cmd>CompetiTestEdit<cr>", desc = "Edit existing testcase" },
       { "<leader>ccd", "<cmd>CompetiTestDelete<cr>", desc = "Delete existing testcase" },
