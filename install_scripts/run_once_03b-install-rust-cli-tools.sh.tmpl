@@ -97,4 +97,14 @@ else
     skip 'print_key'
 fi
 
+if ! [ -x "$(command -v leetcode)" ]; then
+    info '#️⃣  Installing leetcode cli'
+
+    cargo install --git https://github.com/clearloop/leetcode-cli
+
+    success 'leetcode cli'
+else
+    skip 'leetcode cli'
+fi
+
 echo ''
