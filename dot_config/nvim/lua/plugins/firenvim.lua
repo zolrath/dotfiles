@@ -26,13 +26,13 @@ return {
   },
   {
     "glacambre/firenvim",
-    event = "VeryLazy",
     build = function()
       vim.fn["firenvim#install"](0)
     end,
+    cond = not not vim.g.started_by_firenvim,
     config = function()
       local elixirSites = { ".*exercism\\.org/tracks/elixir/.*" }
-      local rustSites = { ".*exercism\\.org/tracks/rust/.*" }
+      local rustSites = { ".*exercism\\.org/tracks/rust/.*", ".*leetcode.com/*" }
       local ignoreSites = { "localhost", ".*livebook\\.fly\\.dev.*" }
 
       local localSettings = {
