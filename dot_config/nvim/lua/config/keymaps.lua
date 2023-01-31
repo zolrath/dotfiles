@@ -10,6 +10,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.set("n", "cg*", "*Ncgn")
 
 vim.keymap.set("n", ";", ":")
+vim.keymap.set("i", "<S-CR>", "<esc>o")
 
 -- local readline = require("readline")
 -- vim.keymap.set("!", "<C-k>", readline.kill_line)

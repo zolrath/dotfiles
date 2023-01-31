@@ -13,6 +13,11 @@ local config = {
 	use_dead_keys = false,
 	enable_kitty_keyboard = true,
 
+	keys = {
+		{ key = "\r", mods = "SHIFT", action = wezterm.action({ SendString = "\x1b[13;2u" }) },
+		{ key = "\r", mods = "CTRL", action = wezterm.action({ SendString = "\x1b[13;5u" }) },
+	},
+
 	-- allow macOS alt key to function properly in terminal
 	send_composed_key_when_left_alt_is_pressed = false,
 	send_composed_key_when_right_alt_is_pressed = true,
