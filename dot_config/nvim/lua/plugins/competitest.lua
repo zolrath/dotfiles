@@ -1,12 +1,19 @@
 return {
   {
+    "folke/which-key.nvim",
+    opts = function()
+      require("which-key").register({
+        ["<leader>cc"] = { name = "+competitest" }, --, mode = { "n", "v" } },
+        ["<leader>ccg"] = { name = "+competitest/get" },
+      })
+    end,
+  },
+  {
     "xeluxee/competitest.nvim",
     dependencies = {
       "MunifTanjim/nui.nvim",
     },
     keys = {
-      { "<leader>cc", desc = "+competitest" },
-      { "<leader>ccg", desc = "+competitest/get" },
       { "<leader>cca", "<cmd>CompetiTestAdd<cr>", desc = "Add new testcase" },
       { "<leader>cce", "<cmd>CompetiTestEdit<cr>", desc = "Edit existing testcase" },
       { "<leader>ccd", "<cmd>CompetiTestDelete<cr>", desc = "Delete existing testcase" },
