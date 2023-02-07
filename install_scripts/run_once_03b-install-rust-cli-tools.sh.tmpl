@@ -107,4 +107,14 @@ else
     skip 'leetcode cli'
 fi
 
+if ! [ -x "$(command -v atuin)" ]; then
+    info '🐢 Installing atuin'
+
+    cargo binstall atuin
+
+    success 'atuin'
+else
+    skip 'atuin'
+fi
+
 echo ''
