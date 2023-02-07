@@ -4,7 +4,6 @@
 
 echo ''
 
-info '💻 Installing wezterm'
 
 {{ if eq .chezmoi.os "linux" -}}
 
@@ -13,6 +12,7 @@ info '💻 Installing wezterm'
 
 
 if ! [ -x "$(command -v wezterm.exe)" ]; then
+    info '💻 Installing wezterm'
     winget.exe install wez.wezterm
     success 'wezterm'
 else
@@ -29,6 +29,7 @@ success 'copied wezterm config'
 {{   else }}
 
 if ! [ -x "$(command -v wezterm)" ]; then
+    info '💻 Installing wezterm'
     cd /tmp
     curl -LO https://github.com/wez/wezterm/releases/download/nightly/wezterm-nightly.Ubuntu22.04.deb
     sudo apt install -y ./wezterm-nightly.Ubuntu20.04.deb
@@ -42,6 +43,7 @@ fi
 {{ else if eq .chezmoi.os "darwin" -}}
 
 if ! [ -x "$(command -v wezterm)" ]; then
+    info '💻 Installing wezterm'
     brew tap wez/wezterm
     brew install --cask wez/wezterm/wezterm
     success 'wezterm'
@@ -49,8 +51,6 @@ else
     skip 'wezterm'
 fi
 
-
 {{ end -}}
-
 
 echo ''

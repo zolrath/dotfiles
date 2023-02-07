@@ -4,18 +4,26 @@
 
 echo ''
 
-info '🚀 Installing Flyctl'
-
 {{ if eq .chezmoi.os "darwin" -}}
 
-brew install flyctl
+if ! [ -x "$(command -v flyctl)" ]; then
+    info '🚀 Installing flyctl'
+    brew install flyctl
+    success 'flyctl'
+else
+    skip 'flyctl'
+fi
 
 {{ else if eq .chezmoi.os "linux" -}}
 
-curl -L https://fly.io/install.sh | sh
+if ! [ -x "$(command -v flyctl)" ]; then
+    info '🚀 Installing flyctl'
+    curl -L https://fly.io/install.sh | sh
+    success 'flyctl'
+else
+    skip 'flyctl'
+fi
 
 {{ end -}}
-
-success 'Flyctl'
 
 echo ''

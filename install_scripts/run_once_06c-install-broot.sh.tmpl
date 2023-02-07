@@ -6,7 +6,7 @@ echo ''
 
 
 if ! [ -x "$(command -v broot)" ]; then
-    info 🌳' Installing broot'
+    info '🌳 Installing broot'
     cargo binstall --no-confirm broot
     success 'broot'
 else

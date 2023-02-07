@@ -38,8 +38,8 @@ if ! [ -x "$(command -v hx)" ]; then
 else
     skip 'helix'
 fi
-{{ end -}}
 
+{{ end -}}
 
 if ! [ -x "$(command -v rust-analyzer)" ]; then
     info "Setting up rust analyzer"
@@ -49,3 +49,5 @@ if ! [ -x "$(command -v rust-analyzer)" ]; then
 else
     skip 'rust-analyzer'
 fi
+
+echo ''

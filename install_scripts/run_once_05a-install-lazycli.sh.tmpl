@@ -4,10 +4,12 @@
 
 echo ''
 
-info '😴 Installing lazycli'
-
-cargo binstall --no-confirm lazycli
-
-success 'lazycli'
+if ! [ -x "$(command -v lazycli)" ]; then
+    info '😴 Installing lazycli'
+    cargo binstall --no-confirm lazycli
+    success 'lazycli'
+else
+    skip 'lazycli'
+fi
 
 echo ''

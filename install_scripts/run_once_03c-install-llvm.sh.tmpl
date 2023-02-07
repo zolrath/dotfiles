@@ -1,0 +1,29 @@
+#!/bin/bash
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+{{ if eq .chezmoi.os "linux" -}}
+
+if ! [ -x "$(command -v llvm)" ]; then
+    info '🤖 Installing llvm'
+    sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+    success 'llvm'
+else
+    skip 'llvm'
+fi
+
+{{ else if eq .chezmoi.os "darwin" -}}
+
+if ! [ -x "$(command -v llvm)" ]; then
+    info '🤖 Installing llvm'
+    brew install llvm
+    success 'llvm'
+else
+    skip 'llvm'
+fi
+
+{{ end -}}
+
+echo ''
