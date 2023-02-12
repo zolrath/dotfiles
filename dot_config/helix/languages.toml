@@ -11,6 +11,13 @@ name = "codelldb"
 port-arg = "--port {}"
 transport = "tcp"
 
+[language.auto-pairs]
+'(' = ')'
+'[' = ']'
+'{' = '}'
+'"' = '"'
+'`' = '`'
+
 [[language.debugger.templates]]
 name = "binary"
 request = "launch"
