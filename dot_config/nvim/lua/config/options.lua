@@ -10,7 +10,7 @@ vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 -- Set paste directly - greatly improves startup time
-local is_wsl = vim.fn.has("wsl")
+local is_wsl = os.getenv("WSL_DISTRO_NAME") ~= nil
 local is_osx = vim.loop.os_uname().sysname == "Darwin"
 
 if is_wsl then
