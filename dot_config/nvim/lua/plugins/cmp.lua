@@ -15,6 +15,9 @@ return {
         completion = {
           completeopt = "menu,menuone,noinsert",
         },
+        performance = {
+          debounce = 150,
+        },
         snippet = {
           expand = function(args)
             require("luasnip").lsp_expand(args.body)
@@ -69,7 +72,7 @@ return {
             cmp.config.compare.order,
           },
         },
-        preselect = cmp.PreselectMode.Item,
+        preselect = cmp.PreselectMode.None,
         formatting = {
           format = function(_, item)
             -- set icons
