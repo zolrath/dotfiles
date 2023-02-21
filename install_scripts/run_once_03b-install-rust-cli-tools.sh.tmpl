@@ -77,14 +77,14 @@ else
     skip 'hexyl'
 fi
 
-if ! [ -x "$(command -v hyperfine)" ]; then
-    info '0xff Installing hyperfine'
+if ! [ -x "$(command -v bottom)" ]; then
+    info 'Installing bottom'
 
-    cargo binstall --no-confirm hyperfine
+    cargo binstall --no-confirm bottom
 
-    success 'hyperfine'
+    success 'bottom'
 else
-    skip 'hyperfine'
+    skip 'bottom'
 fi
 
 if ! [ -x "$(command -v print_key)" ]; then
