@@ -117,4 +117,14 @@ else
     skip 'atuin'
 fi
 
+if ! [ -x "$(command -v oha)" ]; then
+    info '🐢 Installing oha'
+
+    cargo install oha
+
+    success 'oha'
+else
+    skip 'oha'
+fi
+
 echo ''
