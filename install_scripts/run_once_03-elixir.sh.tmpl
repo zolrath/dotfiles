@@ -3,6 +3,7 @@
 . $HOME/.local/share/chezmoi/helpers
 
 echo ''
+# do it again
 
 info '💧 Installing elixir'
 
@@ -24,21 +25,19 @@ export KERL_CONFIGURE_OPTIONS="--without-javac --with-ssl=$(brew --prefix openss
 {{ end -}}
 
 info '💧 Installing erlang asdf'
-asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
+rtx plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
 success 'erlang asdf'
 
 info '💧 Installing erlang'
-asdf install erlang 25.1.2
-asdf global erlang 25.1.2
+rtx global erlang 25.1.2
 success 'erlang'
 
 info '💧 Installing elixir asdf'
-asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+rtx plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
 success 'elixir asdf'
 
 info '💧 Installing elixir'
-asdf install elixir 1.14.2-otp-25
-asdf global elixir 1.14.2-otp-25
+rtx global elixir 1.14.2-otp-25
 success 'elixir'
 
 echo ''

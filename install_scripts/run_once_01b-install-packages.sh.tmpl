@@ -38,9 +38,8 @@ brew install ripgrep exa fzf gnu-sed glow chafa lazydocker
 
 if ! [ -x "$(command -v lazygit)" ]; then
     info '📦 Installing lazygit'
-    asdf plugin add lazygit
-    asdf install lazygit latest
-    asdf global lazygit latest
+    rtx plugin add lazygit
+    rtx global lazygit latest
     success 'lazygit'
 else
     skip 'lazygit'
@@ -48,9 +47,8 @@ fi
 
 if ! [ -x "$(command -v zoxide)" ]; then
     info '📦 Installing zoxide'
-    asdf plugin add zoxide https://github.com/nyrst/asdf-zoxide.git
-    asdf install zoxide latest
-    asdf global zoxide latest
+    rtx plugin add zoxide https://github.com/nyrst/asdf-zoxide.git
+    rtx global zoxide latest
     success 'zoxide'
 else
     skip 'zoxide'
@@ -58,9 +56,8 @@ fi
 
 if ! [ -x "$(command -v delta)" ]; then
     info '📦 Installing delta'
-    asdf plugin add delta https://github.com/andweeb/asdf-delta.git
-    asdf install delta latest
-    asdf global delta latest
+    rtx plugin add delta https://github.com/andweeb/asdf-delta.git
+    rtx global delta latest
     success 'delta'
 else
     skip 'delta'

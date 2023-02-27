@@ -6,9 +6,8 @@ echo ''
 
 if ! [ -x "$(command -v nvim)" ]; then
     info '💻 Installing asdf neovim'
-    asdf plugin add neovim
-    asdf install neovim stable
-    asdf global neovim stable
+    rtx plugin add neovim
+    rtx global neovim stable
     success 'asdf neovim'
 else
     skip 'asdf neovim'
@@ -18,7 +17,6 @@ fi
 if ! [ -x "$(command -v beautysh)" ]; then
     info '💅 Installing beautysh'
     pip3 install beautysh
-    asdf reshim python
     success 'beautysh'
 else
     skip 'beautysh'
@@ -26,9 +24,8 @@ fi
 
 # Formatting for python
 if ! [ -x "$(command -v autopep8)" ]; then
-    info '🫑  Installing autopep8'
+    info '🫑 Installing autopep8'
     pip3 install autopep8
-    asdf reshim python
     success 'autopep8'
 else
     skip 'autopep8'
@@ -62,7 +59,6 @@ fi
 if ! [ -x "$(command -v rustywind)" ]; then
     info '💨 Installing rustywind'
     npm install -g rustywind
-    asdf reshim nodejs
 else
     skip 'rustywind'
 fi

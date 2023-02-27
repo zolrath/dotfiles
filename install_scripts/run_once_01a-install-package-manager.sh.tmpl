@@ -10,12 +10,12 @@ info '📂 Updating apt registry'
 sudo apt update
 sudo apt install -y curl git
 
-if ! [ -x "$(command -v asdf)" ]; then
-    info '💻 Installing asdf'
-    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
-    success 'asdf'
+if ! [ -x "$(command -v rtx)" ]; then
+    info '💻 Installing rtx'
+    curl https://rtx.pub/install.sh | sh
+    success 'rtx'
 else
-    skip 'asdf'
+    skip 'rtx'
 fi
 
 {{ else if eq .chezmoi.os "darwin" -}}
@@ -33,12 +33,12 @@ fi
 # asdf install
 brew install coreutils git
 
-if ! [ -x "$(command -v asdf)" ]; then
-    info '💻 Installing asdf'
-    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
-    success 'asdf'
+if ! [ -x "$(command -v rtx)" ]; then
+    info '💻 Installing rtx'
+    (export RTX_INSTALL_PATH=~/.local/bin/rtx && curl https://rtx.pub/install.sh | sh)
+    success 'rtx'
 else
-    skip 'asdf'
+    skip 'rtx'
 fi
 
 {{ end -}}

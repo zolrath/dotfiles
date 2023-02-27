@@ -5,12 +5,11 @@
 echo ''
 
 info '🟩 Installing nodejs asdf'
-asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+rtx plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 success 'nodejs asdf'
 
-info '🟩 Installing nodejs lts'
-asdf install nodejs lts
-asdf global nodejs lts
-success 'nodejs lts'
+info '🟩 Installing nodejs 19.7.0'
+rtx global nodejs 19.7.0
+success 'nodejs 19.7.0'
 
 echo ''

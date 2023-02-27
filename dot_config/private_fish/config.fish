@@ -23,3 +23,4 @@ set ZELLIJ_AUTO_EXIT true
 atuin init fish | source
 
 #eval (zellij setup --generate-auto-start fish | string collect)
+rtx activate fish | source
