@@ -1,0 +1,25 @@
+#!/bin/sh
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+if ! [ -x "$(command -v solana)" ]; then
+    info '☀️ Installing solana'
+    sh -c "$(curl -sSfL https://release.solana.com/stable/install)"
+    success 'solana'
+else
+    skip 'solana'
+fi
+
+if ! [ -x "$(command -v anchor)" ]; then
+    info '⚓️ Installing anchor'
+    cargo install --git https://github.com/coral-xyz/anchor avm --locked --force
+    avm install latest
+    avm use latest
+    success 'anchor'
+else
+    skip 'anchor'
+fi
+
+echo ''
