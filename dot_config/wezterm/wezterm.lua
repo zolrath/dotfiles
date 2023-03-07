@@ -1,5 +1,82 @@
 local wezterm = require("wezterm")
 
+local font_map = {
+	["Pragmasevka"] = {
+		font = wezterm.font("Pragmasevka Nerd Font"),
+		font_rules = {
+			{
+				intensity = "Bold",
+				italic = true,
+				font = wezterm.font("Pragmasevka Nerd Font", { bold = true, italic = true }),
+			},
+			{
+				italic = true,
+				font = wezterm.font("Pragmasevka Nerd Font", { italic = true }),
+			},
+			{
+				intensity = "Bold",
+				font = wezterm.font("Pragmasevka Nerd Font", { bold = true, italic = false }),
+			},
+		},
+	},
+	["JetBrainsMono"] = {
+		font = wezterm.font("JetBrainsMono Nerd Font Mono"),
+		font_rules = {
+			{
+				intensity = "Bold",
+				italic = true,
+				font = wezterm.font("JetBrainsMono Nerd Font Mono", { bold = true, italic = true }),
+			},
+			{
+				italic = true,
+				font = wezterm.font("JetBrainsMono Nerd Font Mono", { italic = true }),
+			},
+			{
+				intensity = "Bold",
+				font = wezterm.font("JetBrainsMono Nerd Font Mono", { bold = true, italic = false }),
+			},
+		},
+	},
+	["ComicCode"] = {
+		font = wezterm.font("Comic Code Ligatures"),
+	},
+	["BerkeleyMono"] = {
+		font = wezterm.font("Berkeley Mono"),
+		font_rules = {
+			{
+				intensity = "Bold",
+				italic = true,
+				font = wezterm.font("Berkeley Mono Bold Italic", { bold = true, italic = true }),
+			},
+			{
+				italic = true,
+				font = wezterm.font("Berkeley Mono Italic", { italic = true }),
+			},
+			{
+				intensity = "Bold",
+				font = wezterm.font("Berkeley Mono Bold", { bold = true, italic = false }),
+			},
+		},
+	},
+}
+
+-- new font test 2
+--local font_family_name = "Pragmasevka"
+--local font_family_name = "JetBrainsMono"
+--local font_family_name = "ComicCode"
+local font_family_name = "BerkeleyMono"
+local font_rules
+local font
+
+local font_info = font_map[font_family_name]
+
+if font_info then
+	font = font_info.font
+	font_rules = font_info.font_rules
+else
+	font = wezterm.font(font_family_name)
+end
+
 -- This file is copied to the Windows installation as well, if modified be sure to rerun chezmoi
 local config = {
 	check_for_updates = false,
@@ -33,7 +110,9 @@ local config = {
 	default_prog = { "/usr/local/bin/fish", "-l" },
 
 	font_size = 16.0,
-	font = wezterm.font("JetBrainsMono Nerd Font Mono", { weight = "Regular" }),
+	font = font,
+	font_antialias = "Subpixel",
+	font_rules = font_rules,
 
 	front_end = "WebGpu",
 

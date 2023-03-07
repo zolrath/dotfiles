@@ -1,0 +1,24 @@
+layout {
+  default_tab_template {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    children
+    pane size=2 borderless=true {
+      plugin location="zellij:status-bar"
+    }
+  }
+
+  pane_template name="bacon" {
+    command "bacon"
+    close_on_exit true
+    start_suspended false
+  }
+
+  tab name="Rust" split_direction="vertical" {
+    pane size="65%" edit="src/lib.rs"
+    pane split_direction="horizontal" {
+      bacon { args "clippy"; }
+    }
+  }
+}
