@@ -2,7 +2,7 @@
 
 . "$(chezmoi source-path)/helpers"
 
-version=1.7.0-rc.3
+version=1.7.1
 
 echo ''
 
