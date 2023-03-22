@@ -6,14 +6,9 @@ echo ''
 
 {{ if eq .chezmoi.os "darwin" -}}
 
-
 info '🐠 Installing fd'
 brew install fd
 success 'fd'
-
-info '🐠 Installing bat'
-brew install bat
-success 'bat'
 
 {{ else if eq .chezmoi.os "linux" -}}
 

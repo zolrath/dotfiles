@@ -1,0 +1,41 @@
+#!/bin/bash
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+{{ if eq .chezmoi.os "linux" -}}
+
+if ! [ -x "$(command -v bat)" ]; then
+    info '🦇 Installing bat'
+
+    version="$(curl --location --head https://github.com/sharkdp/bat/releases/latest | grep -i location: | sed 's/^.*\/tag\/\([^\/]*\)\r$/\1/')"
+    filename_prefix="bat-musl"
+    filename_postfix="amd64.deb"
+    # trim leading v from version with :1
+    uri_to_download="https://github.com/sharkdp/bat/releases/download/${version}/${filename_prefix}_${version:1}_${filename_postfix}"
+
+    curl -L $uri_to_download -o /tmp/bat.deb
+    sudo apt install -y "/tmp/bat.deb"
+
+    if [ ! -x "${HOME}/bin/bat" ]; then
+        error 'bat install failed'
+    else
+        success 'bat'
+    fi
+else
+    skip 'bat'
+fi
+
+{{ else if eq .chezmoi.os "darwin" -}}
+
+if ! [ -x "$(command -v bat)" ]; then
+    info '🦇 Installing bat'
+    brew install bat
+    success 'bat'
+else
+    skip 'bat'
+fi
+{{ end -}}
+
+echo ''
