@@ -111,7 +111,6 @@ local config = {
 
 	font_size = 16.0,
 	font = font,
-	font_antialias = "Subpixel",
 	font_rules = font_rules,
 
 	front_end = "WebGpu",
