@@ -1,0 +1,49 @@
+#!/bin/bash
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+{{ if eq .chezmoi.os "linux" -}}
+
+if ! [ -x "$(command -v fzf)" ]; then
+    info '📦 Installing fzf'
+    set -o xtrace -o errtrace -o errexit -o nounset -o pipefail
+
+    maintainer="junegunn"
+    repo="fzf"
+
+    version="$(curl --location --head https://github.com/${maintainer}/${repo}/releases/latest | grep -i location: | sed 's/^.*\/tag\/\([^\/]*\)\r$/\1/')"
+    filename_prefix="fzf-"
+    filename_suffix="-linux_amd64.tar.gz"
+    uri_to_download="https://github.com/${maintainer}/${repo}/releases/download/${version}/${filename_prefix}${version}${filename_suffix}"
+
+    curl --fail --show-error --location "$uri_to_download" |
+    tar -xz -C /tmp/
+    mv --force /tmp/fzf "${HOME}/bin/fzf" &&
+    chmod a+x "${HOME}/bin/fzf"
+
+    if [ ! -x "${HOME}/bin/fzf" ]; then
+        echo '"fzf" was not successfully installed!' >&2
+        # DISPLAY=:0 notify-send --urgency=critical "Failed updating fzf!
+        # Run $0 to check."
+        exit 2
+    fi
+
+    success 'fzf'
+else
+    skip 'fzf'
+fi
+
+{{ else if eq .chezmoi.os "darwin" -}}
+
+if ! [ -x "$(command -v fzf)" ]; then
+    info '📦 Installing fzf'
+    brew install fzf
+    success 'fzf'
+else
+    skip 'fzf'
+fi
+{{ end -}}
+
+echo ''
