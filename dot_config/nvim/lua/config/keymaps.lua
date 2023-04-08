@@ -48,6 +48,9 @@ vim.keymap.set("n", ";", ":")
 -- insert line from middle of line
 vim.keymap.set("i", "<S-CR>", "<esc>o")
 
+-- expand current abbreviation with emmet
+vim.keymap.set("i", "<C-d>", "<Plug>(emmet-expand-abbr)")
+
 -- local readline = require("readline")
 -- vim.keymap.set("!", "<C-k>", readline.kill_line)
 -- vim.keymap.set("!", "<C-u>", readline.backward_kill_line)
