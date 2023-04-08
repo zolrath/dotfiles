@@ -61,3 +61,10 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
     vim.cmd("set ft=conf")
   end,
 })
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "*.cdc" },
+  callback = function()
+    vim.cmd("set filetype=cadence")
+  end,
+})
