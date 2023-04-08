@@ -39,5 +39,7 @@ set -x ERL_AFLAGS "-kernel shell_history enabled"
 # Elixir XLA - use GPU
 set -x XLA_TARGET "cuda118"
 
+# Build Erlang docs to make elixir-ls happy
+set -x KERL_BUILD_DOCS yes
 # source secrets file, not exposed in dotfiles
 source ~/.secrets

@@ -1,8 +1,9 @@
-erlang  25.1.2
-elixir  1.14.2-otp-25
+erlang  25.3
+elixir  1.14.4-otp-25
 nodejs  19.7.0
-chezmoi 2.29.0
+chezmoi 2.33.1
 python  3.11.1
 rust    stable
 neovim  nightly
 lazygit 0.37.0
+delta   0.15.1
