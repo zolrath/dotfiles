@@ -31,6 +31,29 @@ set -x LANGUAGE en_US.UTF-8
 set -x LOC "desktop"
 {{ else if eq .chezmoi.os "darwin" -}}
 set -x LOC "laptop"
+set -x KERL_BUILD_DOCS yes
+set -x KERL_INSTALL_MANPAGES yes
+set -x wxUSE_MACOSX_VERSION_MIN 11.3
+set -x EGREP egrep
+set -x CC clang
+set -x CPP "clang -E"
+set -x KERL_USE_AUTOCONF 0
+set -x KERL_CONFIGURE_OPTIONS "--disable-debug \
+                               --disable-hipe \
+                               --disable-sctp \
+                               --disable-silent-rules \
+                               --enable-darwin-64bit \
+                               --enable-dynamic-ssl-lib \
+                               --enable-kernel-poll \
+                               --enable-shared-zlib \
+                               --enable-smp-support \
+                               --enable-threads \
+                               --enable-wx \
+                               --with-ssl=/usr/local/opt/openssl@1.1 \
+                               --with-wx-config=/usr/local/bin/wx-config \
+                               --without-javac \
+                               --without-jinterface \
+                               --without-odbc"
 {{ end -}}
 
 set -x FLYCTL_INSTALL ~/.fly
