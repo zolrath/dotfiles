@@ -6,8 +6,7 @@ function dbup
             echo "Stopping all other containers using port 5432."
             dbdown
 
-            echo "Starting $argv[1]_dev"
-            docker start $argv[1]_dev
+            echo Starting (docker start $argv[1]_dev)
         end
     else
         echo "Whoa, never heard of that database. Here's what I know:"

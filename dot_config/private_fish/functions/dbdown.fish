@@ -1,8 +1,5 @@
 function dbdown
-    for id in (docker ps -q)
-        if string match -q 5432 -e (docker port $id)
-            echo "Stopping container $id"
-            docker stop $id
-        end
+    for id in (docker ps -q --format '{{.Names}}' --filter "expose=5432")
+        echo Stopping (docker stop $id)
     end
 end
