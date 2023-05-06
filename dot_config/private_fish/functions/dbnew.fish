@@ -14,5 +14,4 @@ function dbnew --argument-names db_name
         echo "REMINDER: This command will append _dev to the name provided."
         echo "Simply use the name of the project, do not include _dev yourself."
     end
-
 end

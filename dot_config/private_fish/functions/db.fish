@@ -4,7 +4,7 @@ function db
           string replace -r '_dev$' '' |
           string replace -r '_dev 👈$' ' 👈' |
           sort | 
-          fzf --select-1 --query="$argv" --prompt="start db> "
+          fzf --select-1 --query="$argv" --prompt="start db>"
     )
     if not string length -q -- $dbname
         echo "No database selected."
