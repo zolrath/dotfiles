@@ -5,14 +5,14 @@
 echo ''
 
 info '⚙️ Installing python asdf'
-rtx plugin-add python
+rtx plugin install python
 success 'python asdf'
 
 info '🐍 Installing python'
 #{{ if eq .chezmoi.os "darwin" -}}
 # export ASDF_PYTHON_PATCH_URL="https://github.com/python/cpython/commit/8ea6353.patch?full_index=1"
 #{{ end -}}
-rtx global python 3.11.1
+rtx use --global python 3.11.1
 success 'python'
 
 echo ''

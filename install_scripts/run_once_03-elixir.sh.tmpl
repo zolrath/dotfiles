@@ -25,19 +25,19 @@ export KERL_CONFIGURE_OPTIONS="--without-javac --with-ssl=$(brew --prefix openss
 {{ end -}}
 
 info '💧 Installing erlang asdf'
-rtx plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
+rtx plugin install erlang https://github.com/asdf-vm/asdf-erlang.git
 success 'erlang asdf'
 
 info '💧 Installing erlang'
-rtx global erlang 25.1.2
+rtx use --global erlang 25.1.2
 success 'erlang'
 
 info '💧 Installing elixir asdf'
-rtx plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+rtx plugin install elixir https://github.com/asdf-vm/asdf-elixir.git
 success 'elixir asdf'
 
 info '💧 Installing elixir'
-rtx global elixir 1.14.2-otp-25
+rtx use --global elixir 1.14.2-otp-25
 success 'elixir'
 
 echo ''
