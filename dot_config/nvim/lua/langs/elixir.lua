@@ -1,14 +1,41 @@
-local elixirls_path = vim.fn.expand("$HOME/tools/elixir-ls/language_server.sh")
-
 local entries = {
-  -- add elixir to treesitter
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, { "elixir", "heex" })
+      vim.list_extend(opts.ensure_installed, { "eex", "elixir" })
     end,
   },
+  {
+    "zolrath/elixir-tools.nvim",
+    branch = "projectionist-heex-leex",
+    --"elixir-tools/elixir-tools.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      local elixir = require("elixir")
+      local elixirls = require("elixir.elixirls")
 
+      elixir.setup({
+        credo = {},
+        elixirls = {
+          enabled = true,
+          settings = elixirls.settings({
+            dialyzerEnabled = false,
+            enableTestLenses = false,
+          }),
+          on_attach = function(client, bufnr)
+            -- whatever keybinds you want, see below for more suggestions
+            vim.keymap.set("n", "<space>pf", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
+            vim.keymap.set("n", "<space>pt", ":ElixirToPipe<cr>", { buffer = true, noremap = true })
+            vim.keymap.set("v", "<space>em", ":ElixirExpandMacro<cr>", { buffer = true, noremap = true })
+          end,
+        },
+      })
+    end,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "tpope/vim-projectionist",
+    },
+  },
   -- add endwise for automatic end insertion
   {
     "RRethy/nvim-treesitter-endwise",
@@ -19,30 +46,6 @@ local entries = {
     opts = {
       endwise = {
         enable = true,
-      },
-    },
-  },
-
-  -- add html/css/emmet to mason
-  {
-    "williamboman/mason.nvim",
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, { "elixir-ls" })
-    end,
-  },
-
-  -- correctly setup lspconfig
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      format = { timeout_ms = 1000 },
-      servers = {
-        elixirls = {
-          setup = {
-            cmd = { elixirls_path },
-            filetypes = { "elixir", "eelixir", "heex", "eex", "surface" },
-          },
-        },
       },
     },
   },
@@ -61,7 +64,7 @@ if not vim.g.started_by_firenvim then
 
       opts.sources = vim.list_extend(opts.sources, {
         formatting.mix,
-        diagnostics.credo,
+        --diagnostics.credo,
       })
     end,
   })
