@@ -1,0 +1,31 @@
+#!/bin/sh
+
+. $HOME/.local/share/chezmoi/helpers
+
+echo ''
+
+info '☕ Installing rlwrap'
+
+{{ if eq .chezmoi.os "linux" -}}
+
+sudo apt install rlwrap
+
+{{ else if eq .chezmoi.os "darwin" -}}
+
+brew install rlwrap
+
+{{ end -}}
+
+success 'rlwrap'
+
+info '☕ Installing Java'
+rtx plugins install java
+rtx use --global java@adoptopenjdk-17.0.6+10
+success 'Java'
+
+info '🟢 Installing clojure'
+rtx plugins install clojure
+rtx use --global clojure@1.11.1.1273
+success 'clojure'
+
+echo ''
