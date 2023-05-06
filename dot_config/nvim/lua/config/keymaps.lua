@@ -1,6 +1,7 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
+--
 
 -- Center screen when moving fast
 vim.keymap.set("n", "J", "mzJ`z")
@@ -51,6 +52,8 @@ vim.keymap.set("i", "<S-CR>", "<esc>o")
 -- expand current abbreviation with emmet
 vim.keymap.set("i", "<C-d>", "<Plug>(emmet-expand-abbr)")
 
+vim.keymap.set("n", "<leader>a", "<Cmd>A<CR>")
+
 -- local readline = require("readline")
 -- vim.keymap.set("!", "<C-k>", readline.kill_line)
 -- vim.keymap.set("!", "<C-u>", readline.backward_kill_line)
@@ -63,3 +66,4 @@ vim.keymap.set("i", "<C-d>", "<Plug>(emmet-expand-abbr)")
 -- vim.keymap.set("!", "<C-b>", "<Left>") -- backward-char
 -- vim.keymap.set("!", "<C-n>", "<Down>") -- next-line
 -- vim.keymap.set("!", "<C-p>", "<Up>") -- previous-line
+--
