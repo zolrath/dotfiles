@@ -171,5 +171,28 @@
     "body": [
       "<%= render_slot(@inner_block) %>"
     ]
+  },
+  "testconn": {
+    "prefix": "testconn",
+    "body": [
+      "test \"${1:name}\", %{conn: conn$2} do",
+      "  {:ok, view, _html} = live(conn, \"/\")",
+      "  $0",
+      "end"
+    ]
+  },
+  "testparams": {
+    "prefix": "testparams",
+    "body": [
+      "test \"${1:name}\", %{$2} do",
+      "  $0",
+      "end"
+    ]
+  },
+  "asserte": {
+    "prefix": "asserte",
+    "body": [
+      "assert $1 =~ $2"
+    ]
   }
 }
