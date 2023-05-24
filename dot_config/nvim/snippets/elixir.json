@@ -41,6 +41,20 @@
     ],
     "description": "Get key from keyword list"
   },
+  "pipe_assign": {
+    "prefix": "pass",
+    "body": [
+      "|> assign(:$1, $2)"
+    ],
+    "description": "assign in a pipeline"
+  },
+  "pipe_assign_new": {
+    "prefix": "passnew",
+    "body": [
+      "|> assign_new(:$1, $2)"
+    ],
+    "description": "assign in a pipeline"
+  },
   "start_link": {
     "prefix": "start_link",
     "body": [
@@ -55,12 +69,11 @@
     "description": "Handle event",
     "body": [
       "@impl Phoenix.LiveView",
-      "def handle_event($1, ${2:_params}, socket) do",
+      "def handle_event(${1:event}, ${2:_params}, socket) do",
       "  socket =",
-      "    assign(socket,",
-      "      key: value",
-      "    )",
-      "",
+      "    socket",
+      "    |> assign(:${3:key}, ${4:value})",
+      "  $0",
       "  {:noreply, socket}",
       "end"
     ]
@@ -69,21 +82,32 @@
     "prefix": "hin",
     "description": "Handle info",
     "body": [
-      "def handle_info($1, ${2:socket}) do",
+      "def handle_info($1, socket) do",
       "  socket =",
-      "    assign(socket,",
-      "      key: value",
-      "    )",
-      "",
-      "  {:noreply, ${2:socket}}",
+      "    socket",
+      "    |> assign(:${2:key}, ${3:value})",
+      "  $0",
+      "  {:noreply, socket}",
       "end"
     ]
+  },
+  "handle_params": {
+    "prefix": "hp",
+    "body": [
+      "def handle_params(params, _url, socket) do",
+      "  {:noreply, socket}",
+      "end"
+    ],
+    "description": "LiveView handle_params function"
   },
   "lv_mount": {
     "prefix": "mount",
     "body": [
       "def mount(_params, _session, socket) do",
-      "  socket = assign(socket, ${1:key}: ${2:value})",
+      "  socket =",
+      "    socket",
+      "    |> assign(:${1:key}, ${2:value})",
+      "  $0",
       "  {:ok, socket}",
       "end"
     ],
@@ -99,35 +123,6 @@
       "end"
     ],
     "description": "LiveView render function"
-  },
-  "lv_handle_event": {
-    "prefix": "he",
-    "body": [
-      "def handle_event(\"${1:event}\", _params, socket) do",
-      "  socket = assign(socket, ${2:key}: ${3:value})",
-      "  {:noreply, socket}",
-      "end"
-    ],
-    "description": "LiveView handle_event function"
-  },
-  "lv_handle_info": {
-    "prefix": "hi",
-    "body": [
-      "def handle_info(${1:message}, socket) do",
-      "  socket = assign(socket, ${2:key}: ${3:value})",
-      "  {:noreply, socket}",
-      "end"
-    ],
-    "description": "LiveView handle_info function"
-  },
-  "lv_handle_params": {
-    "prefix": "hp",
-    "body": [
-      "def handle_params(params, _url, socket) do",
-      "  {:noreply, socket}",
-      "end"
-    ],
-    "description": "LiveView handle_params function"
   },
   "lc_mount": {
     "prefix": "lc_mount",
