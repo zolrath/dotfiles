@@ -1,3 +1,5 @@
+local util = require("lspconfig").util
+
 local tailwind_filetypes = {
   "html",
   "typescriptreact",
@@ -11,6 +13,7 @@ local tailwind_filetypes = {
   "heex",
   "elixir",
 }
+
 return {
   -- add tailwind to mason
   {
@@ -31,6 +34,14 @@ return {
       })
     end,
   },
+  {
+    "NvChad/nvim-colorizer.lua",
+    opts = {
+      user_default_options = {
+        tailwind = true,
+      },
+    },
+  },
   -- add tailwind
   {
     "neovim/nvim-lspconfig",
@@ -38,6 +49,7 @@ return {
       servers = {
         tailwindcss = {
           filetypes = tailwind_filetypes,
+          root_dir = util.root_pattern("tailwind.config.js", ".git"),
           init_options = {
             userLanguages = {
               elixir = "phoenix-heex",
@@ -86,6 +98,7 @@ return {
                 classRegex = {
                   [[class= "([^"]*)]],
                   [[class: "([^"]*)]],
+                  'class[:]\\s*"([^"]*)"',
                   '~H""".*class="([^"]*)".*"""',
                 },
               },

@@ -6,9 +6,9 @@ local entries = {
     end,
   },
   {
-    "zolrath/elixir-tools.nvim",
-    branch = "projectionist-heex-leex",
-    --"elixir-tools/elixir-tools.nvim",
+    "elixir-tools/elixir-tools.nvim",
+    --"zolrath/elixir-tools.nvim",
+    --branch = "add-indentkeys-customization",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       local elixir = require("elixir")
