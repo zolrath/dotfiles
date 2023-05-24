@@ -2,6 +2,7 @@
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
 --
+--
 vim.api.nvim_create_autocmd("TermOpen", {
   callback = function(event)
     vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
@@ -25,6 +26,25 @@ vim.api.nvim_create_autocmd("FileType", {
   },
   command = "startinsert",
   group = vim.api.nvim_create_augroup("AutoInsert", { clear = true }),
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {
+    "elixir",
+  },
+  callback = function(_)
+    vim.cmd("setlocal indentkeys-=0{")
+    vim.cmd("setlocal indentkeys+=0=end")
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {
+    "eelixir",
+  },
+  callback = function(_)
+    vim.cmd("setlocal indentkeys+=0=end")
+  end,
 })
 
 -- ensure the parent folder exists, so it gets properly added to the lsp
