@@ -4,6 +4,10 @@
 status is-interactive || exit
 
 fzf_configure_bindings --directory=\cf --variables=\ev --git_log=\eo --git_status=\eg --processes=\ep
+set --export fzf_dir_opts --bind "ctrl-v:execute(nvim {} &> /dev/tty)"
+#set v (ls | fzf --bind "ctrl-v:execute(nvim {} &> /dev/tty)")
+
+set -Ux fifc_editor nvim
 
 set -x fish_color_command B7D847
 
@@ -23,4 +27,4 @@ set ZELLIJ_AUTO_EXIT true
 atuin init fish | source
 
 #eval (zellij setup --generate-auto-start fish | string collect)
-rtx activate fish | source
+~/.local/share/rtx/bin/rtx activate fish | source
