@@ -14,6 +14,8 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      { "aaronhallaert/ts-advanced-git-search.nvim" },
+      { "tpope/vim-fugitive" },
     },
     event = "VimEnter",
     keys = {
@@ -151,6 +153,7 @@ return {
         },
       })
       telescope.load_extension("fzf")
+      telescope.load_extension("advanced_git_search")
     end,
   },
 }
