@@ -10,11 +10,14 @@ abbr --add dotdot --regex '^\.\.+$' --function multicd
 abbr -a !! --position anywhere --function last_history_item
 
 alias mkt "cd (mktemp -d)"
-alias rm "rm -i"
-alias cp "cp -i"
-alias mv "mv -i"
+# alias rm "rm -i"
+# alias cp "cp -i"
+# alias mv "mv -i"
 alias ccd "clear && cd"
 alias cg "cd (git rev-parse --show-toplevel)"
+
+alias httpbin "docker run -p 80:80 kennethreitz/httpbin"
+alias pwsh "pwsh.exe"
 
 alias flt "zellij action new-tab --layout flow-testnet"
 alias fle "zellij action new-tab --layout flow-local"
