@@ -7,7 +7,7 @@ return {
     end,
   },
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     opts = function(_, opts)
       local null_ls = require("null-ls")
 
@@ -16,7 +16,7 @@ return {
       -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
       local diagnostics = null_ls.builtins.diagnostics
 
-      opts.sources = vim.list_extend(opts.sources, {
+      opts.sources = vim.list_extend(opts.sources or {}, {
         formatting.beautysh,
         diagnostics.shellcheck,
         diagnostics.zsh,
