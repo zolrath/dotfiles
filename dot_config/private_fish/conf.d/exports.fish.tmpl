@@ -61,8 +61,12 @@ set -x FLYCTL_INSTALL ~/.fly
 set -x ERL_AFLAGS "-kernel shell_history enabled"
 # Elixir XLA - use GPU
 set -x XLA_TARGET "cuda118"
+set -x TORCH_CUDA_VERSION "cu117"
 
 # Build Erlang docs to make elixir-ls happy
 set -x KERL_BUILD_DOCS yes
+
+set -x GCM_CREDENTIAL_STORE plaintext
+
 # source secrets file, not exposed in dotfiles
 source ~/.secrets
