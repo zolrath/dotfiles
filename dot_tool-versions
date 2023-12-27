@@ -7,3 +7,4 @@ lazygit 0.37.0
 delta   0.15.1
 java    adoptopenjdk-17.0.6+10
 clojure 1.11.1.1273
+neovim  latest
