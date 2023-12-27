@@ -3,7 +3,6 @@ elixir  1.14.4-otp-25
 nodejs  18.15.0
 chezmoi 2.33.1
 python  3.11.1
-neovim  nightly
 lazygit 0.37.0
 delta   0.15.1
 java    adoptopenjdk-17.0.6+10
