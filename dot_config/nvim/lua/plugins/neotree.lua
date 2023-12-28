@@ -2,11 +2,17 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     cmd = "Neotree",
-    opts = function(_, opts)
-      opts.close_if_last_window = true -- Close Neo-tree if it is the last window left in the tab
-      opts.filesystem.follow_current_file =
-        vim.list_extend(opts.filesystem.follow_current_file or {}, { enabled = true })
-      opts.filesystem = {
+    opts = {
+      close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
+      buffers = {
+        follow_current_file = {
+          enabled = true,
+        },
+      },
+      filesystem = {
+        follow_current_file = {
+          enabled = true,
+        },
         hide_gitignored = true,
         group_empty_dirs = true, -- when true, empty folders will be grouped together
         hijack_netrw_behavior = "open_current",
@@ -28,7 +34,7 @@ return {
             end,
           },
         },
-      }
-    end,
+      },
+    },
   },
 }
