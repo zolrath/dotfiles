@@ -20,6 +20,14 @@ else
     skip 'cargo watch'
 fi
 
+if ! [ -x "$(command -v cargo-update)" ]; then
+    info '📦👀 Installing cargo update'
+    cargo install cargo-update
+    success 'cargo update'
+else
+    skip 'cargo update'
+fi
+
 # Find unused dependencies in Cargo.toml.
 # https://github.com/est31/cargo-udeps
 if ! [ -x "$(command -v cargo-udeps)" ]; then
@@ -65,7 +73,6 @@ if ! [ -x "$(command -v hyperfine)" ]; then
 else
     skip 'hyperfine'
 fi
-
 
 if ! [ -x "$(command -v hexyl)" ]; then
     info '0xff Installing hexyl'
