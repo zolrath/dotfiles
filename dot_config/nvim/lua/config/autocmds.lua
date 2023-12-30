@@ -62,7 +62,7 @@ vim.api.nvim_create_autocmd("BufNewFile", {
 })
 
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = { "*.livemd" },
+  pattern = { "*.livemd", "*.mdx" },
   callback = function()
     vim.cmd("set filetype=markdown")
   end,
