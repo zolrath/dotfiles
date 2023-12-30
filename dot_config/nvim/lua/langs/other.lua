@@ -9,6 +9,7 @@ return {
         "git_rebase",
         "markdown",
         "regex",
+        "odin",
         "yaml",
       })
     end,
