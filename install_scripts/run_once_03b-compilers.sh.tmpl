@@ -14,15 +14,49 @@ else
     skip 'gcc'
 fi
 
+if ! [ -x "$(command -v llvm)" ]; then
+    info '🤖 Installing llvm'
+    sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+    success 'llvm'
+else
+    skip 'llvm'
+fi
+
+if ! [ -x "$(command -v clang)" ]; then
+    info '🤖 Installing clang'
+    apt-get -y install clang
+    success 'clang'
+else
+    skip 'clang'
+fi
+
 {{ else if eq .chezmoi.os "darwin" -}}
 
-
-if ! xcode-select --version &> /dev/null; then
+if
+! xcode-select --version &
+>/dev/null
+then
     info 'Installing xcode cli tools'
     xcode-select --install
     success 'xcode cli tools'
 else
     skip 'xcode cli tools'
+fi
+
+if ! [ -x "$(command -v llvm)" ]; then
+    info '🤖 Installing llvm'
+    brew install llvm
+    success 'llvm'
+else
+    skip 'llvm'
+fi
+
+if ! [ -x "$(command -v clang)" ]; then
+    info '🤖 Installing clang'
+    brew install clang
+    success 'clang'
+else
+    skip 'clang'
 fi
 
 {{ end -}}

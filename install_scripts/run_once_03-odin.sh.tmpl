@@ -1,0 +1,43 @@
+#!/bin/sh
+
+. $HOME/.local/share/chezmoi/helpers
+
+echo ''
+
+info '💧 Installing odin'
+
+{{ if eq .chezmoi.os "linux" -}}
+
+info '💧 Installing necessary packages for Odin Language Server compilation'
+
+if ! [ -x "$(command -v clang)" ]; then
+    info '🤖 Installing clang'
+    apt-get -y install clang
+    success 'clang'
+else
+    skip 'clang'
+fi
+
+{{ else if eq .chezmoi.os "darwin" -}}
+
+info '💧 Installing necessary packages for Odin Language Server compilation'
+
+if ! [ -x "$(command -v clang)" ]; then
+    info '🤖 Installing clang'
+    brew install clang
+    success 'clang'
+else
+    skip 'clang'
+fi
+
+{{ end -}}
+
+info '💧 Installing odin asdf'
+rtx plugin install odin https://github.com/dezzyne/asdf-odin.git
+success 'odin asdf'
+
+info '💧 Installing odin'
+rtx use --global odin
+success 'erlang'
+
+echo ''
