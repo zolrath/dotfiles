@@ -29,8 +29,17 @@ set -x LANGUAGE en_US.UTF-8
 
 {{ if eq .chezmoi.os "linux" -}}
 set -x LOC "desktop"
+
+# Set up Odin root folder so Odin Language Server knows where to index the core and vendor libraries
+set -x ODIN_ROOT ~/.local/share/rtx/installs/odin/dev-2023-12/bin
+
 {{ else if eq .chezmoi.os "darwin" -}}
+
 set -x LOC "laptop"
+
+# Set up Odin root folder so Odin Language Server knows where to index the core and vendor libraries
+set -x ODIN_ROOT ~/tools/odin
+
 set -x KERL_BUILD_DOCS yes
 set -x KERL_INSTALL_MANPAGES yes
 set -x wxUSE_MACOSX_VERSION_MIN 11.3

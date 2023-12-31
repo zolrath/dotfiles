@@ -9,6 +9,14 @@ function add_info_path
     test -e $argv[1]; and set -gx INFOPATH $INFOPATH $argv[1]
 end
 
+# Set paths
+
+{{ if eq .chezmoi.os "linux" -}}
+
+# Not sure if I have any linux only paths but uh, they'd go here.
+
+{{ else if eq .chezmoi.os "darwin" -}}
+
 # Homebrew paths
 set -gx HOMEBREW_PREFIX /opt/homebrew
 set -gx HOMEBREW_CELLAR /opt/homebrew/Cellar
@@ -17,15 +25,15 @@ fish_add_path /opt/homebrew/bin
 add_man_path /opt/homebrew/share/man
 add_info_path /opt/homebrew/share/info
 
+# Homebrew LLVM
+fish_add_path /usr/local/opt/llvm/bin
+{{ end -}}
+
 # Add CUDA to path
 fish_add_path /usr/local/cuda/bin
 
 # Fly.io cli path
 fish_add_path "$FLYCTL_INSTALL/bin"
-
-# Solana cli path
-fish_add_path ~/.local/share/solana/install/active_release/bin
-fish_add_path ~/.avm/bin
 
 # My paths
 fish_add_path ~/.cargo/bin
@@ -33,3 +41,4 @@ fish_add_path ~/.local/scripts
 fish_add_path ~/.local/bin
 fish_add_path ~/bin
 fish_add_path ~/local/share/rtx/installs/elixir/1.14.4-otp-25/.mix/escripts/
+fish_add_path ~/tools/odin
