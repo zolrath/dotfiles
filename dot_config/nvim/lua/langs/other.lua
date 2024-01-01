@@ -10,8 +10,22 @@ return {
         "markdown",
         "regex",
         "odin",
+        "zig",
         "yaml",
       })
     end,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        ols = {
+          setup = {},
+        },
+        zls = {
+          setup = {},
+        },
+      },
+    },
   },
 }
