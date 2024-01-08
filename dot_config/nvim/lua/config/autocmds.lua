@@ -61,6 +61,7 @@ vim.api.nvim_create_autocmd("BufNewFile", {
   group = vim.api.nvim_create_augroup("Mkdir", { clear = true }),
 })
 
+-- livemd for Elixir and mdx are both markdown based
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = { "*.livemd", "*.mdx" },
   callback = function()
@@ -68,6 +69,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   end,
 })
 
+-- chezmoi .sh.tmpl files are templated .sh
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = { "*.sh.tmpl" },
   callback = function()
@@ -82,9 +84,31 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
   end,
 })
 
+-- fix cadence filetype
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = { "*.cdc" },
   callback = function()
     vim.cmd("set filetype=cadence")
+  end,
+})
+
+--fix odin comment string
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {
+    "odin",
+  },
+  callback = function(_)
+    vim.cmd("setlocal commentstring=//%s")
+  end,
+})
+
+--fix terraform and hcl comment string
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {
+    "terraform",
+    "hcl",
+  },
+  callback = function(_)
+    vim.cmd("setlocal commentstring=#%s")
   end,
 })
