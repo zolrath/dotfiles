@@ -1,5 +1,15 @@
 return {
   {
+    "antosha417/nvim-lsp-file-operations",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-neo-tree/neo-tree.nvim",
+    },
+    config = function()
+      require("lsp-file-operations").setup()
+    end,
+  },
+  {
     "nvim-neo-tree/neo-tree.nvim",
     cmd = "Neotree",
     opts = {
@@ -12,6 +22,7 @@ return {
       filesystem = {
         follow_current_file = {
           enabled = true,
+          leave_dirs_open = false,
         },
         hide_gitignored = true,
         group_empty_dirs = true, -- when true, empty folders will be grouped together
@@ -33,6 +44,21 @@ return {
               }
             end,
           },
+        },
+      },
+      git_status = {
+        symbols = {
+          -- Change type
+          added = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
+          modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
+          deleted = "✖", -- this can only be used in the git_status source
+          renamed = "󰁕", -- this can only be used in the git_status source
+          -- Status type
+          untracked = "",
+          ignored = "",
+          unstaged = "󰄱",
+          staged = "",
+          conflict = "",
         },
       },
     },
