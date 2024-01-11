@@ -8,11 +8,16 @@ info '⚙️ Installing python asdf'
 rtx plugin install python
 success 'python asdf'
 
+info '⚙️  Installing python prereqs'
+# This fixes the "No module named '_ctypes'" error when using aws cli
+sudo apt-get install libffi-dev
+success 'python prereqs'
+
 info '🐍 Installing python'
 #{{ if eq .chezmoi.os "darwin" -}}
 # export ASDF_PYTHON_PATCH_URL="https://github.com/python/cpython/commit/8ea6353.patch?full_index=1"
 #{{ end -}}
-rtx use --global python 3.11.1
+rtx use --global python 3.12.1
 success 'python'
 
 echo ''
