@@ -84,6 +84,13 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+  pattern = "*.astro",
+  callback = function()
+    vim.cmd("set filetype=astro")
+  end,
+})
+
 -- fix cadence filetype
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = { "*.cdc" },

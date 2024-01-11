@@ -12,6 +12,7 @@ return {
         "odin",
         "zig",
         "yaml",
+        "astro",
       })
     end,
   },
