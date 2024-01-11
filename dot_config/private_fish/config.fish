@@ -25,6 +25,7 @@ set ZELLIJ_AUTO_ATTACH false
 set ZELLIJ_AUTO_EXIT true
 
 atuin init fish | source
+direnv hook fish | source
 
 #eval (zellij setup --generate-auto-start fish | string collect)
 ~/.local/share/rtx/bin/rtx activate fish | source
