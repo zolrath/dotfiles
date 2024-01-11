@@ -1,0 +1,32 @@
+#!/bin/bash
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+{{ if eq .chezmoi.os "darwin" -}}
+
+info '☁️  Installing AWS CLI'
+brew install awscli
+success 'AWS CLI'
+
+{{ else if eq .chezmoi.os "linux" -}}
+
+if ! [ -x "$(command -v aws)" ]; then
+    info '☁️  Installing AWS CLI'
+    cd /tmp
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    unzip -u awscliv2.zip
+    sudo ./aws/install
+    success 'AWS CLI'
+else
+    skip 'AWS CLI'
+fi
+
+{{ end -}}
+
+info '☁️  Installing AWS Shell'
+pip3 install aws-shell
+success 'AWS CLI'
+
+echo ''
