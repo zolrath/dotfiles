@@ -134,4 +134,14 @@ else
     skip 'oha'
 fi
 
+if ! [ -x "$(command -v eza)" ]; then
+    info '🐢 Installing eza'
+
+    cargo install eza
+
+    success 'eza'
+else
+    skip 'eza'
+fi
+
 echo ''
