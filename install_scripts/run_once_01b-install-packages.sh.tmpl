@@ -8,7 +8,7 @@ info '📦 Installing packages'
 
 {{ if eq .chezmoi.os "linux" -}}
 
-sudo apt install -y ripgrep fzf chafa jq direnv
+sudo apt install -y ripgrep fzf chafa jq direnv fd-find
 
 if ! [ -x "$(command -v lazydocker)" ]; then
 
@@ -32,7 +32,7 @@ fi
 
 {{ else if eq .chezmoi.os "darwin" -}}
 
-brew install ripgrep fzf gnu-sed glow chafa lazydocker jq direnv
+brew install ripgrep fzf gnu-sed glow chafa lazydocker jq direnv fd
 
 {{ end -}}
 
