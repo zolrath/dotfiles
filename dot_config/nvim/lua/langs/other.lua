@@ -13,6 +13,7 @@ return {
         "zig",
         "yaml",
         "astro",
+        "terraform",
       })
     end,
   },
