@@ -6,9 +6,7 @@ function prjsesh --description "create session in project folder"
 
     # determine the project home
     set -q PROJECTS || set PROJECTS ~/code
-    set -l gitprj_git $PROJECTS/*/.git/ $PROJECTS/*/*/.git/ $PROJECTS/*/*/*/.git/
-    set -l gitprj (dirname $gitprj_git)
-
+    set -l gitprj (find $PROJECTS -type d -name ".git" -maxdepth 4 -exec dirname {} \;)
     set prjlist (string replace $PROJECTS/ "" (realpath $gitprj))
     set selection (printf "%s\n" $prjlist | sort | fzf --layout=reverse-list --query="$argv")
 
