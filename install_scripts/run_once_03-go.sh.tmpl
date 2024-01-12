@@ -1,0 +1,15 @@
+#!/bin/sh
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+info '🥶 Installing go asdf'
+rtx plugin install go
+success 'go asdf'
+
+info '🥶 Installing go'
+rtx use --global go@latest
+success 'go'
+
+echo ''
