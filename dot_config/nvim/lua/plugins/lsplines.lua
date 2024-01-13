@@ -1,6 +1,8 @@
 return {
   {
-    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    -- "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    -- SourceHut is currently down, use personal mirror
+    "zolrath/lsp_lines.nvim",
     config = function()
       require("lsp_lines").setup()
     end,
