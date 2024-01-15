@@ -27,6 +27,9 @@ return {
         zls = {
           setup = {},
         },
+        astro = {
+          setup = {},
+        },
       },
     },
   },
