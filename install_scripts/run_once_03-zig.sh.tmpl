@@ -1,0 +1,15 @@
+#!/bin/sh
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+info '⚡️ Installing zig asdf'
+rtx plugin install zig
+success 'zig asdf'
+
+info '⚡️ Installing zig'
+rtx use --global zig@latest
+success 'zig'
+
+echo ''
