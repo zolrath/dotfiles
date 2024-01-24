@@ -1,0 +1,27 @@
+#!/bin/bash
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+{{ if eq .chezmoi.os "darwin" -}}
+
+info '📁 Installing yazi'
+brew install yazi ffmpegthumbnailer unar jq poppler fd ripgrep fzf zoxide
+brew tap homebrew/cask-fonts && brew install --cask font-symbols-only-nerd-font
+success 'yazi'
+
+{{ else if eq .chezmoi.os "linux" -}}
+
+if ! [ -x "$(command -v yazi)" ]; then
+    info '📁 Installing yazi'
+    sudo apt install ffmpegthumbnailer jq unar fd-find ripgrep fzf zoxide
+    cargo install --locked yazi-fm
+    success 'yazi'
+else
+    skip 'yazi'
+fi
+
+{{ end -}}
+
+echo ''
