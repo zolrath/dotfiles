@@ -99,6 +99,14 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   end,
 })
 
+-- fix go templ filetype
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "*.templ" },
+  callback = function()
+    vim.cmd("set filetype=templ")
+  end,
+})
+
 --fix odin comment string
 vim.api.nvim_create_autocmd("FileType", {
   pattern = {

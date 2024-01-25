@@ -13,6 +13,7 @@ local tailwind_filetypes = {
   "heex",
   "elixir",
   "astro",
+  "templ",
 }
 
 return {
@@ -58,6 +59,7 @@ return {
               heex = "phoenix-heex",
               svelte = "html",
               surface = "phoenix-heex",
+              templ = "html",
             },
           },
           handlers = {
@@ -78,6 +80,7 @@ return {
               erb = "html",
               svelte = "html",
               surface = "html",
+              templ = "html",
             },
             tailwindCSS = {
               lint = {
