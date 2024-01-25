@@ -1,5 +1,9 @@
 return {
   {
+    "NoahTheDuke/vim-just",
+    ft = { "just" },
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {

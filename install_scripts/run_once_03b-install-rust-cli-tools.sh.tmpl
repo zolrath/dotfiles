@@ -136,12 +136,18 @@ fi
 
 if ! [ -x "$(command -v eza)" ]; then
     info '🐢 Installing eza'
-
     cargo install eza
-
     success 'eza'
 else
     skip 'eza'
+fi
+
+if ! [ -x "$(command -v just)" ]; then
+    info '🐢 Installing just'
+    cargo binstall just
+    success 'just'
+else
+    skip 'just'
 fi
 
 echo ''

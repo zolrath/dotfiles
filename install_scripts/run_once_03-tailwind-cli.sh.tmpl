@@ -1,0 +1,27 @@
+#!/bin/sh
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+info '🍃 Installing tailwindcss cli'
+
+#{{ if eq .chezmoi.os "darwin" -}}
+
+cd /tmp/
+curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-macos-x64
+chmod +x tailwindcss-macos-x64
+mv tailwindcss-macos-x64 ~/bin/tailwindcss
+
+{{ else if eq .chezmoi.os "linux" -}}
+
+cd /tmp/
+curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64
+chmod +x tailwindcss-linux-x64
+mv tailwindcss-linux-x64 ~/bin/tailwindcss
+
+#{{ end -}}
+
+success 'tailwindcss cli'
+
+echo ''

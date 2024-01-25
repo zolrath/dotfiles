@@ -4,12 +4,13 @@
 
 echo ''
 
-info '🥶 Installing go asdf'
-rtx plugin install go
-success 'go asdf'
-
 info '🥶 Installing go'
+rtx install go@latest
 rtx use --global go@latest
 success 'go'
+
+info '💨 Installing air'
+go install github.com/cosmtrek/air@latest
+success 'air'
 
 echo ''
