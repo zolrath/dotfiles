@@ -25,7 +25,7 @@ return {
           leave_dirs_open = false,
         },
         hide_gitignored = true,
-        group_empty_dirs = true, -- when true, empty folders will be grouped together
+        group_empty_dirs = false, -- when true, empty folders will be grouped together
         hijack_netrw_behavior = "open_current",
         window = {
           mappings = {
