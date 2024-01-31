@@ -33,6 +33,13 @@ return {
             "heex",
             "eex",
             "elixir",
+            "templ",
+          },
+        },
+        htmx = {
+          filetypes = {
+            "html",
+            "templ",
           },
         },
       },
