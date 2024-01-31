@@ -30,6 +30,12 @@ else
     skip 'glow'
 fi
 
+info '📦 Installing wslu'
+sudo add-apt-repository ppa:wslutilities/wslu
+sudo apt update
+sudo apt install wslu
+success 'wslu'
+
 {{ else if eq .chezmoi.os "darwin" -}}
 
 brew install ripgrep fzf gnu-sed glow chafa lazydocker jq direnv fd

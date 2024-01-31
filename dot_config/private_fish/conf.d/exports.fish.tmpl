@@ -33,6 +33,9 @@ set -x LOC "desktop"
 # Set up Odin root folder so Odin Language Server knows where to index the core and vendor libraries
 set -x ODIN_ROOT ~/.local/share/rtx/installs/odin/dev-2023-12/bin
 
+# Use wslu fake browser to open links in Windows
+export BROWSER=wslview
+
 {{ else if eq .chezmoi.os "darwin" -}}
 
 set -x LOC "laptop"
