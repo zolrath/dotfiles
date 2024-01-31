@@ -9,7 +9,8 @@ local entries = {
     "elixir-tools/elixir-tools.nvim",
     --"zolrath/elixir-tools.nvim",
     --branch = "add-indentkeys-customization",
-    event = { "BufReadPre", "BufNewFile" },
+    -- event = { "BufReadPre", "BufNewFile" },
+    ft = { "elixir" },
     config = function()
       local elixir = require("elixir")
       local elixirls = require("elixir.elixirls")
