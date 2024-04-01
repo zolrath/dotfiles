@@ -1,0 +1,11 @@
+#!/bin/bash
+
+function dbdown {
+    for id in $(docker ps --format '{{.Names}}' --filter "expose=5432"); do
+        echo Stopping "$(docker stop "$id")"
+    done
+}
+
+if [ ${#BASH_SOURCE[@]} -eq 1 ]; then
+    dbdown
+fi

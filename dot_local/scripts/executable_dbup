@@ -1,0 +1,25 @@
+#!/bin/bash
+
+source dblist
+source dbdown
+
+function dbup {
+    if [[ $(docker ps --all --format '{{.Names}}') =~ $1_dev ]]; then
+        if [[ $(docker ps --format '{{.Names}}') =~ $1_dev ]]; then
+            echo "$1_dev already running"
+        else
+            dbdown
+            echo Starting "$(docker start "$1_dev")"
+        fi
+    else
+        echo "Whoa, never heard of that database. Here's what I know of:"
+        echo ""
+        dblist
+        echo ""
+        echo "To create a new dev database use \`dbnew <dbname>\`"
+    fi
+}
+
+if [ ${#BASH_SOURCE[@]} -eq 1 ]; then
+    dbup "$@"
+fi

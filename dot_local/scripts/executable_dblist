@@ -1,0 +1,16 @@
+#!/bin/bash
+
+function dblist {
+    active=$(docker ps --format '{{.Names}}' --filter "expose=5432" --filter "name=_dev\$")
+    for db in $(docker ps --all --filter "name=_dev\$" --format "{{.Names}}" | sort); do
+        if [[ $active =~ $db ]]; then
+            echo "${db%_dev} 👈"
+        else
+            echo "${db%_dev}"
+        fi
+    done
+}
+
+if [ ${#BASH_SOURCE[@]} -eq 1 ]; then
+    dblist
+fi

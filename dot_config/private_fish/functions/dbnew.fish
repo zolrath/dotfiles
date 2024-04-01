@@ -3,7 +3,7 @@ function dbnew --argument-names db_name
         dbdown
         set filtered (string replace -r '_dev$' '' $db_name)_dev
 
-        docker run --name $filtered -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres 1>/dev/null
+        docker run --name $filtered -e POSTGRES_DB=$filtered -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres 1>/dev/null
         if test $status -eq 0
             echo "Created new dev db: $filtered"
         else

@@ -1,0 +1,24 @@
+#!/bin/bash
+
+source dbdown
+
+function dbnew {
+	if [[ -n "$1" ]]; then
+		dbdown
+		filtered=${1%_dev}_dev
+
+		if docker run --name "$filtered" -e POSTGRES_DB="$filtered" -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres 1>/dev/null; then
+			echo "Created new dev db: $filtered"
+		else
+			echo "Failed to new dev db: $filtered"
+		fi
+	else
+		echo "You must provide a database name: \`dbnew <dbname>\`"
+		echo "REMINDER: This command will append _dev to the name provided."
+		echo "Simply use the name of the project, do not include _dev yourself."
+	fi
+}
+
+if [ ${#BASH_SOURCE[@]} -eq 1 ]; then
+	dbnew "$@"
+fi
