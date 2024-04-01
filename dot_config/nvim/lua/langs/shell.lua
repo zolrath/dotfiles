@@ -17,8 +17,8 @@ return {
       local diagnostics = null_ls.builtins.diagnostics
 
       opts.sources = vim.list_extend(opts.sources or {}, {
-        formatting.beautysh,
-        diagnostics.shellcheck,
+        -- formatting.beautysh,
+        -- diagnostics.shellcheck,
         diagnostics.zsh,
         diagnostics.fish,
       })

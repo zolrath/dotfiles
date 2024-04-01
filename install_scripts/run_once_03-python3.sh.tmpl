@@ -5,7 +5,7 @@
 echo ''
 
 info '⚙️ Installing python asdf'
-rtx plugin install python
+mise plugin install python
 success 'python asdf'
 
 info '⚙️  Installing python prereqs'
@@ -17,7 +17,11 @@ info '🐍 Installing python'
 #{{ if eq .chezmoi.os "darwin" -}}
 # export ASDF_PYTHON_PATCH_URL="https://github.com/python/cpython/commit/8ea6353.patch?full_index=1"
 #{{ end -}}
-rtx use --global python 3.12.1
+mise use --global python 3.12.1
 success 'python'
+
+info '🐍 Installing rye'
+curl -sSf https://rye-up.com/get | bash
+success 'rye'
 
 echo ''

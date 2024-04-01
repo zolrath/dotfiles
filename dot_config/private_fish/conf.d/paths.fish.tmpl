@@ -17,6 +17,7 @@ end
 
 {{ else if eq .chezmoi.os "darwin" -}}
 
+
 # Homebrew paths
 set -gx HOMEBREW_PREFIX /opt/homebrew
 set -gx HOMEBREW_CELLAR /opt/homebrew/Cellar
@@ -29,16 +30,23 @@ add_info_path /opt/homebrew/share/info
 fish_add_path /usr/local/opt/llvm/bin
 {{ end -}}
 
+# Add Mojo to path
+fish_add_path /home/furd/.modular/pkg/packages.modular.com_mojo/bin
+
 # Add CUDA to path
 fish_add_path /usr/local/cuda/bin
 
 # Fly.io cli path
 fish_add_path "$FLYCTL_INSTALL/bin"
 
+# Encore path
+fish_add_path "$ENCORE_INSTALL/bin"
+
 # My paths
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.local/scripts
 fish_add_path ~/.local/bin
 fish_add_path ~/bin
-fish_add_path ~/local/share/rtx/installs/elixir/1.14.4-otp-25/.mix/escripts/
+fish_add_path ~/local/share/mise/installs/elixir/1.16.2-otp-26/.mix/escripts/
 fish_add_path ~/tools/odin
+fish_add_path ~/.rye/shims

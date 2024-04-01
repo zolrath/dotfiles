@@ -28,7 +28,7 @@ atuin init fish | source
 direnv hook fish | source
 
 #eval (zellij setup --generate-auto-start fish | string collect)
-~/.local/share/rtx/bin/rtx activate fish | source
+~/.local/bin/mise activate fish | source
 
 function storePathForWindowsTerminal --on-variable PWD
     if test -n "$WT_SESSION"

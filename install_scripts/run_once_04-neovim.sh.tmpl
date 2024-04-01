@@ -6,8 +6,8 @@ echo ''
 
 if ! [ -x "$(command -v nvim)" ]; then
     info '💻 Installing asdf neovim'
-    rtx plugin add neovim
-    rtx global neovim stable
+    mise plugin add neovim
+    mise use --global neovim@stable
     success 'asdf neovim'
 else
     skip 'asdf neovim'

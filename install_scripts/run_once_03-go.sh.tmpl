@@ -5,20 +5,36 @@
 echo ''
 
 info '🥶 Installing go'
-rtx install go@latest
-rtx use --global go@latest
+mise install go@latest
+mise use --global go@latest
 success 'go'
 
 info '💨 Installing air'
 go install github.com/cosmtrek/air@latest
 success 'air'
 
+info '📈 Installing gomon'
+go install github.com/jdudmesh/gomon@latest
+success 'gomon'
+
 info '🖥️ Installing templ'
 go install github.com/a-h/templ/cmd/templ@latest
 success 'templ'
 
+info '📄 Installing task'
+go install github.com/go-task/task/v3/cmd/task@latest
+success 'task'
+
 info '📄 Installing gofumpt'
 go install mvdan.cc/gofumpt@latest
 success 'gofumpt'
+
+info '👏 Installing encore'
+curl -L https://encore.dev/install.sh | bash
+success 'encore'
+
+info '📦 Installing sqlc'
+go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
+success 'sqlc'
 
 echo ''

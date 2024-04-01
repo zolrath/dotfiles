@@ -1,0 +1,13 @@
+#!/bin/sh
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+info '🔥 Installing mojo'
+curl https://get.modular.com | sh - &&
+modular auth mut_43c6703956b748638d046636d54b739c
+modular install mojo
+success 'mojo'
+
+echo ''

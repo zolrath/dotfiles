@@ -10,35 +10,35 @@ info '📂 Updating apt registry'
 sudo apt update
 sudo apt install -y curl git
 
-if ! [ -x "$(command -v rtx)" ]; then
-    info '💻 Installing rtx'
-    curl https://rtx.pub/install.sh | sh
-    success 'rtx'
+if ! [ -x "$(command -v mise)" ]; then
+	info '💻 Installing mise'
+	curl https://mise.run | sh
+	success 'mise'
 else
-    skip 'rtx'
+	skip 'mise'
 fi
 
 {{ else if eq .chezmoi.os "darwin" -}}
 
 # homebrew install
 if ! [ -x "$(command -v brew)" ]; then
-    info '☕ Installing homebrew'
-    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    success 'homebrew'
+	info '☕ Installing homebrew'
+	NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	success 'homebrew'
 else
-    skip 'homebrew, updating it instead.'
-    brew update
+	skip 'homebrew, updating it instead.'
+	brew update
 fi
 
 # asdf install
 brew install coreutils git
 
-if ! [ -x "$(command -v rtx)" ]; then
-    info '💻 Installing rtx'
-    (export RTX_INSTALL_PATH=~/.local/bin/rtx && curl https://rtx.pub/install.sh | sh)
-    success 'rtx'
+if ! [ -x "$(command -v mise)" ]; then
+	info '💻 Installing mise'
+	(export MISE_INSTALL_PATH=~/.local/bin/mise && curl https://mise.run | sh)
+	success 'mise'
 else
-    skip 'rtx'
+	skip 'mise'
 fi
 
 {{ end -}}
