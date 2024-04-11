@@ -1,4 +1,18 @@
 {
+  "debug_binding": {
+    "prefix": "bdbg",
+    "body": [
+      "binding() |> dbg(limit: 25)"
+    ],
+    "description": "dbg bindings"
+  },
+  "debug": {
+    "prefix": "pdb",
+    "body": [
+      "|> dbg()"
+    ],
+    "description": "dbg in a pipeline"
+  },
   "inspect": {
     "prefix": "lin",
     "body": [
