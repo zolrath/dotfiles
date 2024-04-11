@@ -13,31 +13,33 @@ vim.g.loaded_perl_provider = 0
 vim.o.relativenumber = true
 
 -- Set paste directly - greatly improves startup time
-local is_wsl = os.getenv("WSL_DISTRO_NAME") ~= nil
-local is_osx = vim.loop.os_uname().sysname == "Darwin"
+-- local is_wsl = os.getenv("WSL_DISTRO_NAME") ~= nil
+-- local is_osx = vim.loop.os_uname().sysname == "Darwin"
 
-if is_wsl then
-  vim.g.clipboard = {
-    copy = {
-      ["+"] = "win32yank.exe -i --crlf",
-      ["*"] = "win32yank.exe -i --crlf",
-    },
-    paste = {
-      ["+"] = "win32yank.exe -o --lf",
-      ["*"] = "win32yank.exe -o --lf",
-    },
-    cache_enabled = true,
-  }
-elseif is_osx then
-  vim.g.clipboard = {
-    copy = { ["+"] = "pbcopy", ["*"] = "pbcopy" },
-    paste = { ["+"] = "pbpaste", ["*"] = "pbpaste" },
-    cache_enabled = true,
-  }
-else
-  vim.g.clipboard = {
-    copy = { ["+"] = "xsel --nodetach -i -b", ["*"] = "xsel --nodetach -i -p" },
-    paste = { ["+"] = "xsel  -o -b", ["*"] = "xsel  -o -b" },
-    cache_enabled = true,
-  }
-end
+vim.opt.clipboard = ""
+-- if is_wsl then
+--   -- require("config.paste").setup()
+--   vim.g.clipboard = {
+--     copy = {
+--       ["+"] = "win32yank.exe -i --crlf",
+--       ["*"] = "win32yank.exe -i --crlf",
+--     },
+--     paste = {
+--       ["+"] = "win32yank.exe -o --lf",
+--       ["*"] = "win32yank.exe -o --lf",
+--     },
+--     cache_enabled = true,
+--   }
+-- elseif is_osx then
+--   vim.g.clipboard = {
+--     copy = { ["+"] = "pbcopy", ["*"] = "pbcopy" },
+--     paste = { ["+"] = "pbpaste", ["*"] = "pbpaste" },
+--     cache_enabled = true,
+--   }
+-- else
+--   vim.g.clipboard = {
+--     copy = { ["+"] = "xsel --nodetach -i -b", ["*"] = "xsel --nodetach -i -p" },
+--     paste = { ["+"] = "xsel  -o -b", ["*"] = "xsel  -o -b" },
+--     cache_enabled = true,
+--   }
+-- end
