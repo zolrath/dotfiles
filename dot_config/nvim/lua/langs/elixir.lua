@@ -7,9 +7,11 @@ local entries = {
   },
   {
     "elixir-tools/elixir-tools.nvim",
-    --"zolrath/elixir-tools.nvim",
-    --branch = "add-indentkeys-customization",
-    -- event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "tpope/vim-projectionist",
+    },
+    event = { "BufReadPre", "BufNewFile" },
     ft = { "elixir" },
     config = function()
       local elixir = require("elixir")
@@ -32,10 +34,6 @@ local entries = {
         },
       })
     end,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "tpope/vim-projectionist",
-    },
   },
   -- add endwise for automatic end insertion
   {
