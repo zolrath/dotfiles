@@ -4,11 +4,7 @@
 
 echo ''
 
-info '⚙️ Installing python asdf'
-mise plugin install python
-success 'python asdf'
-
-info '⚙️  Installing python prereqs'
+info '🐍 Installing python prereqs'
 # This fixes the "No module named '_ctypes'" error when using aws cli
 sudo apt-get install libffi-dev
 success 'python prereqs'
@@ -17,11 +13,17 @@ info '🐍 Installing python'
 #{{ if eq .chezmoi.os "darwin" -}}
 # export ASDF_PYTHON_PATCH_URL="https://github.com/python/cpython/commit/8ea6353.patch?full_index=1"
 #{{ end -}}
-mise use --global python 3.12.1
+mise use --global python@3.12.3
 success 'python'
 
-info '🐍 Installing rye'
-curl -sSf https://rye-up.com/get | bash
-success 'rye'
+if ! [ -x "$(command -v uv)" ]; then
+info '🐍 Installing uv'
+curl -LsSf https://astral.sh/uv/install.sh | sh
+success 'uv'
+else
+    info '🐍 uv already installed, updating'
+    uv self update
+    skip 'uv'
+fi
 
 echo ''
