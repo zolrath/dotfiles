@@ -1,0 +1,28 @@
+#!/bin/bash
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+{{ if eq .chezmoi.os "linux" -}}
+if ! [ -x "$(command -v google-chrome)" ]; then
+	info '🌐 Installing chrome'
+	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+	sudo apt install ./google-chrome-stable_current_amd64.deb
+else
+	skip 'chrome'
+fi
+
+if ! [ -x "$(command -v chromedriver)" ]; then
+	info '🤖 Installing chromedriver'
+	latest=$(curl https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_124)
+	wget https://storage.googleapis.com/chrome-for-testing-public/$latest/linux64/chromedriver-linux64.zip
+	unzip chromedriver_linux64.zip
+	sudo chmod +x chromedriver
+	mv chromedriver ${HOME}/bin/chromedriver
+else
+	skip 'chromedriver'
+fi
+{{ end -}}
+
+echo ''
