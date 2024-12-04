@@ -28,7 +28,12 @@ atuin init fish | source
 direnv hook fish | source
 
 #eval (zellij setup --generate-auto-start fish | string collect)
-~/.local/bin/mise activate fish | source
+# ~/.local/bin/mise activate fish | source
+if status is-interactive
+    mise activate fish | source
+else
+    mise activate fish --shims | source
+end
 
 function storePathForWindowsTerminal --on-variable PWD
     if test -n "$WT_SESSION"
