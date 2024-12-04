@@ -1,0 +1,23 @@
+#!/bin/sh
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+info '🦅 Installing swift mise'
+mise plugin install swift
+success 'swift mise'
+
+info '🦅 Installing swift'
+mise use --global swift@latest
+success 'swift'
+
+info '🦅 Installing swiftlint mise'
+mise plugin install swiftlint
+success 'swiftlint mise'
+
+info '🦅 Installing swiftlint'
+mise use --global swiftlint@latest
+success 'swiftlint'
+
+echo ''

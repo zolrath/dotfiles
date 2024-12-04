@@ -1,6 +1,5 @@
 [tools]
 neovim = "latest"
-odin = "latest"
 erlang = "27"
 elixir = "1.17.3-otp-27"
 nodejs = "22"
@@ -11,3 +10,5 @@ lazygit = "latest"
 delta = "latest"
 java = "adoptopenjdk-17.0.6+10"
 clojure = "1.12"
+swift = "latest"
+swiftlint = "latest"
