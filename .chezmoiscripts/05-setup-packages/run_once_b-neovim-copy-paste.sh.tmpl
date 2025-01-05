@@ -4,7 +4,7 @@
   # If we're in WSL
   {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
 
-  . "$(chezmoi source-path)/helpers"
+  . "$(chezmoi target-path)/.czhelpers"
 
   echo ''
 

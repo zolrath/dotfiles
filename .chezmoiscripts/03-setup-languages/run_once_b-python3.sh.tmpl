@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. "$(chezmoi source-path)/helpers"
+. "$(chezmoi target-path)/.czhelpers"
 
 echo ''
 

@@ -35,7 +35,7 @@ misnamed_package="${misnamed_package} flow-cli:flow"
 package_install() {
 	maybe_install "brew install" "$1"
 }
-{{ if eq .chezmoi.os "linux" -}}
+{{ else if eq .chezmoi.os "linux" -}}
 package_install() {
 	maybe_install "sudo apt install -y" "$1"
 }
@@ -78,7 +78,7 @@ maybe_install() {
 		command_to_check=$(get_cli_name "$package")
 		if ! [ -x "$(command -v "$command_to_check")" ]; then
 			info "📦 Installing $package"
-			"$installer" "$package"
+			$installer "$package"
 			success "$package"
 		else
 			skip "$package"

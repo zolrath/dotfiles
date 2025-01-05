@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. "$(chezmoi source-path)/helpers"
+. "$(chezmoi target-path)/.czhelpers"
 
 echo ''
 
@@ -19,7 +19,7 @@ fi
 # install the most basic of terminal tools for further down the line
 package_install "coreutils git"
 
-{{ if eq .chezmoi.os "linux" -}}
+{{ else if eq .chezmoi.os "linux" -}}
 
 # install the most basic of terminal tools for further down the line
 package_install "curl git"
