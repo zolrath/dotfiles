@@ -4,9 +4,6 @@
 
 echo ''
 
-# Install composer
-package_install "composer"
-
 if ! [ -x "$(command -v laravel)" ]; then
 	info 'Installing laravel'
 	composer global require laravel/installer

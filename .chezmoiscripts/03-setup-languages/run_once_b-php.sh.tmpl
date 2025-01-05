@@ -18,9 +18,11 @@ export PHP_CONFIGURE_OPTIONS="--with-openssl=$(brew --prefix openssl) --with-ico
 
 {{ else if eq .chezmoi.os "linux" -}}
 # There are definitely other requirements for linux
+
+package_install "autoconf automake bison locate re2c gettext libicu-dev libgd-dev libxml2-dev libevent-dev zlib1g-dev libbz2-dev libgmp3-dev libssl-dev libcurl4-openssl-dev libjpeg-dev libpng-dev libonig-dev libpq-dev libzip-dev libmcrypt-dev memcached libmemcached-dev libc-client-dev libkrb5-dev"
 {{ end -}}
 
-mise install php
+mise install --yes php
 
 success 'php'
 
