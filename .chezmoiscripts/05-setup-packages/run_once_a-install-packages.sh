@@ -19,7 +19,7 @@ cargo_binstall "atuin"
 success 'core personal packages'
 
 info '📦 Installing git packages'
-package_install "lazygit gh"
+package_install "gh"
 cargo_binstall "difftastic"
 success 'git packages'
 

@@ -1,0 +1,37 @@
+#!/bin/sh
+
+. "$(chezmoi target-path)/.czhelpers"
+
+echo ''
+
+if ! [ -x "$(command -v "lazygit")" ]; then
+
+	info "Installing lazygit"
+
+	{{ if eq .chezmoi.os "darwin" -}}
+
+	package_install "lazygit"
+
+	{{ else if eq .chezmoi.os "linux" -}}
+
+	tmproot=${TMPDIR:-${TEMP:-${TMP:-/tmp}}}
+	cd "$tmproot"
+	tempdir=$(mktemp -d "lazygit.XXX")
+	cd "$tempdir"
+
+	LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
+	curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+	tar xf lazygit.tar.gz lazygit
+	sudo install lazygit -D -t ~/.local/bin/
+
+	cd "$tmproot"
+	rm -rf "$tempdir"
+
+	{{ end -}}
+
+	success "lazygit"
+else
+	skip "lazygit"
+fi
+
+echo ''
