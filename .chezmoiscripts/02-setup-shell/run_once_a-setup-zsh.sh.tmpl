@@ -6,6 +6,10 @@ echo ''
 
 info '📦 Setting up zsh'
 
+{{ if eq .chezmoi.os "linux" -}}
+package_install "zsh"
+{{ end -}}
+
 if ! [ -d "$HOME/powerlevel10k" ]; then
 	info 'Installing powerlevel10k'
 	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
@@ -16,6 +20,15 @@ else
 	git pull
 fi
 
-package_install "vivid"
+#=============
+# change default shell to zsh
+#=============
+if [ "$(basename "$SHELL")" = "zsh" ]; then
+	info 'Default shell is already zsh'
+else
+	info 'Changing default shell to zsh'
+	chsh -s $(which zsh)
+	success 'zsh set to default shell'
+fi
 
 echo ''

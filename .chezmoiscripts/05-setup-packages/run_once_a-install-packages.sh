@@ -28,7 +28,7 @@ info '📦 Installing convenience personal packages'
 package_install "trash"
 {{ end -}}
 package_install "zoxide ripgrep bat"
-cargo_binstall "eza"
+cargo_binstall "eza vivid"
 success 'convenience personal packages'
 
 info '📦 Installing yazi'
