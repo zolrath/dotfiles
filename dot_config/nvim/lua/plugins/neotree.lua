@@ -20,13 +20,22 @@ return {
         },
       },
       filesystem = {
+        filtered_items = {
+          visible = false,
+          hide_gitignored = true,
+          always_show_by_pattern = { -- uses glob style patterns
+            ".env*",
+            ".chezmoi*",
+            ".gitignore",
+          },
+        },
         follow_current_file = {
           enabled = true,
           leave_dirs_open = false,
         },
-        hide_gitignored = true,
         group_empty_dirs = false, -- when true, empty folders will be grouped together
-        hijack_netrw_behavior = "open_current",
+        hijack_netrw_behavior = "disabled",
+        --hijack_netrw_behavior = "open_current",
         window = {
           mappings = {
             ["l"] = "open",

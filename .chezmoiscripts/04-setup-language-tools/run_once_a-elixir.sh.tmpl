@@ -1,0 +1,19 @@
+#!/bin/sh
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+info '🔥🐣 Installing Phoenix'
+
+mix archive.install --force hex phx_new
+
+success "Phoenix"
+
+info '🔥🐣 Installing Livebook'
+
+mix escript.install --force hex livebook
+
+success "Livebook"
+
+echo ''

@@ -1,0 +1,17 @@
+#!/bin/sh
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+if ! [ -x "$(command -v uv)" ]; then
+	info 'Installing uv'
+	curl -LsSf https://astral.sh/uv/install.sh | sh
+	success 'uv'
+else
+	info 'uv already installed, updating'
+	uv self update
+	skip 'uv'
+fi
+
+echo ''

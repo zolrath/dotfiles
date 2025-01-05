@@ -1,0 +1,23 @@
+#!/bin/sh
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+{{ if eq .chezmoi.os "darwin" -}}
+
+package_install "flyctl"
+
+{{ else if eq .chezmoi.os "linux" -}}
+
+if ! [ -x "$(command -v flyctl)" ]; then
+	info '🚀 Installing flyctl'
+	curl -L https://fly.io/install.sh | sh
+	success 'flyctl'
+else
+	skip 'flyctl'
+fi
+
+{{ end -}}
+
+echo ''

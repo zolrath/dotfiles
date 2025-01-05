@@ -1,0 +1,36 @@
+# vim: ft=ghostty
+theme = catppuccin-macchiato
+font-size = 16
+
+window-height=35
+window-width=150
+
+macos-option-as-alt = true
+
+# Quake mode style terminal
+keybind = global:cmd+shift+space=toggle_quick_terminal
+quick-terminal-animation-duration = 0.1
+
+# Add bindings for moving between splits
+# These should be fast and not require a trigger.
+keybind = cmd+shift+h=goto_split:left
+keybind = cmd+shift+j=goto_split:bottom
+keybind = cmd+shift+k=goto_split:top
+keybind = cmd+shift+l=goto_split:right
+
+# Add bindings for resizing splits
+keybind = cmd+shift+equal=equalize_splits
+keybind = cmd+shift+down=resize_split:down,10
+keybind = cmd+shift+left=resize_split:left,10
+keybind = cmd+shift+up=resize_split:up,10
+keybind = cmd+shift+right=resize_split:right,10
+
+# Add bindings for creating splits/zooming.
+# These are "slow" commands so they can be behind a trigger sequence.
+keybind = cmd+s>h=new_split:left
+keybind = cmd+s>j=new_split:down
+keybind = cmd+s>k=new_split:up
+keybind = cmd+s>l=new_split:right
+keybind = cmd+s>n=new_split:auto
+keybind = cmd+s>d=close_surface
+keybind = cmd+s>z=toggle_split_zoom

@@ -1,5 +1,11 @@
 return {
   {
+    "williamboman/mason.nvim",
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, { "basedpyright" })
+    end,
+  },
+  {
     "NoahTheDuke/vim-just",
     ft = { "just" },
   },
@@ -13,8 +19,6 @@ return {
         "git_rebase",
         "markdown",
         "regex",
-        "odin",
-        "zig",
         "yaml",
         "astro",
         "terraform",
@@ -36,12 +40,6 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        ols = {
-          setup = {},
-        },
-        zls = {
-          setup = {},
-        },
         astro = {
           setup = {},
         },

@@ -1,0 +1,15 @@
+#!/bin/sh
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+if [ -x "$(command -v mise)" ]; then
+	info "Running 'mise install' to install all languages defined in '~/.config/mise/config.toml'"
+	mise install
+	success 'mise install, languages installed'
+else
+	error 'mise not installed, languages not installed'
+fi
+
+echo ''

@@ -1,0 +1,38 @@
+#!/bin/sh
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+{{ if eq .chezmoi.os "darwin" -}}
+
+# homebrew install
+if ! [ -x "$(command -v brew)" ]; then
+	info '☕ Installing homebrew'
+	NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	success 'homebrew'
+else
+	skip 'homebrew, updating it instead.'
+	brew update
+fi
+
+# install the most basic of terminal tools for further down the line
+package_install "coreutils git"
+
+{{ if eq .chezmoi.os "linux" -}}
+
+# install the most basic of terminal tools for further down the line
+package_install "curl git"
+
+{{ end -}}
+
+# mise install
+if ! [ -x "$(command -v mise)" ]; then
+	info '💻 Installing mise'
+	(export MISE_INSTALL_PATH=~/.local/bin/mise && curl https://mise.run | sh)
+	success 'mise'
+else
+	skip 'mise'
+fi
+
+echo ''

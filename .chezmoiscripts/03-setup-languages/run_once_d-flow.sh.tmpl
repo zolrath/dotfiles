@@ -1,0 +1,23 @@
+#!/bin/sh
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+{{ if eq .chezmoi.os "darwin" -}}
+
+package_install "flow-cli"
+
+{{ else if eq .chezmoi.os "linux" -}}
+
+if ! [ -x "$(command -v flow)" ]; then
+	info 'Installing flow'
+	sh -ci "$(curl -fsSL https://raw.githubusercontent.com/onflow/flow-cli/master/install.sh)"
+	success 'flow'
+else
+	skip 'flow'
+fi
+
+{{ end -}}
+
+echo ''

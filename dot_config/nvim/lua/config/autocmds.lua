@@ -1,8 +1,7 @@
 -- Autocmds are automatically loaded on the VeryLazy event
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
---
---
+
 vim.api.nvim_create_autocmd("TermOpen", {
   callback = function(event)
     vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
@@ -20,31 +19,13 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Start in insert mode when used as gitcommit editor
 vim.api.nvim_create_autocmd("FileType", {
   pattern = {
     "gitcommit",
   },
   command = "startinsert",
   group = vim.api.nvim_create_augroup("AutoInsert", { clear = true }),
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = {
-    "elixir",
-  },
-  callback = function(_)
-    vim.cmd("setlocal indentkeys-=0{")
-    vim.cmd("setlocal indentkeys+=0=end")
-  end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = {
-    "eelixir",
-  },
-  callback = function(_)
-    vim.cmd("setlocal indentkeys+=0=end")
-  end,
 })
 
 -- ensure the parent folder exists, so it gets properly added to the lsp
@@ -59,14 +40,6 @@ vim.api.nvim_create_autocmd("BufNewFile", {
     end
   end,
   group = vim.api.nvim_create_augroup("Mkdir", { clear = true }),
-})
-
--- livemd for Elixir and mdx are both markdown based
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = { "*.livemd", "*.mdx" },
-  callback = function()
-    vim.cmd("set filetype=markdown")
-  end,
 })
 
 -- chezmoi .sh.tmpl files are templated .sh
@@ -88,32 +61,6 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
   pattern = "*.astro",
   callback = function()
     vim.cmd("set filetype=astro")
-  end,
-})
-
--- fix cadence filetype
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = { "*.cdc" },
-  callback = function()
-    vim.cmd("set filetype=cadence")
-  end,
-})
-
--- fix go templ filetype
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  pattern = { "*.templ" },
-  callback = function()
-    vim.cmd("set filetype=templ")
-  end,
-})
-
---fix odin comment string
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = {
-    "odin",
-  },
-  callback = function(_)
-    vim.cmd("setlocal commentstring=//%s")
   end,
 })
 

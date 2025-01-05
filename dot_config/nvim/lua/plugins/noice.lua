@@ -219,4 +219,10 @@ return {
       render = "compact",
     },
   },
+  -- disable smearing cursor to cmd since noice moves cmd to middle.
+  -- this means the smear goes to the wrong location, should eventually be patched
+  {
+    "sphamba/smear-cursor.nvim",
+    opts = { smear_to_cmd = false },
+  },
 }

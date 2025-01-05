@@ -1,0 +1,31 @@
+#!/bin/sh
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+info '💨 Installing air'
+go install github.com/cosmtrek/air@latest
+success 'air'
+
+info '📈 Installing gomon'
+go install github.com/jdudmesh/gomon@latest
+success 'gomon'
+
+info '🖥️ Installing templ'
+go install github.com/a-h/templ/cmd/templ@latest
+success 'templ'
+
+info '📄 Installing task'
+go install github.com/go-task/task/v3/cmd/task@latest
+success 'task'
+
+info '📄 Installing gofumpt'
+go install mvdan.cc/gofumpt@latest
+success 'gofumpt'
+
+info '📦 Installing sqlc'
+go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
+success 'sqlc'
+
+echo ''

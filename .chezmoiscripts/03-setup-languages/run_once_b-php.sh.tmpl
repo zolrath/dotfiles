@@ -1,0 +1,27 @@
+#!/bin/sh
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+info 'Installing php'
+
+{{ if eq .chezmoi.os "darwin" -}}
+
+# Required to build php
+package_install "autoconf automake bison freetype gd gettext icu4c krb5 libedit libiconv libjpeg libpng libxml2 libzip pkg-config re2c zlib"
+# Optional for additional extensions
+package_install "gmp libsodium imagemagick"
+
+# Install php with options
+export PHP_CONFIGURE_OPTIONS="--with-openssl=$(brew --prefix openssl) --with-iconv=$(brew --prefix libiconv)"
+
+{{ else if eq .chezmoi.os "linux" -}}
+# There are definitely other requirements for linux
+{{ end -}}
+
+mise install php
+
+success 'php'
+
+echo ''

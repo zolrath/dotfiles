@@ -1,25 +1,27 @@
 gui:
   theme:
     activeBorderColor:
-      - green
+      - '#a6da95'
       - bold
     inactiveBorderColor:
-      - white
+      - '#a5adcb'
     optionsTextColor:
-      - blue
+      - '#8aadf4'
     selectedLineBgColor:
-      - black # set to `default` to have no background colour
-    selectedRangeBgColor:
-      - black
+      - '#363a4f'
     cherryPickedCommitBgColor:
-      - cyan
+      - '#494d64'
     cherryPickedCommitFgColor:
-      - blue
+      - '#a6da95'
     unstagedChangesColor:
-      - red
+      - '#ed8796'
     defaultFgColor:
-      - default
+      - '#cad3f5'
+    searchingActiveBorderColor:
+      - '#eed49f'
+
+  authorColors:
+    '*': '#b7bdf8'
 git:
   paging:
-    colorArg: always
-    pager: delta --syntax-theme "Dracula" --paging=never
+    externalDiffCommand: difft --color=always

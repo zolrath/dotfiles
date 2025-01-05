@@ -1,0 +1,32 @@
+#!/bin/sh
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+info 'Installing JetBrainsMono Nerd Font'
+
+cd /tmp
+git clone --filter=blob:none --sparse https://github.com/ryanoasis/nerd-fonts.git nerd-fonts
+cd nerd-fonts
+git sparse-checkout add patched-fonts/JetBrainsMono
+
+{{ if eq .chezmoi.os "darwin" -}}
+
+./install.sh JetBrainsMono
+
+{{ else if eq .chezmoi.os "linux" -}}
+
+  {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
+  powershell.exe -File ./install.ps1 JetBrainsMono
+  {{ else -}}
+  ./install.sh JetBrainsMono
+  {{ end -}}
+
+{{ end -}}
+
+cd /tmp
+rm -rf /tmp/nerd-fonts
+success 'JetBrainsMono Nerd Font'
+
+echo ''

@@ -1,0 +1,87 @@
+#!/bin/sh
+
+################
+################ OUTPUT HELPERS
+################
+
+info() {
+	printf "\r  [ \033[00;34m..\033[0m ] %s.\n" "$1"
+}
+
+success() {
+	printf "\r\033[2K  [ \033[00;32mDONE\033[0m ] %s installed.\n" "$1"
+}
+
+skip() {
+	printf "\r\033[2K  [ \033[00;33mSKIP\033[0m ] %s already installed.\n" "$1"
+}
+
+error() {
+	printf "\r\033[2K  [ \033[00;31mERROR\033[0m ] %s\n" "$1"
+}
+
+################
+################ INSTALLER HELPERS
+################
+
+# Define a list of key-value pairs of packagename:toolname
+# This is to allow us to check if a package is installed even if the cli
+# tools it installs uses a different name than the `install` name
+misnamed_package="media-info:mediainfo imagemagick:magick sqlite:sqlite3 ripgrep:rg"
+misnamed_package="${misnamed_package} sevenzip:7zz poppler:pdfinfo difftastic:difft coreutils:gls"
+misnamed_package="${misnamed_package} flow-cli:flow"
+
+{{ if eq .chezmoi.os "darwin" -}}
+package_install() {
+	maybe_install "brew install" "$1"
+}
+{{ if eq .chezmoi.os "linux" -}}
+package_install() {
+	maybe_install "sudo apt install -y" "$1"
+}
+{{ end -}}
+
+uv_tool_install() {
+	maybe_install "uv tool install" "$1"
+}
+
+pip_install() {
+	maybe_install "pip install" "$1"
+}
+
+cargo_install() {
+	maybe_install "cargo install" "$1"
+}
+
+cargo_binstall() {
+	maybe_install "cargo binstall --no-confirm" "$1"
+}
+
+get_cli_name() {
+	name="$1"
+	for pair in $misnamed_package; do
+		case "$pair" in
+		"$name:"*)
+			echo "${pair#*:}"
+			return
+			;;
+		esac
+	done
+	echo "$name"
+}
+
+maybe_install() {
+	installer="$1"
+	packages="$2"
+
+	for package in $packages; do
+		command_to_check=$(get_cli_name "$package")
+		if ! [ -x "$(command -v "$command_to_check")" ]; then
+			info "📦 Installing $package"
+			"$installer" "$package"
+			success "$package"
+		else
+			skip "$package"
+		fi
+	done
+}

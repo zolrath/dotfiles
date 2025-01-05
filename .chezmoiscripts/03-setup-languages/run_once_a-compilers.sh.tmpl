@@ -1,0 +1,26 @@
+#!/bin/sh
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+{{ if eq .chezmoi.os "darwin" -}}
+
+# This installs gcc
+if ! xcode-select --version >/dev/null 2>&1; then
+	info 'Installing xcode cli tools'
+	xcode-select --install
+	success 'xcode cli tools'
+else
+	skip 'xcode cli tools'
+fi
+
+{{ else if eq .chezmoi.os "linux" -}}
+
+package_install "gcc"
+
+{{ end -}}
+
+package_install "clang"
+
+echo ''

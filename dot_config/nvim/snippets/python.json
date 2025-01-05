@@ -1,0 +1,22 @@
+{
+  "ifmain": {
+    "body": [
+      "if __name__ == \"__main__\":",
+      "    log.setup()",
+      "    main()$1"
+    ],
+    "prefix": "iflmain"
+  },
+  "logd": {
+    "body": "logging.debug(f\"$1\")",
+    "prefix": "logd"
+  },
+  "loge": {
+    "body": "logging.error(f\"$1\")",
+    "prefix": "loge"
+  },
+  "logi": {
+    "body": "logging.info(f\"$1\")",
+    "prefix": "logi"
+  }
+}

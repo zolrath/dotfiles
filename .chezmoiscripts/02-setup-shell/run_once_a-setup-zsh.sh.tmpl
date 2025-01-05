@@ -1,0 +1,21 @@
+#!/bin/sh
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+info '📦 Setting up zsh'
+
+if ! [ -d "$HOME/powerlevel10k" ]; then
+	info 'Installing powerlevel10k'
+	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+	success 'powerlevel10k'
+else
+	skip 'powerlevel10k already installed, updating instead'
+	cd "$HOME/powerlevel10k/" || exit
+	git pull
+fi
+
+package_install "vivid"
+
+echo ''

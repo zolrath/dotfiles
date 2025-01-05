@@ -1,0 +1,11 @@
+#!/bin/sh
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+cargo_binstall "hyperfine oha"
+cargo_binstall "bottom"
+cargo_binstall "just"
+
+echo ''

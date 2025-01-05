@@ -1,0 +1,6 @@
+abbr "cz"="chezmoi"
+abbr "lg"="lazygit"
+abbr "p"="prj"
+abbr "z"="zellij"
+abbr "uvim"="source .venv/bin/activate && vim"
+

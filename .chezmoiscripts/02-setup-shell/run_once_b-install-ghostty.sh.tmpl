@@ -1,0 +1,13 @@
+#!/bin/sh
+
+. "$(chezmoi source-path)/helpers"
+
+{{ if eq .chezmoi.os "darwin" -}}
+
+echo ''
+
+package_install "ghostty"
+
+echo ''
+
+{{ end -}}

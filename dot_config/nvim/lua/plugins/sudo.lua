@@ -1,6 +1,6 @@
 return {
   {
-    "lambdalisue/suda.vim",
+    "lambdalisue/vim-suda",
     event = { "BufReadPost", "BufNewFile" },
   },
 }

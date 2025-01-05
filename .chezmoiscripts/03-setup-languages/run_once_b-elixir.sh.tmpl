@@ -1,0 +1,26 @@
+#!/bin/sh
+
+. $HOME/.local/share/chezmoi/helpers
+
+echo ''
+
+info 'Installing necessary packages for Erlang compilation'
+
+{{ if eq .chezmoi.os "darwin" -}}
+
+brew install autoconf openssl@1.1 wxwidgets libxslt fop
+info 'Setting kerl configuration options to correct OpenSSL issues on macos'
+export KERL_CONFIGURE_OPTIONS="--without-javac --with-ssl=$(brew --prefix openssl@1.1)"
+
+{{ else if eq .chezmoi.os "linux" -}}
+
+apt-get -y install unzip build-essential autoconf m4 libncurses5-dev libwxgtk3.0-gtk3-dev libwxgtk-webview3.0-gtk3-dev libgl1-mesa-dev libglu1-mesa-dev libpng-dev libssh-dev unixodbc-dev xsltproc fop libxml2-utils libncurses-dev openjdk-11-jdk
+
+{{ end -}}
+
+info 'Installing Erlang and Elixir'
+
+mise install erlang
+mise install elixir
+
+echo ''

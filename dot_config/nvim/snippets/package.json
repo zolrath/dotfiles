@@ -1,5 +1,4 @@
 {
-  "name": "zolrath-snippets",
   "contributes": {
     "snippets": [
       {
@@ -7,7 +6,20 @@
           "elixir"
         ],
         "path": "./elixir.json"
+      },
+      {
+        "language": [
+          "php"
+        ],
+        "path": "./php.json"
+      },
+      {
+        "language": [
+          "python"
+        ],
+        "path": "./python.json"
       }
     ]
-  }
+  },
+  "name": "zolrath-snippets"
 }

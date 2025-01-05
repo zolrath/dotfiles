@@ -1,0 +1,24 @@
+#!/bin/sh
+
+. "$(chezmoi source-path)/helpers"
+
+echo ''
+
+{{ if eq .chezmoi.os "darwin" -}}
+{{ else if eq .chezmoi.os "linux" -}}
+{{ end -}}
+
+info 'Installing python prereqs'
+{{ if eq .chezmoi.os "darwin" -}}
+# This fixes the "No module named '_ctypes'" error
+package_install libffi-dev
+{{ else if eq .chezmoi.os "linux" -}}
+# This fixes the "No module named '_ctypes'" error
+package_install libffi
+{{ end -}}
+success 'python prereqs'
+
+info 'Installing python'
+mise install python
+
+echo ''
