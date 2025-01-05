@@ -152,7 +152,7 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	end
 else
 	table.insert(config.launch_menu, { label = "bash", args = { "bash", "-l" } })
-	table.insert(config.launch_menu, { label = "fish", args = { "fish", "-l" } })
+	table.insert(config.launch_menu, { label = "zsh", args = { "zsh", "-l" } })
 end
 
 return config

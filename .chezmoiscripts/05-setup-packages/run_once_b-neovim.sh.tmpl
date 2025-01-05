@@ -13,11 +13,11 @@ else
 fi
 
 # Formatting for bash
-uv_tool_install "beautysh" # bash formatting
-uv_tool_install "black"    # python formatting
-cargo_binstall "stylua"    # lua formatting
-brew_install "shellcheck"  # shell linting
-cargo_binstall "rustywind" # tailwind class reordering
+uv_tool_install "beautysh"   # bash formatting
+uv_tool_install "black"      # python formatting
+cargo_binstall "stylua"      # lua formatting
+package_install "shellcheck" # shell linting
+cargo_binstall "rustywind"   # tailwind class reordering
 
 # Needed for danielfalk/smart-open.nvim
 {{ if eq .chezmoi.os "darwin" -}}

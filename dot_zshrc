@@ -120,7 +120,7 @@ done
 
   # "The file to save the history in when an interactive shell exits."
   # https://zsh.sourceforge.io/Doc/Release/Parameters.html#Parameters-Used-By-The-Shell
-  HISTFILE="$ZDOTDIR/.zsh_history"
+  HISTFILE="$HOME/.zsh_history"
 
   # "The maximum number of events stored in the internal history list."
   # https://zsh.sourceforge.io/Doc/Release/Parameters.html#Parameters-Used-By-The-Shell

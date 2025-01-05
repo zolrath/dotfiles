@@ -4,10 +4,6 @@
 
 echo ''
 
-{{ if eq .chezmoi.os "darwin" -}}
-{{ else if eq .chezmoi.os "linux" -}}
-{{ end -}}
-
 info 'Installing python prereqs'
 {{ if eq .chezmoi.os "darwin" -}}
 # This fixes the "No module named '_ctypes'" error

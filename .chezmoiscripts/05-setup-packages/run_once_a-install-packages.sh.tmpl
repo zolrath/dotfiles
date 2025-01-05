@@ -7,7 +7,7 @@ echo ''
 info '📦 Installing media conversion tools'
 {{ if eq .chezmoi.os "darwin" -}}
 package_install "media-info"
-{{ if eq .chezmoi.os "linux" -}}
+{{ else if eq .chezmoi.os "linux" -}}
 package_install "mediainfo"
 {{ end -}}
 package_install "ffmpeg imagemagick"
