@@ -34,10 +34,16 @@ success 'convenience personal packages'
 info '📦 Installing yazi'
 {{ if eq .chezmoi.os "darwin" -}}
 package_install "sevenzip poppler fd font-symbols-only-nerd-font"
-{{ if eq .chezmoi.os "linux" -}}
+{{ else if eq .chezmoi.os "linux" -}}
 package_install "7zip poppler-utils fd-find"
 {{ end -}}
 package_install "yazi"
 success 'yazi'
+
+info 'Installing other rust cli tools'
+cargo_binstall "hyperfine oha"
+cargo_binstall "bottom"
+cargo_binstall "just"
+success 'other rust cli tools'
 
 echo ''
