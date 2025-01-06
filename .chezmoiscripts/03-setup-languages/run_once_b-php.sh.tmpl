@@ -9,7 +9,24 @@ info 'Installing php'
 {{ if eq .chezmoi.os "darwin" -}}
 
 # Required to build php
-package_install "autoconf automake bison freetype gd gettext icu4c krb5 libedit libiconv libjpeg libpng libxml2 libzip pkg-config re2c zlib"
+package_install "autoconf automake freetype gd gettext icu4c krb5 libedit libiconv libjpeg libpng libxml2 libzip pkg-config re2c zlib"
+
+# MacOS comes with bison 2.3 so we need to make sure we install bison 3 using homebrew
+brew install bison
+
+# Because Mac already provides bison let's put the new one earlier in our path
+export PATH="$(brew --prefix bison)/bin:$PATH"
+
+# this only fixes the problem for this one install though, if we update it with mise it'll
+# use the wrong bison. Maybe replace bison with the homebrew one in the path permanently?
+# e.g.:
+#
+# brew unlink bison
+# echo 'export PATH="/usr/local/opt/bison/bin:$PATH"' >> ~/.zshrc
+# export LDFLAGS="-L/usr/local/opt/bison/lib"
+# source ~/.zshrc
+# bison -V
+
 # Optional for additional extensions
 package_install "gmp libsodium imagemagick"
 
@@ -17,9 +34,11 @@ package_install "gmp libsodium imagemagick"
 export PHP_CONFIGURE_OPTIONS="--with-openssl=$(brew --prefix openssl) --with-iconv=$(brew --prefix libiconv)"
 
 {{ else if eq .chezmoi.os "linux" -}}
-# There are definitely other requirements for linux
+
+# Required to build php
 
 package_install "autoconf automake bison locate re2c gettext libicu-dev libgd-dev libxml2-dev libevent-dev zlib1g-dev libbz2-dev libgmp3-dev libssl-dev libcurl4-openssl-dev libjpeg-dev libpng-dev libonig-dev libpq-dev libzip-dev libmcrypt-dev memcached libmemcached-dev libc-client-dev libkrb5-dev"
+
 {{ end -}}
 
 mise install --yes php
