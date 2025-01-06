@@ -78,8 +78,11 @@ maybe_install() {
 		command_to_check=$(get_cli_name "$package")
 		if ! [ -x "$(command -v "$command_to_check")" ]; then
 			info "📦 Installing $package"
-			$installer "$package"
-			success "$package"
+			if $installer "$package"; then
+				success "$package"
+			else
+				error "$package"
+			fi
 		else
 			skip "$package"
 		fi
