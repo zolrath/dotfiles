@@ -9,18 +9,6 @@ return {
   {
     "chrisgrieser/nvim-scissors",
     dependencies = "nvim-telescope/telescope.nvim",
-    -- dependencies = {
-    --   "nvim-telescope/telescope.nvim",
-    --   {
-    --     "folke/which-key.nvim",
-    --     optional = true,
-    --     opts = {
-    --       spec = {
-    --         ["<leader>m"] = { group = "+snippets" },
-    --       },
-    --     },
-    --   },
-    -- },
     opts = {
       snippetDir = "~/.config/nvim/snippets/",
       telescope = { alsoSearchSnippetBody = true },
@@ -28,18 +16,14 @@ return {
     },
     keys = {
       {
-        "<leader>m",
-        group = "snippets",
-      },
-      {
-        "<Leader>me",
+        "<Leader>ce",
         function()
           require("scissors").editSnippet()
         end,
         desc = "Edit Snippet",
       },
       {
-        "<Leader>ma",
+        "<Leader>cs",
         function()
           require("scissors").addNewSnippet()
         end,
