@@ -102,5 +102,15 @@
     "key": "ctrl+shift+e",
     "command": "germanScroll.arminUp",
     "when": "editorTextFocus && neovim.ctrlKeysNormal.f && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
+  },
+  {
+    "key": "space space",
+    "command": "workbench.action.quickOpen",
+    "when": "!editorIsOpen"
+  },
+  {
+    "key": "space f f",
+    "command": "file-browser.open",
+    "when": "!editorIsOpen"
   }
 ]
