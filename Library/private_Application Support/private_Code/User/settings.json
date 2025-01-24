@@ -13,8 +13,9 @@
   "workbench.editorAssociations": {
     "*.ipynb": "jupyter-notebook"
   },
-  "workbench.iconTheme": "catppuccin-macchiato",
-  "workbench.colorTheme": "Catppuccin Noctis Macchiato",
+  "workbench.iconTheme": "catppuccin-perfect-macchiato",
+  "workbench.colorTheme": "Alt Catppuccin Macchiato",
+  "alt-catppuccin.syntaxMode": "default",
   "workbench.editor.empty.hint": "hidden",
   "workbench.list.smoothScrolling": true,
   "security.workspace.trust.untrustedFiles": "open",
@@ -120,12 +121,6 @@
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.smoothScrolling": true,
   "git.autofetch": true,
-  "github.copilot.enable": {
-    "*": true,
-    "markdown": true,
-    "plaintext": false,
-    "yaml": false
-  },
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
   },
