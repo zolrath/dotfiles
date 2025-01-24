@@ -3,7 +3,7 @@ return {
     --"chrisgrieser/nvim-chainsaw",
     "zolrath/nvim-chainsaw",
     branch = "python-logs",
-    event = "VeryLazy",
+    vscode = true,
     opts = {
       marker = "🪵",
     },

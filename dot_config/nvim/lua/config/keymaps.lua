@@ -5,34 +5,45 @@
 -- Don't move cursor when joining lines
 vim.keymap.set("n", "J", "mzJ`z")
 
--- Center screen when moving fast
-vim.keymap.set("n", "n", [[<Cmd>lua vim.cmd('normal! n'); MiniAnimate.execute_after('scroll', 'normal! zvzz')<CR>]])
+-- Rebind 'j' to 'gj' in normal mode
+vim.keymap.set("n", "j", "gj", { noremap = true, silent = true })
 
-vim.keymap.set("n", "N", [[<Cmd>lua vim.cmd('normal! n'); MiniAnimate.execute_after('scroll', 'normal! zvzz')<CR>]])
+-- Rebind 'k' to 'gk' in normal mode
+vim.keymap.set("n", "k", "gk", { noremap = true, silent = true })
 
-vim.keymap.set(
-  "n",
-  "<C-d>",
-  [[<Cmd>lua vim.cmd('normal! <C-d>'); MiniAnimate.execute_after('scroll', 'normal! zvzz')<CR>]]
-)
+-- Better 'o' in visual mode
+vim.keymap.set("x", "o", "ozz")
 
-vim.keymap.set(
-  "n",
-  "<C-u>",
-  [[<Cmd>lua vim.cmd('normal! <C-u>'); MiniAnimate.execute_after('scroll', 'normal! zvzz')<CR>]]
-)
+if not vim.g.vscode then
+  -- Center screen when moving fast
+  vim.keymap.set("n", "n", [[<Cmd>lua vim.cmd('normal! n'); MiniAnimate.execute_after('scroll', 'normal! zvzz')<CR>]])
 
-vim.keymap.set(
-  "n",
-  "<C-f>",
-  [[<Cmd>lua vim.cmd('normal! <C-f>'); MiniAnimate.execute_after('scroll', 'normal! zvzz')<CR>]]
-)
+  vim.keymap.set("n", "N", [[<Cmd>lua vim.cmd('normal! n'); MiniAnimate.execute_after('scroll', 'normal! zvzz')<CR>]])
 
-vim.keymap.set(
-  "n",
-  "<C-b>",
-  [[<Cmd>lua vim.cmd('normal! <C-b>'); MiniAnimate.execute_after('scroll', 'normal! zvzz')<CR>]]
-)
+  vim.keymap.set(
+    "n",
+    "<C-d>",
+    [[<Cmd>lua vim.cmd('normal! <C-d>'); MiniAnimate.execute_after('scroll', 'normal! zvzz')<CR>]]
+  )
+
+  vim.keymap.set(
+    "n",
+    "<C-u>",
+    [[<Cmd>lua vim.cmd('normal! <C-u>'); MiniAnimate.execute_after('scroll', 'normal! zvzz')<CR>]]
+  )
+
+  vim.keymap.set(
+    "n",
+    "<C-f>",
+    [[<Cmd>lua vim.cmd('normal! <C-f>'); MiniAnimate.execute_after('scroll', 'normal! zvzz')<CR>]]
+  )
+
+  vim.keymap.set(
+    "n",
+    "<C-b>",
+    [[<Cmd>lua vim.cmd('normal! <C-b>'); MiniAnimate.execute_after('scroll', 'normal! zvzz')<CR>]]
+  )
+end
 
 -- Rebind redo to a logical inverse of u
 vim.keymap.set("n", "U", "<C-r>")
@@ -69,3 +80,7 @@ vim.keymap.set("n", "<leader>,", [[mmA,<Esc>`m]], { desc = "Add comma to end of 
 vim.keymap.set("v", "<leader>,", ":s/\\([^,]\\)$/\\1,/<CR>", {
   desc = "Add a comma to end of each line in visual selection excluding lines that already have commas",
 })
+
+if vim.g.vscode then
+  require("config.vscode-keymaps")
+end

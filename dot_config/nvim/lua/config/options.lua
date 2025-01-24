@@ -13,6 +13,9 @@ vim.o.relativenumber = true
 -- I'm mostly interested in the auto import features
 vim.g.lazyvim_python_lsp = "basedpyright"
 
+-- set lazyvim picket to use the snacks.picker
+vim.g.lazyvim_picker = "snacks"
+
 -- Set paste directly - greatly improves startup time
 -- vim.opt.clipboard = ""
 -- vim.g.clipboard = {

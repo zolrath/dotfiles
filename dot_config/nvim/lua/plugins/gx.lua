@@ -9,7 +9,7 @@ return {
       end,
       dependencies = { "nvim-lua/plenary.nvim" }, -- Required for Neovim < 0.10.0
       config = true, -- default settings
-      submodules = false, -- not needed,
+      submodules = false, -- not needed, submodules are required only for tests
     },
   },
 }
