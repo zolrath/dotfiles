@@ -12,6 +12,7 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     cmd = "Neotree",
+    cond = not vim.g.vscode,
     opts = {
       close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
       buffers = {

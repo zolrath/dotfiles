@@ -16,14 +16,13 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lsp.none-ls" },
     -- add langs
     { import = "lazyvim.plugins.extras.lang.typescript" },
-    { import = "lazyvim.plugins.extras.lang.rust" },
-    { import = "lazyvim.plugins.extras.lang.elixir" },
     { import = "lazyvim.plugins.extras.lang.json" },
     { import = "lazyvim.plugins.extras.lang.python" },
     { import = "lazyvim.plugins.extras.lang.php" },
     { import = "lazyvim.plugins.extras.lang.tailwind" },
     -- add github copilot
     { import = "lazyvim.plugins.extras.ai.copilot" },
+    { import = "lazyvim.plugins.extras.ai.copilot-chat" },
     -- more plugins
     { import = "lazyvim.plugins.extras.editor.harpoon2" },
     { import = "lazyvim.plugins.extras.util.project" },
@@ -33,6 +32,8 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.editor.dial" },
     { import = "lazyvim.plugins.extras.editor.inc-rename" },
     { import = "lazyvim.plugins.extras.editor.refactoring" },
+    { import = "lazyvim.plugins.extras.editor.snacks_picker" },
+    { import = "lazyvim.plugins.extras.vscode" },
     -- handle dotfiles and chezmoi specially
     { import = "lazyvim.plugins.extras.util.dot" },
     { import = "lazyvim.plugins.extras.util.chezmoi" },
@@ -40,10 +41,11 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.ui.mini-indentscope" },
     { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
     { import = "lazyvim.plugins.extras.ui.treesitter-context" },
-    { import = "lazyvim.plugins.extras.ui.mini-animate" },
-    { import = "lazyvim.plugins.extras.ui.smear-cursor" },
+    { import = "lazyvim.plugins.extras.ui.mini-animate", cond = not vim.g.vscode },
+    { import = "lazyvim.plugins.extras.ui.smear-cursor", cond = not vim.g.vscode },
     -- Add my custom plugins and languages
-    { import = "plugins" },
+    { import = "plugins", cond = not vim.g.vscode },
+    { import = "plugins-vscode", cond = vim.g.vscode },
     { import = "langs" },
   },
   defaults = {

@@ -3,6 +3,7 @@ return {
   {
     "mikavilpas/yazi.nvim",
     event = "VeryLazy",
+    cond = not vim.g.vscode,
     keys = {
       -- 👇 in this section, choose your own keymappings!
       {

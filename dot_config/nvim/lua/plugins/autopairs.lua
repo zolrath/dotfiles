@@ -17,7 +17,7 @@ return {
           javascript = { "string", "template_string" },
           rust = { "string", "template_string", "source" },
         },
-        disable_filetype = { "TelescopePrompt", "spectre_panel" },
+        disable_filetype = { "TelescopePrompt", "snacks_picker_input", "spectre_panel" },
         fast_wrap = {
           map = "<C-e>",
           chars = { "{", "[", "(", '"', "'" },

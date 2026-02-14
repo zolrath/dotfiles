@@ -34,12 +34,12 @@ return {
         desc = "Log time",
       },
       {
-        "<leader>lc",
+        "<leader>ld",
         function()
           require("chainsaw").removeLogs()
         end,
         mode = { "n", "v" },
-        desc = "Clear logs",
+        desc = "Delete logs",
       },
     },
   },
