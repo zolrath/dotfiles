@@ -1,0 +1,13 @@
+#!/bin/sh
+
+{{ if eq .chezmoi.os "darwin" -}}
+
+. "$(chezmoi target-path)/.czhelpers"
+
+echo ''
+
+brew_cask_install "sf-symbols"
+
+echo ''
+
+{{ end -}}

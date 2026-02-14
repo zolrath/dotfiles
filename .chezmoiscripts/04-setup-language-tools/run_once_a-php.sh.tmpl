@@ -5,9 +5,13 @@
 echo ''
 
 if ! [ -x "$(command -v laravel)" ]; then
-	info 'Installing laravel'
-	composer global require laravel/installer
-	success 'laravel'
+	if ! [ -x "$(command -v composer)" ]; then
+		error "composer not installed, skipping laravel installer"
+	else
+		info 'Installing laravel'
+		composer global require laravel/installer
+		success 'laravel'
+	fi
 else
 	skip 'laravel'
 fi

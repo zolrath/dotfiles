@@ -4,7 +4,6 @@
 
 echo ''
 
-
 {{ if eq .chezmoi.os "linux" -}}
 
 # If we're in WSL
@@ -20,7 +19,8 @@ fi
 
 # wezterm.lua hash: {{ include "dot_config/wezterm/wezterm.lua" | sha256sum }}
 info '💻 Copying wezterm config to Windows'
-mkdir -p /mnt/c/Users/furd/.config/wezterm/ && cp ~/.local/share/chezmoi/dot_config/wezterm/wezterm.lua /mnt/c/Users/furd/.config/wezterm/
+win_user=$(/mnt/c/Windows/System32/cmd.exe /c "echo %USERNAME%" 2>/dev/null | tr -d '\r')
+mkdir -p "/mnt/c/Users/${win_user}/.config/wezterm/" && cp ~/.local/share/chezmoi/dot_config/wezterm/wezterm.lua "/mnt/c/Users/${win_user}/.config/wezterm/"
 success 'copied wezterm config'
 
 # Otherwise we're in normal linux
@@ -30,24 +30,13 @@ if ! [ -x "$(command -v wezterm)" ]; then
     info '💻 Installing wezterm'
     cd /tmp
     curl -LO https://github.com/wez/wezterm/releases/download/nightly/wezterm-nightly.Ubuntu22.04.deb
-    sudo apt install -y ./wezterm-nightly.Ubuntu20.04.deb
+    sudo apt install -y ./wezterm-nightly.Ubuntu22.04.deb
     success 'wezterm'
 else
     skip 'wezterm'
 fi
 
 {{   end -}}
-
-{{ else if eq .chezmoi.os "darwin" -}}
-
-if ! [ -x "$(command -v wezterm)" ]; then
-    info '💻 Installing wezterm'
-    brew tap wez/wezterm
-    brew install --cask wez/wezterm/wezterm
-    success 'wezterm'
-else
-    skip 'wezterm'
-fi
 
 {{ end -}}
 

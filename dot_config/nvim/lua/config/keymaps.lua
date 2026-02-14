@@ -55,7 +55,7 @@ vim.keymap.set("i", "<C-d>", "<Plug>(emmet-expand-abbr)")
 
 -- Scroll screen up (but not cursor)
 -- C-e for scroll down, C-S-e for up.
-vim.api.nvim_set_keymap("n", "<C-S-e>", ":normal! <C-y><CR>", { noremap = false, silent = true })
+vim.keymap.set("n", "<C-S-e>", "<C-y>", { desc = "Scroll screen up" })
 
 -- Add ; or , to the end of a line
 vim.keymap.set("n", "<leader>;", [[mmA;<Esc>`m]], { desc = "Add semicolon to end of line" })

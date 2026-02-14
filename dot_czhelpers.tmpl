@@ -29,9 +29,33 @@ error() {
 # tools it installs uses a different name than the `install` name
 misnamed_package="media-info:mediainfo imagemagick:magick sqlite:sqlite3 ripgrep:rg"
 misnamed_package="${misnamed_package} sevenzip:7zz poppler:pdfinfo difftastic:difft coreutils:gls"
-misnamed_package="${misnamed_package} flow-cli:flow"
+misnamed_package="${misnamed_package} 7zip:7zz poppler-utils:pdfinfo fd-find:fd"
 
 {{ if eq .chezmoi.os "darwin" -}}
+brew_install() {
+	maybe_install "brew install" "$1"
+}
+
+# This is written out in its entirety because we use the slower
+# brew list --versions instead of simply checking that the command exists
+# because its a cask and installs an app in /Applications/
+brew_cask_install() {
+	packages="$1"
+
+	for package in $packages; do
+		if ! (brew list --cask --versions "$package" >/dev/null); then
+			info "📦 Installing $package"
+			if brew install --cask "$package"; then
+				success "$package"
+			else
+				error "$package"
+			fi
+		else
+			skip "$package"
+		fi
+	done
+}
+
 package_install() {
 	maybe_install "brew install" "$1"
 }

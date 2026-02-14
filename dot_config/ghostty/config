@@ -1,6 +1,8 @@
 # vim: ft=ghostty
 theme = catppuccin-macchiato
+font-family = "FiraCode Nerd Font Mono"
 font-size = 16
+font-thicken = true
 
 window-height=35
 window-width=150

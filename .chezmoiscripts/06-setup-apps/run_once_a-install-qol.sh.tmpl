@@ -1,0 +1,23 @@
+#!/bin/sh
+
+{{ if eq .chezmoi.os "darwin" -}}
+
+. "$(chezmoi target-path)/.czhelpers"
+
+echo ''
+
+# Fix cmd-tab to show all windows of apps instead of just app icon
+brew_cask_install "alt-tab"
+
+# Smooth out mousewheel - allow inverted scrolling on trackpad/mouse to be opposite of each other
+package_install "mos"
+
+# Hide mess of menu bar items
+package_install "jordanbaird-ice"
+
+# Allow individual program volume control
+brew_cask_install "background-music"
+
+echo ''
+
+{{ end -}}

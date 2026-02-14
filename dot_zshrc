@@ -29,7 +29,7 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 # Download Zinit, if it's not there yet
 if [ ! -d "$ZINIT_HOME" ]; then
-   mkdir -p "$(dirname $ZINIT_HOME)"
+   mkdir -p "$(dirname "$ZINIT_HOME")"
    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
@@ -65,7 +65,25 @@ alias free='free -m'                    # Show sizes in MB
 alias ls='ls -Ah --color=auto'
 alias ll='ls -Alh --color=auto'
 
-if ! [ -x "$(command -v eza)" ]; then
+alias lg='lazygit'
+alias cz="chezmoi"
+alias z="zellij"
+alias uvim="source .venv/bin/activate && vim"
+alias p="prj"
+alias searchf="rg --files | fzf --preview 'bat --style=numbers --color=always --line-range :500 {}' --bind 'enter:become(nvim {})'"
+alias search="(RELOAD='reload:rg --column --color=always --smart-case {q} || :' fzf --disabled --ansi \
+     --bind "start:$RELOAD" --bind "change:$RELOAD" \
+     --bind 'enter:become:nvim {1} +{2}' \
+     --delimiter : \
+     --preview 'bat --style=full --color=always --highlight-line {2} {1}' \
+     --preview-window '~4,+{2}+4/3,<80(up)')"
+
+# Add a half sized spacer to the dock to allow separating apps
+if [[ "$(uname)" == "Darwin" ]]; then
+  alias add-dock-spacer="defaults write com.apple.dock persistent-apps -array-add '{\"tile-type\"=\"small-spacer-tile\";}'; killall Dock"
+fi
+
+if (( ${+commands[eza]} )); then
   eza_params=(
       '--git' '--icons' '--group' '--group-directories-first'
       '--time-style=long-iso' '--color-scale=all'
@@ -95,10 +113,22 @@ export LC_ALL=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 
+# Mise installation for PHP requires we point to a brew installed version of openssl
+if (( ${+commands[brew]} )); then
+  export PHP_CONFIGURE_OPTIONS="--with-openssl=$(brew --prefix openssl) --with-iconv=$(brew --prefix libiconv)"
+fi
+
 # My personal PATH additions go here
 export PATH=~/.cargo/bin:$PATH
 export PATH=~/.local/bin:$PATH
 export PATH=~/.local/scripts:$PATH
+export PATH=~/.fly/bin:$PATH
+
+# CUDA
+if [[ -d /usr/local/cuda/bin ]]; then
+  export PATH=/usr/local/cuda/bin:$PATH
+  export LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
+fi
 
 for file in ~/.config/zsh-functions/*.zsh; do
   source "$file"

@@ -7,10 +7,10 @@ echo ''
 info 'Installing python prereqs'
 {{ if eq .chezmoi.os "darwin" -}}
 # This fixes the "No module named '_ctypes'" error
-package_install libffi-dev
+package_install "libffi"
 {{ else if eq .chezmoi.os "linux" -}}
 # This fixes the "No module named '_ctypes'" error
-package_install libffi
+package_install "libffi-dev"
 {{ end -}}
 success 'python prereqs'
 

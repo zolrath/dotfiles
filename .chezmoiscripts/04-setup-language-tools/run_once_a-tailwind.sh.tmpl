@@ -8,15 +8,16 @@ if ! [ -x "$(command -v tailwindcss)" ]; then
 	info '🍃 Installing tailwindcss cli'
 
 	{{ if eq .chezmoi.os "darwin" -}}
-	os="linux"
-	{{ else if eq .chezmoi.os "linux" -}}
 	os="macos"
+	{{ else if eq .chezmoi.os "linux" -}}
+	os="linux"
 	{{ end -}}
 
 	architecture=""
 	case $(uname -m) in
 	x86_64) architecture="x64" ;;
-	arm64) architecture="arm64" ;;
+	arm64|aarch64) architecture="arm64" ;;
+	*) error "Unsupported architecture: $(uname -m)"; exit 1 ;;
 	esac
 
 	echo "Detected architecture: ${architecture}"

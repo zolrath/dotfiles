@@ -20,14 +20,31 @@ else
 	git pull
 fi
 
-#=============
+{{ if eq .chezmoi.os "darwin" -}}
+package_install "vivid"
+{{ else if eq .chezmoi.os "linux" -}}
+if ! [ -x "$(command -v "vivid")" ]; then
+	info "📦 Installing vivid"
+	tmproot=${TMPDIR:-${TEMP:-${TMP:-/tmp}}}
+	cd "$tmproot"
+
+	filename="vivid_0.10.1_amd64.deb"
+	wget "https://github.com/sharkdp/vivid/releases/download/v0.10.1/${filename}"
+	sudo dpkg -i "${filename}"
+
+	rm "$filename"
+	success "vivid"
+else
+	skip "vivid"
+fi
+{{ end -}}
+
 # change default shell to zsh
-#=============
 if [ "$(basename "$SHELL")" = "zsh" ]; then
 	info 'Default shell is already zsh'
 else
 	info 'Changing default shell to zsh'
-	chsh -s $(which zsh)
+	chsh -s "$(command -v zsh)"
 	success 'zsh set to default shell'
 fi
 

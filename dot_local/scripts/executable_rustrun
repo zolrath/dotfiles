@@ -5,5 +5,5 @@ if [ $# -eq 0 ]; then
     exit 1
 fi
 
-name=$(basename $1 .rs)
-rustc $@ && ./$name && rm $name
+name=$(basename "$1" .rs)
+rustc "$@" && ./"$name" && rm "$name"
