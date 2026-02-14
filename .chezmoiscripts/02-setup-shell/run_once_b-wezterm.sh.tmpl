@@ -29,8 +29,8 @@ success 'copied wezterm config'
 if ! [ -x "$(command -v wezterm)" ]; then
     info '💻 Installing wezterm'
     cd /tmp
-    curl -LO https://github.com/wez/wezterm/releases/download/nightly/wezterm-nightly.Ubuntu22.04.deb
-    sudo apt install -y ./wezterm-nightly.Ubuntu22.04.deb
+    curl -LO https://github.com/wez/wezterm/releases/download/nightly/wezterm-nightly.Ubuntu24.04.deb
+    sudo apt install -y ./wezterm-nightly.Ubuntu24.04.deb
     success 'wezterm'
 else
     skip 'wezterm'

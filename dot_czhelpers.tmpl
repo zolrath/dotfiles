@@ -29,7 +29,7 @@ error() {
 # tools it installs uses a different name than the `install` name
 misnamed_package="media-info:mediainfo imagemagick:magick sqlite:sqlite3 ripgrep:rg"
 misnamed_package="${misnamed_package} sevenzip:7zz poppler:pdfinfo difftastic:difft coreutils:gls"
-misnamed_package="${misnamed_package} 7zip:7zz poppler-utils:pdfinfo fd-find:fd"
+misnamed_package="${misnamed_package} 7zip:7zz poppler-utils:pdfinfo fd-find:fd yazi-fm:yazi yazi-cli:ya"
 
 {{ if eq .chezmoi.os "darwin" -}}
 brew_install() {

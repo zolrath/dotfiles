@@ -38,9 +38,9 @@ echo ''
   fi
 
   # ── cuDNN ──
-  if ! dpkg -s libcudnn8 >/dev/null 2>&1; then
+  if ! dpkg -s libcudnn9-cuda-12 >/dev/null 2>&1 || ! dpkg -s libcudnn9-cuda-13 >/dev/null 2>&1; then
       info '🧠 Installing cuDNN'
-      sudo apt-get -y install libcudnn8 libcudnn8-dev
+      sudo apt-get -y install libcudnn9-cuda-12 libcudnn9-dev-cuda-12 libcudnn9-cuda-13 libcudnn9-dev-cuda-13
       success 'cuDNN'
   else
       skip 'cuDNN'

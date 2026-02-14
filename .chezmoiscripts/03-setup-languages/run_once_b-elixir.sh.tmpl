@@ -14,7 +14,7 @@ export KERL_CONFIGURE_OPTIONS="--without-javac --with-ssl=$(brew --prefix openss
 
 {{ else if eq .chezmoi.os "linux" -}}
 
-package_install "unzip build-essential autoconf m4 libncurses5-dev libwxgtk3.0-gtk3-dev libwxgtk-webview3.0-gtk3-dev libgl1-mesa-dev libglu1-mesa-dev libpng-dev libssh-dev unixodbc-dev xsltproc fop libxml2-utils libncurses-dev openjdk-11-jdk"
+package_install "unzip build-essential autoconf m4 libncurses-dev libwxgtk3.2-gtk3-dev libwxgtk-webview3.2-gtk3-dev libgl1-mesa-dev libglu1-mesa-dev libpng-dev libssh-dev unixodbc-dev xsltproc fop libxml2-utils openjdk-21-jdk"
 
 {{ end -}}
 

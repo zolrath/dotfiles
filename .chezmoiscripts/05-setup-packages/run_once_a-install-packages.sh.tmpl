@@ -44,7 +44,8 @@ info '📦 Installing yazi'
 {{ if eq .chezmoi.os "darwin" -}}
 package_install "yazi sevenzip poppler fd font-symbols-only-nerd-font"
 {{ else if eq .chezmoi.os "linux" -}}
-package_install "yazi 7zip poppler-utils fd-find"
+cargo_binstall "yazi-fm yazi-cli"
+package_install "7zip poppler-utils fd-find"
 {{ end -}}
 success 'yazi'
 

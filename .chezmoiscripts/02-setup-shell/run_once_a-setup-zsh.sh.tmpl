@@ -28,8 +28,9 @@ if ! [ -x "$(command -v "vivid")" ]; then
 	tmproot=${TMPDIR:-${TEMP:-${TMP:-/tmp}}}
 	cd "$tmproot"
 
-	filename="vivid_0.10.1_amd64.deb"
-	wget "https://github.com/sharkdp/vivid/releases/download/v0.10.1/${filename}"
+	VIVID_VERSION=$(curl -s "https://api.github.com/repos/sharkdp/vivid/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
+	filename="vivid_${VIVID_VERSION}_amd64.deb"
+	wget "https://github.com/sharkdp/vivid/releases/download/v${VIVID_VERSION}/${filename}"
 	sudo dpkg -i "${filename}"
 
 	rm "$filename"
