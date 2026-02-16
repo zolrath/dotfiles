@@ -49,8 +49,18 @@ end
 vim.keymap.set("n", "U", "<C-r>")
 
 -- Allow pasting in middle of a line, even if you yanked a full line.
-vim.keymap.set("n", "gP", "i<CR><Esc>PkJxJx", { noremap = true, silent = true })
-vim.keymap.set("n", "gp", "i<CR><Esc>PkJxJx", { noremap = true, silent = true })
+vim.keymap.set("n", "gp", function()
+  local line = vim.fn.getreg('"')
+  vim.fn.setreg('"', line, "v") -- convert to characterwise
+  vim.cmd('normal! "gp')
+end, { noremap = true, silent = true })
+
+-- Paste linewise content inline at cursor using gP
+vim.keymap.set("n", "gP", function()
+  local line = vim.fn.getreg('"')
+  vim.fn.setreg('"', line, "v") -- convert to characterwise
+  vim.cmd('normal! "gP')
+end, { noremap = true, silent = true })
 
 -- replace word under cursor, hit . to repeat to next instance, n to skip
 vim.keymap.set("n", "cg*", "*Ncgn")

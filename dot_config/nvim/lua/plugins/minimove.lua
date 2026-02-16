@@ -1,3 +1,3 @@
 return {
-  { "echasnovski/mini.move", version = "*" },
+  { "nvim-mini/mini.move", version = "*" },
 }
