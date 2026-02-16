@@ -21,7 +21,7 @@ cd nerd-fonts
 git sparse-checkout add patched-fonts/JetBrainsMono
 
 {{   if (.chezmoi.kernel.osrelease | lower | contains "microsoft") -}}
-powershell.exe -File ./install.ps1 JetBrainsMono
+powershell.exe -ExecutionPolicy Bypass -File ./install.ps1 JetBrainsMono
 {{   else -}}
 ./install.sh JetBrainsMono
 {{   end -}}
