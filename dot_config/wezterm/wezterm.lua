@@ -172,11 +172,11 @@ config.keys = {
   { key = '=', mods = mod_shift, action = act.ResetFontAndWindowSize },
 
   -- ── Split creation (leader: CMD/ALT+S then key) ──
-  { key = 'h', mods = 'LEADER', action = act.SplitPane({ direction = 'Left',  domain = 'CurrentPaneDomain' }) },
-  { key = 'j', mods = 'LEADER', action = act.SplitPane({ direction = 'Down',  domain = 'CurrentPaneDomain' }) },
-  { key = 'k', mods = 'LEADER', action = act.SplitPane({ direction = 'Up',    domain = 'CurrentPaneDomain' }) },
-  { key = 'l', mods = 'LEADER', action = act.SplitPane({ direction = 'Right', domain = 'CurrentPaneDomain' }) },
-  { key = 'n', mods = 'LEADER', action = act.SplitPane({ direction = 'Right', domain = 'CurrentPaneDomain' }) },
+  { key = 'h', mods = 'LEADER', action = act.SplitPane({ direction = 'Left',  command = { domain = 'CurrentPaneDomain' } }) },
+  { key = 'j', mods = 'LEADER', action = act.SplitPane({ direction = 'Down',  command = { domain = 'CurrentPaneDomain' } }) },
+  { key = 'k', mods = 'LEADER', action = act.SplitPane({ direction = 'Up',    command = { domain = 'CurrentPaneDomain' } }) },
+  { key = 'l', mods = 'LEADER', action = act.SplitPane({ direction = 'Right', command = { domain = 'CurrentPaneDomain' } }) },
+  { key = 'n', mods = 'LEADER', action = act.SplitPane({ direction = 'Right', command = { domain = 'CurrentPaneDomain' } }) },
   { key = 'd', mods = 'LEADER', action = act.CloseCurrentPane({ confirm = false }) },
   { key = 'z', mods = 'LEADER', action = act.TogglePaneZoomState },
 
@@ -185,6 +185,7 @@ config.keys = {
   { key = '0', mods = 'LEADER', action = act.PaneSelect({ mode = 'SwapWithActive' }) },
 
   -- ── Tabs ──
+  { key = 't', mods = 'SHIFT|CTRL', action = act.SpawnTab('CurrentPaneDomain') },
   { key = 'c', mods = 'LEADER', action = act.SpawnTab('CurrentPaneDomain') },
   { key = 'x', mods = 'LEADER', action = act.CloseCurrentTab({ confirm = true }) },
   { key = 'p', mods = 'LEADER', action = act.ActivateTabRelative(-1) },
@@ -305,7 +306,6 @@ config.launch_menu = {}
 
 if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
   config.webgpu_power_preference = 'HighPerformance'
-  config.window_decorations = 'RESIZE'
 
   local wsl_domains = wezterm.default_wsl_domains()
   for _, dom in ipairs(wsl_domains) do
